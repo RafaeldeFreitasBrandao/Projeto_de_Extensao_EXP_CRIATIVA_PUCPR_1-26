@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Pacientes</title>
+</head>
+<body>
+
+  <a href="dashboard_user.html">← Voltar</a>
+
+  <h1>Paciente</h1>
+
+  <button onclick="abrirFormulario()">+ Adicionar Paciente</button>
+
+  <hr>
+
+  <div id="formulario" style="display:none">
+    <h2>Novo Paciente</h2>
+    <label>Nome: <input type="text" id="nome"></label><br><br>
+    <label>CPF: <input type="text" id="cpf"></label><br><br>
+    <label>Data de Nascimento: <input type="date" id="dataNasc"></label><br><br>
+    <label>Telefone: <input type="text" id="telefone"></label><br><br>
+    <label>Email: <input type="text" id="email"></label><br><br>
+    <button onclick="salvarPaciente()">Salvar</button>
+    <button onclick="fecharFormulario()">Cancelar</button>
+    <hr>
+  </div>
+
+  <div id="listaPacientes">
+    <p id="msgVazia">Nenhum paciente cadastrado ainda.</p>
+  </div>
+
+  <div id="detalhes" style="display:none">
+    <hr>
+    <h2>Detalhes do Paciente</h2>
+    <p><strong>Nome:</strong> <span id="detNome"></span></p>
+    <p><strong>CPF:</strong> <span id="detCpf"></span></p>
+    <p><strong>Data de Nascimento:</strong> <span id="detDataNasc"></span></p>
+    <p><strong>Telefone:</strong> <span id="detTelefone"></span></p>
+    <p><strong>Email:</strong> <span id="detEmail"></span></p>
+    <button onclick="fecharDetalhes()">Fechar</button>
+  </div>
+
+  <script>
+    const pacientes = [];
+
+    function abrirFormulario() {
+      document.getElementById('formulario').style.display = 'block';
+    }
+
+    function fecharFormulario() {
+      document.getElementById('formulario').style.display = 'none';
+      limparFormulario();
+    }
+
+    function limparFormulario() {
+      document.getElementById('nome').value = '';
+      document.getElementById('cpf').value = '';
+      document.getElementById('dataNasc').value = '';
+      document.getElementById('telefone').value = '';
+      document.getElementById('email').value = '';
+    }
+
+    function salvarPaciente() {
+      const nome = document.getElementById('nome').value.trim();
+      const cpf = document.getElementById('cpf').value.trim();
+      const dataNasc = document.getElementById('dataNasc').value;
+      const telefone = document.getElementById('telefone').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      if (!nome || !cpf || !dataNasc) {
+        alert('Preencha pelo menos Nome, CPF e Data de Nascimento.');
+        return;
+      }
+
+      pacientes.push({ nome, cpf, dataNasc, telefone, email });
+      renderizarLista();
+      fecharFormulario();
+    }
+
+    function renderizarLista() {
+      const lista = document.getElementById('listaPacientes');
+
+      lista.innerHTML = '';
+
+      if (pacientes.length === 0) {
+        lista.innerHTML = '<p id="msgVazia">Nenhum paciente cadastrado ainda.</p>';
+        return;
+      }
+
+      pacientes.forEach((p, index) => {
+        const dataFormatada = p.dataNasc.split('-').reverse().join('/');
+        const item = document.createElement('div');
+        item.innerHTML = `
+          👤 ${p.nome} | CPF: ${p.cpf} | ${dataFormatada}
+          <button onclick="verDetalhes(${index})">Detalhes</button>
+        `;
+        lista.appendChild(item);
+        lista.appendChild(document.createElement('br'));
+      });
+    }
+
+    function verDetalhes(index) {
+      const p = pacientes[index];
+      const dataFormatada = p.dataNasc.split('-').reverse().join('/');
+      document.getElementById('detNome').textContent = p.nome;
+      document.getElementById('detCpf').textContent = p.cpf;
+      document.getElementById('detDataNasc').textContent = dataFormatada;
+      document.getElementById('detTelefone').textContent = p.telefone || '—';
+      document.getElementById('detEmail').textContent = p.email || '—';
+      document.getElementById('detalhes').style.display = 'block';
+    }
+
+    function fecharDetalhes() {
+      document.getElementById('detalhes').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
