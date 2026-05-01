@@ -2,22 +2,24 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
     
-    <div class="caixa-principal">
-        <div class="caixa-formulario">
-            <h1>Entrar / Registrar</h1>
-            <input type="text" id="nome-usuario" placeholder="Seu Nome de Usuário" required="">
-            <input type="password" id="senha" placeholder="Sua Senha" required="">
-            <div class="botoes-acao">
-                <button id="botao-entrar">Entrar</button>
-                <button id="botao-registrar">Registrar</button>
+    <div class="login-container">
+        <div class="input-container">
+            <h1>Login</h1>
+            <h3>Digite seu nome de usuário:</h3>
+            <input type="text" id="user-name" placeholder="Nome de Usuário" required="">
+            <h3>Digite sua senha de usuário:</h3>
+            <input type="password" id="password" placeholder="Senha" required="">
+            <div class="entry-button">
+                <button id="entry-button-vrf">Entrar</button>
             </div>
-            <p id="mensagem-info"></p>
+            <p id="msg-info"></p>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="js/auth.js"></script>
 
 </body></html>
