@@ -1,3 +1,16 @@
-: root {
-    --background-color: #8f8cc7;
+:root {
+    --primary-color: #8984eb;
+    --secondary-color: #d4d4d4;
+    --button-login-color: #6c6c6c;
+
+    --primary-font-fmly: Arial;
+
+    --primary-font-size: 17px;
+    --input-font-size:22px;
+}
+
+body {
+    background-color: var(--primary-color);
+    font-family: var(--primary-font-fmly);
+
 }
