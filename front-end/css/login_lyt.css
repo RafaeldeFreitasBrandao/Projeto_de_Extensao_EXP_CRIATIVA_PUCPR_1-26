@@ -45,6 +45,9 @@ body {
     width: 340px;
 
     font-size: var(--input-font-size);
+
+    border-radius: 10px;
+    border-style: none;
 }
 
 .input_container button {
@@ -58,15 +61,16 @@ body {
 
     font-size:var(--input-font-size);
 
-    transition: transform 0.3s ease ;
+      background-color: var(--button-pry-login-color);
+
+    transition: transform 0.3s ease, background-color 0.3s ease ;
 
     border-style: none;
 
-    background-color: var(--button-login-color);
 }
 
 .input_container button:hover {
 
     transform: scale(1.08);
-
+    background-color: var(--button-sncd-login-color);
 }
