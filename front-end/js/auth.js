@@ -1,13 +1,15 @@
 import {login} from './api.js';
 
+
+// Atribui os dados inseridos no login á variáveis 
 document.getElementById('entry-button-vrf').addEventListener('click', async () => {
-    const nome_usuario = document.getElementById('user-name').value.trim();
-    const senha = document.getElementById('password').value;
+    const nome_usuario = document.getElementById('user-id').value.trim();// variável do nome_usuario
+    const senha = document.getElementById('password').value;// variável da senha
 
-    const mensagem = document.getElementById('msg-info');
+    const mensagem = document.getElementById('msg-info');// variável usada caso tenho algum erro de usuário, senha ou outro
 
-    if (!nome_usuario || !senha) {
-        mensagem.textContent = 'Preencha todos os campos.';
+    if (!nome_usuario || !senha) { // verifica se as variáveis estão 'cheias
+        mensagem.textContent = 'Preencha todos os campos.';// se não tiver exibe essa mensagem 
         return;
     }
 
