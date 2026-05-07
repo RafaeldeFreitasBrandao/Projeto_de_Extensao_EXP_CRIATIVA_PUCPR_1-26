@@ -1,0 +1,64 @@
+
+#formulario {
+    
+    margin: 1px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(41, 126, 255, 0.3);
+    border-radius: 20px;
+    border: 2px solid rgb(0, 119, 255);  
+    padding: 10px 16px;
+}
+
+#formulario button {
+    background-color: rgba(41, 126, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#formulario input {
+    height: 45px;
+    width: 300px;
+    font-size: var(--input-font-size);
+    border-radius: 20px;
+    border-style: 1px;
+    background-color: rgba(41, 126, 255, 0.1);
+}
+
+h1 {
+    color: rgb(0, 119, 255);
+    font-size: 40px;
+   
+}
+
+#topo {
+    background-color: rgb(0, 119, 255);
+    margin: 0px;
+    
+}
+
+#topo h1 {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+body {
+    margin: 0px;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
