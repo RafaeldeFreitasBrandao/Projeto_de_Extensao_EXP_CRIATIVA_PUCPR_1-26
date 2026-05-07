@@ -20,7 +20,6 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/formularios', formsRoutes);
 
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
 
 
 async function iniciar() {

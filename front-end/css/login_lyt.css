@@ -35,7 +35,7 @@ body {
 
     font-size: var(--primary-font-size);
 
-    gap:10px;
+    gap:5px;
 
 }
 
@@ -53,7 +53,7 @@ body {
     height:60px;
     width: 250px;
 
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: -40px;
 
     border-radius: 20px;
