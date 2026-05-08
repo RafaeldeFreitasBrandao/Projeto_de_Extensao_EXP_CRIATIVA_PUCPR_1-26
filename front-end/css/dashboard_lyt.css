@@ -7,3 +7,19 @@ a {
 
     color:var(--button-pry-login-color);
 }
+
+#topo {
+    background-color: rgb(0, 119, 255);
+    margin: 0px;
+    
+}
+
+#topo h1 {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+body{
+    margin: 0px;
+}

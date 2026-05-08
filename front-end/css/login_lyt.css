@@ -27,10 +27,10 @@ body {
     justify-content: center;
     align-items: center;
 
-    height: 600px;
-    width: 500px;
+    height: 550px;
+    width: 450px;
 
-    background-color: var(--secondary-color);
+    background-color: white;
     border-radius: 30px;
 
     font-size: var(--primary-font-size);
@@ -41,11 +41,10 @@ body {
 .input_container input {
     height: 55px;
     width: 340px;
-    
-    font-size: var(--input-font-size);
     border-color: rgb(0, 119, 255);
     border-radius: 20px;
     border-style: 1px;
+    font-weight: bolder;
 }
 
 .input_container button {
@@ -59,7 +58,7 @@ body {
 
     font-size:var(--input-font-size);
 
-      background-color: var(--button-pry-login-color);
+    background-color: var(--button-pry-login-color);
 
     transition: transform 0.3s ease, background-color 0.3s ease ;
 
