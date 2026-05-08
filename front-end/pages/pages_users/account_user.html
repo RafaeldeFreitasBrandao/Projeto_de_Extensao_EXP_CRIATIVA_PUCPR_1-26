@@ -9,39 +9,45 @@
 
 </head>
 <body>
-    
-    <div class="accnt_container">
-        <div class="data_container">
-            <h1>Sua Conta</h1>
-            <p id="msg-info"></p>
+    <div class="big_content">
+        <h1><i class="fa-solid fa-user" style="color: rgb(0, 0, 0);"></i>Sua Conta</h1>
+        <div class="accnt_container">
 
-            <h3><i class="fa-solid fa-user" style="color: rgb(0, 0, 0);"></i> Nome de Usuário:</h3>
-            <input type="text" id="user-name" placeholder="Nome de Usuário">
 
-            <h3><i class="fa-solid fa-user" style="color: rgb(0, 0, 0);"></i> CPF:</h3>
-            <input type="text" id="user-cpf" placeholder="CPF">
+                <div class="data_container">
 
-            <h3><i class="fa-solid fa-briefcase" style="color: rgb(0, 0, 0);"></i> Profissão:</h3>
-            <input type="text" id="ocuppation" placeholder="profissão">
+                    <h3><i class="fa-solid fa-user" style="color: rgb(0, 0, 0);"></i> Nome de Usuário:</h3>
+                    <input type="text" id="user-name" placeholder="Nome de Usuário">
 
-            <h3><i class="fa-solid fa-hospital" style="color: rgb(0, 0, 0);"></i> Unidade:</h3>
-            <input type="text" id="local-unit" placeholder="unidade">
+                    <h3><i class="fa-solid fa-id-badge" style="color: rgb(0, 0, 0);"></i> CPF:</h3>
+                    <input type="text" id="user-cpf" placeholder="CPF">
 
-            <h3><i class="fa-solid fa-lock" style="color: rgb(0, 0, 0);"></i> senha:</h3>
-            <input type="password" id="password" placeholder="Senha">
+                    <h3><i class="fa-solid fa-at" style="color: rgb(0, 0, 0);"></i> email</h3>
+                    <input type="email" id="email" placeholder="email">
 
-            <h3><i class="fa-solid fa-lock" style="color: rgb(0, 0, 0);"></i> email</h3>
-            <input type="email" id="email" placeholder="email">
+                    <h3><i class="fa-solid fa-phone" style="color: rgb(0, 0, 0);"></i> telefone:</h3>
+                    <input type="tel" id="phone" placeholder="telefone">
+                </div>
 
-            <h3><i class="fa-solid fa-lock" style="color: rgb(0, 0, 0);"></i> telefone:</h3>
-            <input type="tel" id="phone" placeholder="telefone">
-            <br>
-            <div id="botoes">
-                <button id="edit-button">Editar</button>
-                
-                <a href="dashboard_user.html"><button id="return-button">Voltar</button></a>
-                <p></p>
-            </div>
+                <div class="data_container">
+                    <h3><i class="fa-solid fa-briefcase" style="color: rgb(0, 0, 0);"></i> Profissão:</h3>
+                    <input type="text" id="ocuppation" placeholder="profissão">
+
+                    <h3><i class="fa-solid fa-hospital" style="color: rgb(0, 0, 0);"></i> Unidade:</h3>
+                    <input type="text" id="local-unit" placeholder="unidade">
+
+                    <h3><i class="fa-solid fa-lock" style="color: rgb(0, 0, 0);"></i> senha:</h3>
+                    <input type="password" id="password" placeholder="Senha">
+                </div>
+
+                <div class="data_container">
+
+                    <button id="edit-button">Editar</button>
+
+                    <a href="dashboard_user.html"><button id="return-button">Voltar</button></a>
+
+                    <button id="delete-button">Excluir conta</button>
+                </div>
         </div>
     </div>
     <script type="module" src="../js/auth.js"></script>
