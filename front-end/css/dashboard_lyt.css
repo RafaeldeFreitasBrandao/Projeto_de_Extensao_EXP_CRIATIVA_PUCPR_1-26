@@ -1,0 +1,9 @@
+a {
+    text-decoration: none;
+
+    font-family: var(--primary-font-fmly);
+
+    font-size: var(--primary-font-size);
+
+    color:var(--button-pry-login-color);
+}

@@ -1,0 +1,29 @@
+.accnt_container {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.data_container {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 650px;
+    width: 400px;
+
+    margin-top: 100px;
+
+    background-color: var(--secondary-color);
+    font-size: var(--primary-font-size);
+    border-radius: 40px;
+}
+
+.data_container input {
+    height:100px;
+    width: 300px;
+}
