@@ -5,6 +5,7 @@
 
     --button-pry-login-color: rgb(0, 119, 255);
     --button-sncd-login-color: rgb(0, 119, 255);
+    --button-thrd-color: #0a036c;
 
     --msg-alert-color: #ff0000;
 
@@ -13,6 +14,7 @@
 
     --primary-font-size: 17px;
     --input-font-size:22px;
+    --title-font-size:70px;
 }
 
 body {

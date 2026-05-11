@@ -71,9 +71,14 @@
     margin-top: 10px;
 }
 
+.data_container #edit-button {
+    background-color: var(--button-thrd-color);
+}
+
 .data_container #delete-button {
     background-color: var(--msg-alert-color);
 }
+
 
 .data_container button:hover {
     transform: scale(1.06);
