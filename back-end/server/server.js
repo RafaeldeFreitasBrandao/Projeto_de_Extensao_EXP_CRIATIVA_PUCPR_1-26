@@ -19,7 +19,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/formularios', formsRoutes);
-
+app.use('/api/usuarios', usersRoutes)
 
 
 async function iniciar() {

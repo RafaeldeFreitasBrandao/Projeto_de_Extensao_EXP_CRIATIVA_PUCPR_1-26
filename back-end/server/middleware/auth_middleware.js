@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
     //Lê o header "Authorization: Bearer <token>"
     const header = req.headers['authorization'];
     // Armazena apenas o token
-    const token = header && header.split('')[1];
+    const token = header && header.split(' ')[1];
 
     // Verifica se o token chegou
     if (!token) 
