@@ -103,4 +103,10 @@ h3 {
     margin-bottom: 10px;
 }
 
+p {
+    font-size: var(--second-font-size);
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
 
