@@ -32,63 +32,72 @@ window.addEventListener('load', async () => {
 
 });
 
-    //Ao clicar em editar, pede a senha e verifica
-    document.getElementById('edit-button').addEventListener('click', async () => {
-        const msg = document.getElementById('msg-info');
+let modoEdicao = false;
 
-        //Pede a senha atual do usuário
-        const senhaAtual = prompt ('Digite sua senha atual para editar');
-        if (!senhaAtual) return;
+document.getElementById('edit-button').addEventListener('click', async() => {
 
-        const resultado = await verificaSenha(senhaAtual);
+    const msg = document.getElementById('msg-info');
+    const btn = document.getElementById('edit-button');
 
-        if (resultado.erro) {
+    //Salva os dados editados, no Banco de Dados (aciona a função atualizarMinhaConta, dentro do users_controllers.js)
 
-            msg.textContent = resultado.erro;
+    if (modoEdicao) {
+        const dados = {
+
+            nome:       document.getElementById('user-name').value,
+            email:      document.getElementById('email').value,
+            telefone:   document.getElementById('phone').value,
+            unidade:    document.getElementById('local-unit').value,
+            senha:      document.getElementById('password').value,
+
+        };
+
+        const resposta = await atualizarMinhaConta(dados);
+
+        if (resposta.erro) {
+
+            msg.textContent = resposta.erro;
             return;
 
         }
 
-        //Se a senha for a correta, libera para editar
-        document.getElementById('user-name').disabled = false;
-        document.getElementById('email').disabled = false;
-        document.getElementById('phone').disabled = false;
-        document.getElementById('local-unit').disabled = false;
-        document.getElementById('password').disabled = false;
+        msg.textContent = 'Dados atualizados com sucesso!';
+        btn.textContent = 'Editar'
+        modoEdicao = false;
 
+        document.getElementById('user-name').disabled  = true;
+        document.getElementById('email').disabled      = true;
+        document.getElementById('phone').disabled      = true;
+        document.getElementById('local-unit').disabled = true;
+        document.getElementById('password').disabled   = true;
+        return;
 
-        //exibe o campo da senha 
-        document.getElementById('password').value = resultado.senha;
+    }
 
-        const btn = document.getElementById('edit-button');
-        btn.textContent = 'Salvar';
-        btn.removeEventListener('click', arguments.callee);
-        
-        btn.addEventListener('click', async () => {
-            const dados = {
-                nome:  document.getElementById('user-name').value,
-                email: document.getElementById('email').value,
-                telefone: document.getElementById('phone').value,
-                unidade: document.getElementById('local-unit').value,
-                senha: document.getElementById('password').value,
-            };
+    // Verifica a senha e permite a edição (aciona o verficarSenha dentro do users_controllers.js)
+    const senhaAtual = prompt('Digite sua senha atual para editar seus dados:');
 
-            const resposta = await atualizarMinhaConta(dados);
+    if (!senhaAtual)
+        return;
 
-            if (resposta.erro) {
-                msg.textContent = resposta.erro;
-                return;
-            }
+    const resultado = await verificaSenha(senhaAtual);
 
-            msg.textContent = 'Dados atualizados com sucesso!';
-            btn.textContent = 'Editar';
+    if (resultado.erro) {
 
-            //Bloqueia os campos novamente após salvar
+        msg.textContent = resultado.erro;
+        return;
 
-            document.getElementById('user-name').disabled = true;
-            document.getElementById('email').disabled = true;
-            document.getElementById('phone').disabled = true;
-            document.getElementById('local-unit').disabled = true;
-            document.getElementById('password').disabled = true;
-        });
-    });
+    }
+
+    document.getElementById('user-name').disabled  = false;
+    document.getElementById('email').disabled      = false;
+    document.getElementById('phone').disabled      = false;
+    document.getElementById('local-unit').disabled = false;
+    document.getElementById('password').disabled   = false;
+    document.getElementById('password').value      = resultado.senha;
+
+    btn.textContent = 'Salvar';
+    modoEdicao = true;
+
+});
+
