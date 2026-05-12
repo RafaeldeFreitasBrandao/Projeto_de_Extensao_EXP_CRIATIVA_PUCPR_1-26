@@ -1,0 +1,16 @@
+h1 {
+    font-size: var(--title-font-size);
+    color: var(--button-pry-login-color);
+
+    margin-left: 50px;
+
+    
+}
+
+h2 {
+    font-size:var(--title-snd-font-size);   
+}
+
+h3 {
+    font-size:var(--title-thrd-font-size);
+}
