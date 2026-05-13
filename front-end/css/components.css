@@ -1,0 +1,62 @@
+.reg_form {
+    display: flex;
+    
+    flex-direction: column;
+
+    width: 630px;
+
+    margin: 50px;
+
+    background-color: var(--thirdy-color);
+
+    padding: 30px;
+
+    border-radius: 15px;
+}
+
+
+.reg_form input {
+    height: 50px;
+    width:600px;
+
+    border-radius: 5px;
+    border-style: none;
+
+    font-size: var(--input-font-size);
+
+    background-color: var(--secondary-color);
+}
+
+.reg_button {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.reg_button button {
+    height: 55px;
+    width: 300px;
+
+    border-radius: 10px;
+
+    margin-top:25px;
+
+    font-size: var(--input-font-size);
+    border-style: none;
+
+    background-color: var(--button-pry-login-color);
+    color:var(--secondary-color);
+
+    transition: transform 0.3s ease;
+
+}
+
+#cancel_button {
+    background-color: var(--msg-alert-color);
+}
+
+.reg_button button:hover {
+    transform: scale(1.07);
+}

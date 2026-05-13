@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Responsáveis</title>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/guardian_lyt.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
 
   <a href="dashboard_user.html">← Voltar</a>
 
-  <h1>Responsáveis</h1>
+  <i class="fa-solid fa-person"></i><h1>Responsáveis</h1>
 
   <button onclick="abrirFormulario()">+ Adicionar Responsável</button>
 
-  <hr>
 
-  <div id="formulario" style="display:none">
+  <div class="reg_form" id="formulario">
     <h2>Novo Responsável</h2>
-    <label>Nome: <input type="text" id="nome"></label><br><br>
-    <label>CPF: <input type="text" id="cpf"></label><br><br>
-    <label>Data de Nascimento: <input type="date" id="dataNasc"></label><br><br>
-    <label>Telefone: <input type="text" id="telefone"></label><br><br>
-    <label>Email: <input type="text" id="email"></label><br><br>
-    <button onclick="salvarResponsavel()">Salvar</button>
-    <button onclick="fecharFormulario()">Cancelar</button>
-    <hr>
+    <h3>Nome</h3><input type="text" id="nome" placeholder="Nome">
+    <h3>CPF</h3><input type="text" id="cpf" placeholder="xxx.xxx.xxx-xx">
+    <h3>Telefone</h3><input type="text" id="telefone" placeholder="(xx) xxxx-xxxx">
+    <h3>Email:</h3><input type="text" id="email" placeholder="responsavel@email.com">
+
+    <div class="reg_button">
+      <button onclick="salvarResponsavel()">Salvar</button>
+      <button id="cancel_button" onclick="fecharFormulario()">Cancelar</button>
+    </div>
+
   </div>
 
   <div id="listaResponsaveis">
@@ -63,7 +69,7 @@
     let indexAtual = null;
 
     function abrirFormulario() {
-      document.getElementById('formulario').style.display = 'block';
+      document.getElementById('formulario').style.display = 'block' ;
     }
 
     function fecharFormulario() {

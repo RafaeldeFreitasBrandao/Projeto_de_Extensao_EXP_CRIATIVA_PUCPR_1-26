@@ -13,8 +13,11 @@
     
 
     --primary-font-size: 17px;
+    --second-font-size:25px;
     --input-font-size:22px;
     --title-font-size:70px;
+    --title-snd-font-size:40px;
+    --title-thrd-font-size:28px;
 }
 
 body {
