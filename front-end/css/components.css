@@ -1,3 +1,26 @@
+
+#add_reg {
+    height: 80px;
+    width: 300px;
+
+    margin-left: 50px;
+
+    font-size: var(--input-font-size);
+
+    border-radius: 15px;
+    border-style: none;
+
+    background-color: var(--button-pry-login-color);
+    color: var(--secondary-color);
+
+    transition: transform 0.3s ease;
+}
+
+#add_reg:hover {
+    transform: scale(1.08);
+}
+
+
 .reg_form {
     display: flex;
     
@@ -61,3 +84,4 @@
 .reg_button button:hover {
     transform: scale(1.07);
 }
+
