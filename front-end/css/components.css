@@ -1,9 +1,36 @@
 
-#add_reg {
-    height: 80px;
+.return_reg {
+    height:50px;
     width: 300px;
 
+
+    font-size: var(--input-font-size);
+
+    border-radius: 15px;
+    border-style: none;
+
+    background-color: var(--button-pry-login-color);
+    color:var(--secondary-color);
+
     margin-left: 50px;
+
+    transition: transform 0.3s ease;
+}
+
+.reg_header {
+    display:flex;
+    flex-direction: column;
+
+    width: 100vw;   
+
+    background-color: var(--secondary-color );
+
+    gap: 15px;
+}
+
+ #add_reg {
+    height: 80px;
+    width: 300px;
 
     font-size: var(--input-font-size);
 
@@ -14,10 +41,25 @@
     color: var(--secondary-color);
 
     transition: transform 0.3s ease;
+
+
+    margin-left:50px;
+    margin-bottom: 50px;
+}
+
+.return_reg:hover {
+
+    transform: scale(1.08);
+
 }
 
 #add_reg:hover {
+
     transform: scale(1.08);
+}
+
+ a {
+    text-decoration: none;
 }
 
 

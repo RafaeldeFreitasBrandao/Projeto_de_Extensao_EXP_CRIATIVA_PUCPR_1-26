@@ -13,3 +13,8 @@ h2 {
 h3 {
     font-size:var(--title-thrd-font-size);
 }
+
+p {
+    font-size: var(--input-font-size);
+    margin-left:210px;
+}
