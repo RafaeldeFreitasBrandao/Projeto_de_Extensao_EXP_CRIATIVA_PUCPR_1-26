@@ -7,14 +7,20 @@ h1 {
 }
 
 h2 {
-    font-size:var(--title-snd-font-size);   
+    font-size:var(--title-snd-font-size);
+    color: var(--button-pry-login-color);
 }
 
 h3 {
     font-size:var(--title-thrd-font-size);
+    color: var(--button-pry-login-color);
 }
 
 p {
     font-size: var(--input-font-size);
     margin-left:210px;
+}
+
+i {
+    color: black;
 }

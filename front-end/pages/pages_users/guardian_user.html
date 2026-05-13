@@ -12,20 +12,22 @@
 <body>
 
   <div class="reg_header">
-  <h1>Responsáveis</h1>
 
-   <a href="dashboard_user.html"><button class="return_reg">Voltar</button></a>
+  <a href="dashboard_user.html"><button class="return_reg">Voltar</button></a>
   <button id="add_reg" onclick="abrirFormulario()">+Adicionar Responsável</button>
   
+  <h1><i class="fa-solid fa-person"></i>Responsáveis</h1>
+
   </div>
 
 
   <div class="reg_form" id="formulario">
     <h2>Novo Responsável</h2>
-    <h3>Nome</h3><input type="text" id="nome" placeholder="Nome">
-    <h3>CPF</h3><input type="text" id="cpf" placeholder="xxx.xxx.xxx-xx">
-    <h3>Telefone</h3><input type="text" id="telefone" placeholder="(xx) xxxx-xxxx">
-    <h3>Email:</h3><input type="text" id="email" placeholder="responsavel@email.com">
+    <h3><i class="fa-solid fa-user"></i> Nome</h3><input type="text" id="nome" placeholder="Nome">
+    <h3><i class="fa-solid fa-id-badge"></i> CPF</h3><input type="text" id="cpf" placeholder="xxx.xxx.xxx-xx">
+    <h3><i class="fa-solid fa-phone"></i> Telefone</h3><input type="text" id="telefone" placeholder="(xx) xxxx-xxxx">
+    <h3><i class="fa-solid fa-at"></i> Email</h3><input type="text" id="email" placeholder="responsavel@email.com">
+    <h3><i class="fa-solid fa-hands-holding-child"></i> Grau</h3><input type="text" id="grau" placeholder="(Pai,Mãe,Avô(ó),Tio(a)...)">
 
     <div class="reg_button">
       <button onclick="salvarResponsavel()">Salvar</button>
@@ -33,6 +35,7 @@
     </div>
 
   </div>
+
 
   <div id="listaResponsaveis">
     <p id="msgVazia">Nenhum responsável cadastrado ainda.</p>
@@ -43,9 +46,9 @@
     <h2>Detalhes do Responsável</h2>
     <p><strong>Nome:</strong> <span id="detNome"></span></p>
     <p><strong>CPF:</strong> <span id="detCpf"></span></p>
-    <p><strong>Data de Nascimento:</strong> <span id="detDataNasc"></span></p>
     <p><strong>Telefone:</strong> <span id="detTelefone"></span></p>
     <p><strong>Email:</strong> <span id="detEmail"></span></p>
+    <p><strong>Grau:</strong> <span id="detGrau"></span></p>
 
     <h3>Pessoas sob responsabilidade</h3>
     <div id="listaPessoas">
@@ -71,35 +74,35 @@
     let indexAtual = null;
 
     function abrirFormulario() {
-      document.getElementById('formulario').style.display = 'block' ;
+      document.getElementById('formulario').classList.add('visivel');
     }
 
     function fecharFormulario() {
-      document.getElementById('formulario').style.display = 'none';
+      document.getElementById('formulario').classList.remove('visivel');
       limparFormulario();
     }
 
     function limparFormulario() {
       document.getElementById('nome').value = '';
       document.getElementById('cpf').value = '';
-      document.getElementById('dataNasc').value = '';
       document.getElementById('telefone').value = '';
       document.getElementById('email').value = '';
+      document.getElementById('grau').value = '';
     }
 
     function salvarResponsavel() {
       const nome = document.getElementById('nome').value.trim();
       const cpf = document.getElementById('cpf').value.trim();
-      const dataNasc = document.getElementById('dataNasc').value;
       const telefone = document.getElementById('telefone').value.trim();
       const email = document.getElementById('email').value.trim();
+      const grau = document.getElementById('grau').value.trim();
 
-      if (!nome || !cpf || !dataNasc) {
-        alert('Preencha pelo menos Nome, CPF e Data de Nascimento.');
+      if (!nome || !cpf || !telefone || !email || !grau) {
+        alert('Preencha todos os campos.');
         return;
       }
 
-      responsaveis.push({ nome, cpf, dataNasc, telefone, email, pessoas: [] });
+      responsaveis.push({ nome, cpf, telefone, email, grau, pessoas: [] });
       renderizarLista();
       fecharFormulario();
     }
@@ -114,10 +117,9 @@
       }
 
       responsaveis.forEach((r, index) => {
-        const dataFormatada = r.dataNasc.split('-').reverse().join('/');
         const item = document.createElement('div');
         item.innerHTML = `
-          👤 ${r.nome} | CPF: ${r.cpf} | ${dataFormatada}
+          👤 ${r.nome} | CPF: ${r.cpf}
           <button onclick="verDetalhes(${index})">Detalhes</button>
         `;
         lista.appendChild(item);
@@ -128,13 +130,12 @@
     function verDetalhes(index) {
       indexAtual = index;
       const r = responsaveis[index];
-      const dataFormatada = r.dataNasc.split('-').reverse().join('/');
 
       document.getElementById('detNome').textContent = r.nome;
       document.getElementById('detCpf').textContent = r.cpf;
-      document.getElementById('detDataNasc').textContent = dataFormatada;
       document.getElementById('detTelefone').textContent = r.telefone || '—';
       document.getElementById('detEmail').textContent = r.email || '—';
+      document.getElementById('detGrau').textContent = r.grau || '—'
 
       renderizarPessoas();
       document.getElementById('detalhes').style.display = 'block';

@@ -1,7 +1,7 @@
 
 .return_reg {
-    height:50px;
-    width: 300px;
+    height:80px;
+    width: 200px;
 
 
     font-size: var(--input-font-size);
@@ -19,9 +19,12 @@
 
 .reg_header {
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
 
     width: 100vw;   
+
+    align-items: center;
+    justify-content: flex-start;
 
     background-color: var(--secondary-color );
 
@@ -30,7 +33,7 @@
 
  #add_reg {
     height: 80px;
-    width: 300px;
+    width: 200px;
 
     font-size: var(--input-font-size);
 
@@ -44,7 +47,6 @@
 
 
     margin-left:50px;
-    margin-bottom: 50px;
 }
 
 .return_reg:hover {
@@ -65,7 +67,8 @@
 
 .reg_form {
     display: flex;
-    
+    display: none;
+
     flex-direction: column;
 
     width: 630px;
@@ -77,6 +80,10 @@
     padding: 30px;
 
     border-radius: 15px;
+}
+
+.reg_form.visivel {
+    display: block;
 }
 
 
