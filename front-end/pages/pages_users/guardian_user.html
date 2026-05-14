@@ -35,162 +35,166 @@
     </div>
 
   </div>
+  
+  <div id="listaResponsaveis"></div>
 
   <!--DIV DOS RESPONSÁVEIS JÁ CRIADOS-->
 
-  <div id="listaResponsaveis">
-    <p id="msgVazia">Nenhum responsável cadastrado ainda.</p>
-  </div>
+  <div class="det_resp" id="detalhes">
 
-  <div class="det_resp" id="detalhes" style="display:none">
-    <h2>Detalhes do Responsável</h2>
-    <p><i class="fa-solid fa-user"></i><strong>   Nome:</strong> <span id="detNome"></span></p>
-    <p><i class="fa-solid fa-id-badge"></i><strong> CPF:</strong> <span id="detCpf"></span></p>
-    <p><i class="fa-solid fa-phone"></i><strong> Telefone:</strong> <span id="detTelefone"></span></p>
-    <p><i class="fa-solid fa-at"></i><strong> Email:</strong> <span id="detEmail"></span></p>
-    <p><i class="fa-solid fa-hands-holding-child"></i><strong> Grau:</strong> <span id="detGrau"></span></p>
+    <h3>Detalhes do Responsável</h3>
 
-    <h3>Pessoas sob responsabilidade</h3>
-    <div id="listaPessoas">
-      <p id="msgVaziaPessoas">Nenhuma pessoa adicionada ainda.</p>
+    <div class="det_data_container">
+      <h3><i class="fa-solid fa-user"></i> Nome</h3>
+      <input type="text" id="detNome" disabled>
+
+      <h3><i class="fa-solid fa-id-badge"></i> CPF</h3>
+      <input type="text" id="detCpf" disabled>
+
+      <h3><i class="fa-solid fa-phone"></i> Telefone</h3>
+      <input type="text" id="detTelefone" disabled>
+
+      <h3><i class="fa-solid fa-at"></i> Email</h3>
+      <input type="text" id="detEmail" disabled>
+
+      <h3><i class="fa-solid fa-hands-holding-child"></i> Grau</h3>
+      <input type="text" id="detGrau" disabled>
     </div>
 
-    <button onclick="abrirFormularioPessoa()">+ Adicionar Pessoa</button>
-
-    <div id="formularioPessoa" style="display:none">
-      <br>
-      <label>Nome da pessoa: <input type="text" id="nomePessoa"></label><br><br>
-      <label>Relação (ex: filho, cônjuge): <input type="text" id="relacaoPessoa"></label><br><br>
-      <button onclick="salvarPessoa()">Salvar</button>
-      <button onclick="fecharFormularioPessoa()">Cancelar</button>
+    <div class="det_data_container">
+      <h3><i class="fa-solid fa-hospital-user"></i> Paciente vinculado</h3>
+      <input type="text" id="detPaciente" disabled>
     </div>
 
-    <br><br>
-    <button onclick="fecharDetalhes()">Fechar</button>
+    <div class="det_data_container">
+      <button id="editar-detalhes">Editar</button>
+      <button id="fechar-detalhes" onclick="fecharDetalhes()">Fechar</button>
+      <p id="msg-detalhes"></p>
+    </div>
+
   </div>
 
   <!--PARTE LÓGICA DO FRONTEND-->
 
   <script>
-    const responsaveis = [];
-    let indexAtual = null;
+  const responsaveis = [];
+  let indexAtual = null;
+  let modoEdicaoDetalhes = false;
 
-    function abrirFormulario() {
-      document.getElementById('formulario').classList.add('visivel');
+  function definirBloqueio(bloquear) {
+    document.getElementById('detNome').disabled     = bloquear;
+    document.getElementById('detTelefone').disabled = bloquear;
+    document.getElementById('detEmail').disabled    = bloquear;
+    document.getElementById('detGrau').disabled     = bloquear;
+    document.getElementById('detCpf').disabled      = true;
+    document.getElementById('detPaciente').disabled = true;
+  }
+
+  function fecharDetalhes() {
+    document.getElementById('detalhes').classList.remove('visivel');
+    indexAtual = null;
+  }
+
+  function abrirFormulario() {
+    document.getElementById('formulario').classList.add('visivel');
+  }
+
+  function fecharFormulario() {
+    document.getElementById('formulario').classList.remove('visivel');
+    limparFormulario();
+  }
+
+  function limparFormulario() {
+    document.getElementById('nome').value     = '';
+    document.getElementById('cpf').value      = '';
+    document.getElementById('telefone').value = '';
+    document.getElementById('email').value    = '';
+    document.getElementById('grau').value     = '';
+  }
+
+  function salvarResponsavel() {
+    const nome     = document.getElementById('nome').value.trim();
+    const cpf      = document.getElementById('cpf').value.trim();
+    const telefone = document.getElementById('telefone').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const grau     = document.getElementById('grau').value.trim();
+
+    if (!nome || !cpf || !telefone || !email || !grau) {
+      alert('Preencha todos os campos.');
+      return;
     }
 
-    function fecharFormulario() {
-      document.getElementById('formulario').classList.remove('visivel');
-      limparFormulario();
-    }
+    responsaveis.push({ nome, cpf, telefone, email, grau, paciente: null });
+    renderizarLista();
+    fecharFormulario();
+  }
 
-    function limparFormulario() {
-      document.getElementById('nome').value = '';
-      document.getElementById('cpf').value = '';
-      document.getElementById('telefone').value = '';
-      document.getElementById('email').value = '';
-      document.getElementById('grau').value = '';
-    }
+  function renderizarLista() {
+    const lista = document.getElementById('listaResponsaveis');
+    lista.innerHTML = '';
 
-    function salvarResponsavel() {
-      const nome = document.getElementById('nome').value.trim();
-      const cpf = document.getElementById('cpf').value.trim();
-      const telefone = document.getElementById('telefone').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const grau = document.getElementById('grau').value.trim();
+    responsaveis.forEach((r, index) => {
+      const item = document.createElement('div');
+      item.classList.add('resp_salvo');
+      item.innerHTML = `
+        <p>👤 ${r.nome} | CPF: ${r.cpf}</p>
+        <button onclick="verDetalhes(${index})">Detalhes</button>
+      `;
+      lista.appendChild(item);
+    });
+  }
 
-      if (!nome || !cpf || !telefone || !email || !grau) {
-        alert('Preencha todos os campos.');
+  function verDetalhes(index) {
+    indexAtual = index;
+    const r = responsaveis[index];
+
+    document.getElementById('detNome').value     = r.nome;
+    document.getElementById('detCpf').value      = r.cpf;
+    document.getElementById('detTelefone').value = r.telefone || '';
+    document.getElementById('detEmail').value    = r.email    || '';
+    document.getElementById('detGrau').value     = r.grau     || '';
+    document.getElementById('detPaciente').value = r.paciente
+      ? r.paciente
+      : 'Nenhum paciente vinculado';
+
+    definirBloqueio(true);
+    document.getElementById('msg-detalhes').textContent = '';
+
+    const btn    = document.getElementById('editar-detalhes');
+    btn.textContent    = 'Editar';
+    modoEdicaoDetalhes = false;
+
+    const btnNovo = btn.cloneNode(true);
+    btn.parentNode.replaceChild(btnNovo, btn);
+
+    btnNovo.addEventListener('click', () => {
+      const msg = document.getElementById('msg-detalhes');
+
+      if (modoEdicaoDetalhes) {
+        const r        = responsaveis[indexAtual];
+        r.nome         = document.getElementById('detNome').value.trim();
+        r.telefone     = document.getElementById('detTelefone').value.trim();
+        r.email        = document.getElementById('detEmail').value.trim();
+        r.grau         = document.getElementById('detGrau').value.trim();
+
+        renderizarLista();
+        msg.textContent     = '';
+        btnNovo.textContent = 'Editar';
+        modoEdicaoDetalhes  = false;
+        definirBloqueio(true);
         return;
       }
 
-      responsaveis.push({ nome, cpf, telefone, email, grau, pessoas: [] });
-      renderizarLista();
-      fecharFormulario();
-    }
+      definirBloqueio(false);
+      btnNovo.textContent = 'Salvar';
+      msg.textContent     = '';
+      modoEdicaoDetalhes  = true;
+    }); // ← fecha o addEventListener corretamente
 
-    function renderizarLista() {
-      const lista = document.getElementById('listaResponsaveis');
-      lista.innerHTML = '';
+    document.getElementById('detalhes').classList.add('visivel');
+  } // ← fecha o verDetalhes corretamente
 
-      if (responsaveis.length === 0) {
-        lista.innerHTML = '<p id="msgVazia">Nenhum responsável cadastrado ainda.</p>';
-        return;
-      }
-
-      responsaveis.forEach((r, index) => {
-        const item = document.createElement('div');
-        item.classList.add('resp_salvo')
-        item.innerHTML = `
-          <p>👤 ${r.nome} | CPF: ${r.cpf}</p>
-          <button onclick="verDetalhes(${index})">Detalhes</button>
-        `;
-        lista.appendChild(item);
-        lista.appendChild(document.createElement('br'));
-      });
-    }
-
-    function verDetalhes(index) {
-      indexAtual = index;
-      const r = responsaveis[index];
-
-      document.getElementById('detNome').textContent = r.nome;
-      document.getElementById('detCpf').textContent = r.cpf;
-      document.getElementById('detTelefone').textContent = r.telefone || '—';
-      document.getElementById('detEmail').textContent = r.email || '—';
-      document.getElementById('detGrau').textContent = r.grau || '—'
-
-      renderizarPessoas();
-      document.getElementById('detalhes').style.display = 'block';
-    }
-
-    function fecharDetalhes() {
-      document.getElementById('detalhes').style.display = 'none';
-      fecharFormularioPessoa();
-      indexAtual = null;
-    }
-
-    function abrirFormularioPessoa() {
-      document.getElementById('formularioPessoa').style.display = 'block';
-    }
-
-    function fecharFormularioPessoa() {
-      document.getElementById('formularioPessoa').style.display = 'none';
-      document.getElementById('nomePessoa').value = '';
-      document.getElementById('relacaoPessoa').value = '';
-    }
-
-    function salvarPessoa() {
-      const nome = document.getElementById('nomePessoa').value.trim();
-      const relacao = document.getElementById('relacaoPessoa').value.trim();
-
-      if (!nome) {
-        alert('Informe o nome da pessoa.');
-        return;
-      }
-
-      responsaveis[indexAtual].pessoas.push({ nome, relacao });
-      renderizarPessoas();
-      fecharFormularioPessoa();
-    }
-
-    function renderizarPessoas() {
-      const lista = document.getElementById('listaPessoas');
-      const pessoas = responsaveis[indexAtual].pessoas;
-      lista.innerHTML = '';
-
-      if (pessoas.length === 0) {
-        lista.innerHTML = '<p id="msgVaziaPessoas">Nenhuma pessoa adicionada ainda.</p>';
-        return;
-      }
-
-      pessoas.forEach((p) => {
-        const item = document.createElement('p');
-        item.textContent = `👤 ${p.nome}${p.relacao ? ' — ' + p.relacao : ''}`;
-        lista.appendChild(item);
-      });
-    }
-  </script>
+</script>
 
 </body>
 </html>

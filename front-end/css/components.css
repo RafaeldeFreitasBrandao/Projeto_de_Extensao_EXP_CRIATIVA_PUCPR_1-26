@@ -189,37 +189,66 @@
 
 .det_resp {
     display: flex;
+    display: none;
     flex-direction: column;
 
     align-items: center;
     justify-content: flex-start;
 
-    height: 550px;
-    width: 550px;
+    height: 670px;
+    width: 380px;
 
     margin-left: 30px;
+    margin-top:50px;
+    margin-bottom:50px;
+    padding-top:30px;
 
-    gap:40px;
 
     background-color: var(--secondary-color);
     border-radius: 15px;
     border-style: none;
 }
 
-.det_resp p {
+.det_resp.visivel {
+    display: block;
+}
+
+.det_resp input {
     margin:0;
-    margin-top: 20px;
+    height:30px;
+    width: 300px;
+    margin-left: 30px;
+    margin-top: 5px;
 }
 
 .det_resp i {
-    color:var(--button-pry-login-color)
+    color:black;
+    margin-left:5px;
 }
 
-.det_resp h2 {
-    margin: 0;
-    margin-top: 80px;
-}
 
 .det_resp h3 {
     margin: 0;
+    margin-top:15px;
+    margin-left: 20px;
+}
+
+.det_resp button {
+    margin: 0;
+    margin-left:50px;
+    margin-top: 20px;
+
+    height: 40px;
+    width: 100px;
+
+    background-color: var(--button-pry-login-color);
+    border-radius: 10px;
+    border-style: none;
+    color: var(--thirdy-color);
+
+    transition: transform 0.3s ease;
+}
+
+.det_resp button:hover {
+    transform: scale(1.08);
 }
