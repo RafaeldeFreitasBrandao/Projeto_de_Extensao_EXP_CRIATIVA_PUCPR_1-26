@@ -134,3 +134,92 @@
     transform: scale(1.07);
 }
 
+.resp_salvo {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    height:70px;
+    width: 550px;
+
+    justify-content: flex-start;
+
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+
+    margin-top:30px;
+    margin-left: 30px;
+
+    transition: transform 0.3s ease;
+
+    box-shadow: 5px 5px 0px var(--shadow-box-color);
+}
+
+.resp_salvo p {
+    margin-left: 20px;
+}
+
+.resp_salvo button {
+    height: 35px; 
+    width: 90px;
+    
+    border-radius: 10px;
+    border-style: none;
+
+    font-size: var(--primary-font-size);
+    background-color: var(--button-pry-login-color);
+    color: var(--thirdy-color);
+
+    margin-left: auto;
+    margin-right: 20px;
+
+    transition: transform 0.3s ease;
+}
+
+.resp_salvo:hover {
+
+    transform: scale(1.03);
+
+}
+
+.resp_salvo button:hover {
+    transform: scale(1.08)translateY(0);
+}
+
+.det_resp {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    height: 550px;
+    width: 550px;
+
+    margin-left: 30px;
+
+    gap:40px;
+
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    border-style: none;
+}
+
+.det_resp p {
+    margin:0;
+    margin-top: 20px;
+}
+
+.det_resp i {
+    color:var(--button-pry-login-color)
+}
+
+.det_resp h2 {
+    margin: 0;
+    margin-top: 80px;
+}
+
+.det_resp h3 {
+    margin: 0;
+}

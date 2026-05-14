@@ -6,6 +6,7 @@
 
     --button-pry-login-color: rgb(0, 119, 255);
     --button-sncd-login-color: rgb(0, 119, 255);
+    --shadow-box-color: rgba(14, 36, 236, 0.211);
     --button-thrd-color: #0a036c;
 
     --msg-alert-color: #ff0000;
@@ -28,5 +29,12 @@ body {
     margin: 0;
 }
 
+button {
+
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+
+}
 
 

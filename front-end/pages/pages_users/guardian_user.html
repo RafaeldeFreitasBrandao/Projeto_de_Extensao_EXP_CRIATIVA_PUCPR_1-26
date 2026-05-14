@@ -36,19 +36,19 @@
 
   </div>
 
+  <!--DIV DOS RESPONSÁVEIS JÁ CRIADOS-->
 
   <div id="listaResponsaveis">
     <p id="msgVazia">Nenhum responsável cadastrado ainda.</p>
   </div>
 
-  <div id="detalhes" style="display:none">
-    <hr>
+  <div class="det_resp" id="detalhes" style="display:none">
     <h2>Detalhes do Responsável</h2>
-    <p><strong>Nome:</strong> <span id="detNome"></span></p>
-    <p><strong>CPF:</strong> <span id="detCpf"></span></p>
-    <p><strong>Telefone:</strong> <span id="detTelefone"></span></p>
-    <p><strong>Email:</strong> <span id="detEmail"></span></p>
-    <p><strong>Grau:</strong> <span id="detGrau"></span></p>
+    <p><i class="fa-solid fa-user"></i><strong>   Nome:</strong> <span id="detNome"></span></p>
+    <p><i class="fa-solid fa-id-badge"></i><strong> CPF:</strong> <span id="detCpf"></span></p>
+    <p><i class="fa-solid fa-phone"></i><strong> Telefone:</strong> <span id="detTelefone"></span></p>
+    <p><i class="fa-solid fa-at"></i><strong> Email:</strong> <span id="detEmail"></span></p>
+    <p><i class="fa-solid fa-hands-holding-child"></i><strong> Grau:</strong> <span id="detGrau"></span></p>
 
     <h3>Pessoas sob responsabilidade</h3>
     <div id="listaPessoas">
@@ -68,6 +68,8 @@
     <br><br>
     <button onclick="fecharDetalhes()">Fechar</button>
   </div>
+
+  <!--PARTE LÓGICA DO FRONTEND-->
 
   <script>
     const responsaveis = [];
@@ -118,8 +120,9 @@
 
       responsaveis.forEach((r, index) => {
         const item = document.createElement('div');
+        item.classList.add('resp_salvo')
         item.innerHTML = `
-          👤 ${r.nome} | CPF: ${r.cpf}
+          <p>👤 ${r.nome} | CPF: ${r.cpf}</p>
           <button onclick="verDetalhes(${index})">Detalhes</button>
         `;
         lista.appendChild(item);
