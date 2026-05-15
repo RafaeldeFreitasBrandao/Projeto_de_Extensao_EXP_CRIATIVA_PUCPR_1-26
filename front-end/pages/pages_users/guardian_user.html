@@ -24,8 +24,8 @@
   <div class="reg_form" id="formulario">
     <h2>Novo Responsável</h2>
     <h3><i class="fa-solid fa-user"></i> Nome</h3><input type="text" id="nome" placeholder="Nome">
-    <h3><i class="fa-solid fa-id-badge"></i> CPF</h3><input type="text" id="cpf" placeholder="xxx.xxx.xxx-xx">
-    <h3><i class="fa-solid fa-phone"></i> Telefone</h3><input type="text" id="telefone" placeholder="(xx) xxxx-xxxx">
+    <h3><i class="fa-solid fa-id-badge"></i> CPF</h3><input type="text" id="cpf" placeholder="xxx.xxx.xxx-xx" maxlength="11">
+    <h3><i class="fa-solid fa-phone"></i> Telefone</h3><input type="text" id="telefone" placeholder="(xx) xxxx-xxxx" maxlength="11">
     <h3><i class="fa-solid fa-at"></i> Email</h3><input type="text" id="email" placeholder="responsavel@email.com">
     <h3><i class="fa-solid fa-hands-holding-child"></i> Grau</h3><input type="text" id="grau" placeholder="(Pai,Mãe,Avô(ó),Tio(a)...)">
 
@@ -52,7 +52,7 @@
       <input type="text" id="detCpf" disabled>
 
       <h3><i class="fa-solid fa-phone"></i> Telefone</h3>
-      <input type="text" id="detTelefone" disabled>
+      <input type="text" id="detTelefone" maxlength="11" disabled>
 
       <h3><i class="fa-solid fa-at"></i> Email</h3>
       <input type="text" id="detEmail" disabled>
