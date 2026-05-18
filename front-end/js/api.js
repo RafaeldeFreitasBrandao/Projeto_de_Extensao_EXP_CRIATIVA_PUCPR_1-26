@@ -45,3 +45,30 @@ export async function atualizarMinhaConta(dados) {
     });
     return resposta.json();
 }
+
+export async function listarResponsaveis() {
+    const resposta = await fetch(`${BASE}/responsaveis`, {
+        method: 'GET',
+        headers: getHeaders(),
+        body: JSON.stringify(dados)
+    });
+    return resposta.json();
+}
+
+export async function criarResponsaveis() {
+    const resposta = await fetch(`${BASE}/responsaveis`,{
+        method: 'PUT',
+        headers: getHeaders(),
+        body:json.stringify(dados)
+    });
+    return resposta.json();
+}
+
+export async function editarResponsaveis() {
+    const resposta = await fetch(`${BASE}/responsaveis`, {
+        method:'POST',
+        headers: getHeaders(),
+        body:json.stringify(dados)
+    });
+    return resposta.json();
+}
