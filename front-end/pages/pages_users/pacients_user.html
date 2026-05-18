@@ -1,124 +1,193 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="../../css/base.css">
-  <link rel="stylesheet" href="../../css/components.css">
-  <link rel="stylesheet" href="../../css/pacients.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Pacientes</title>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/guardian_lyt.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
 
-  <div id="topo"><a href="dashboard_user.html"><i class="fa-solid fa-reply" style="color: rgb(255, 255, 255);"></i>Voltar</a>
+  <div class="reg_header">
 
-  <h1>Paciente</h1>
-</div>
-  <button onclick="abrirFormulario()">+ Adicionar Paciente</button>
-
+  <a href="dashboard_user.html"><button class="return_reg">Voltar</button></a>
+  <button id="add_reg" onclick="abrirFormulario()">+Adicionar Paciente</button>
   
+  <h1><i class="fa-solid fa-hospital-user"></i>Pacientes</h1>
 
-  <div id="formulario" style="display:none">
+  </div>
+
+
+  <div class="reg_form" id="formulario">
     <h2>Novo Paciente</h2>
-    <label>Nome: <input type="text" id="nome"></label>
-    <label>CPF: <input type="text" id="cpf"></label>
-    <label>Data de Nascimento: <input type="date" id="dataNasc"></label>
-    <label>Telefone: <input type="text" id="telefone"></label>
-    <label>Email: <input type="text" id="email"></label>
-    <button onclick="salvarPaciente()">Salvar</button>
-    <button onclick="fecharFormulario()">Cancelar</button>
-   
-  </div>
+    <h3><i class="fa-solid fa-user"></i> Nome</h3><input type="text" id="nome" placeholder="Nome completo">
+    <h3><i class="fa-solid fa-id-badge"></i> CPF</h3><input type="text" id="cpf" placeholder="xxx.xxx.xxx-xx" maxlength="14">
+    <h3><i class="fa-solid fa-id-card"></i> RG</h3><input type="text" id="rg" placeholder="xx.xxx.xxx-xx" maxlength="12">
+    <h3><i class="fa-solid fa-birthday-cake"></i> Data de nascimento</h3><input type="date" id="dataNascimento">
+    <h3><i class="fa-solid fa-venus-mars"></i> Sexo</h3>
+    <select id="sexo">
+      <option value="">Selecione</option>
+      <option value="masculino">Masculino</option>
+      <option value="feminino">Feminino</option>
+    </select>
 
-  <div id="listaPacientes">
-    <p id="msgVazia">Nenhum paciente cadastrado ainda.</p>
-  </div>
+    <div class="reg_button">
+      <button onclick="salvarPaciente()">Salvar</button>
+      <button id="cancel_button" onclick="fecharFormulario()">Cancelar</button>
+    </div>
 
-  <div id="detalhes" style="display:none">
-    <hr>
-    <h2>Detalhes do Paciente</h2>
-    <p><strong>Nome:</strong> <span id="detNome"></span></p>
-    <p><strong>CPF:</strong> <span id="detCpf"></span></p>
-    <p><strong>Data de Nascimento:</strong> <span id="detDataNasc"></span></p>
-    <p><strong>Telefone:</strong> <span id="detTelefone"></span></p>
-    <p><strong>Email:</strong> <span id="detEmail"></span></p>
-    <button onclick="fecharDetalhes()">Fechar</button>
+  </div>
+  
+  <div id="listaPacientes"></div>
+
+  <!--DIV DOS PACIENTES JÁ CRIADOS-->
+
+  <div class="det_resp" id="detalhes">
+
+    <h3>Detalhes do Paciente</h3>
+
+    <div class="det_data_container">
+      <h3><i class="fa-solid fa-user"></i> Nome</h3>
+      <input type="text" id="detNome" disabled>
+
+      <h3><i class="fa-solid fa-id-badge"></i> CPF</h3>
+      <input type="text" id="detCpf" disabled>
+
+      <h3><i class="fa-solid fa-id-card"></i> RG</h3>
+      <input type="text" id="detRg" disabled>
+
+      <h3><i class="fa-solid fa-birthday-cake"></i> Data de nascimento</h3>
+      <input type="date" id="detDataNascimento" disabled>
+
+      <h3><i class="fa-solid fa-venus-mars"></i> Sexo</h3>
+      <input type="text" id="detSexo" disabled>
+    </div>
+
+    <div class="det_data_container">
+      <button id="editar-detalhes">Editar</button>
+      <button id="fechar-detalhes" onclick="fecharDetalhes()">Fechar</button>
+      <p id="msg-detalhes"></p>
+    </div>
+
   </div>
 
   <script>
-    const pacientes = [];
+  const pacientes = [];
+  let indexAtual = null;
+  let modoEdicaoDetalhes = false;
 
-    function abrirFormulario() {
-      document.getElementById('formulario').style.display = 'block';
+  function definirBloqueio(bloquear) {
+    document.getElementById('detNome').disabled = bloquear;
+    document.getElementById('detRg').disabled = true;
+    document.getElementById('detDataNascimento').disabled = bloquear;
+    document.getElementById('detSexo').disabled = bloquear;
+    document.getElementById('detCpf').disabled = true;
+  }
+
+  function fecharDetalhes() {
+    document.getElementById('detalhes').classList.remove('visivel');
+    indexAtual = null;
+  }
+
+  function abrirFormulario() {
+    document.getElementById('formulario').classList.add('visivel');
+  }
+
+  function fecharFormulario() {
+    document.getElementById('formulario').classList.remove('visivel');
+    limparFormulario();
+  }
+
+  function limparFormulario() {
+    document.getElementById('nome').value = '';
+    document.getElementById('cpf').value = '';
+    document.getElementById('rg').value = '';
+    document.getElementById('dataNascimento').value  = '';
+    document.getElementById('sexo').value  = '';
+  }
+
+  function salvarPaciente() {
+    const nome = document.getElementById('nome').value.trim();
+    const cpf = document.getElementById('cpf').value.trim();
+    const rg = document.getElementById('rg').value.trim();
+    const dataNascimento = document.getElementById('dataNascimento').value;
+    const sexo = document.getElementById('sexo').value;
+
+    if (!nome || !cpf || !rg || !dataNascimento || !sexo) {
+      alert('Preencha todos os campos obrigatórios.');
+      return;
     }
 
-    function fecharFormulario() {
-      document.getElementById('formulario').style.display = 'none';
-      limparFormulario();
-    }
+    pacientes.push({ nome, cpf, rg, dataNascimento, sexo });
+    renderizarLista();
+    fecharFormulario();
+  }
 
-    function limparFormulario() {
-      document.getElementById('nome').value = '';
-      document.getElementById('cpf').value = '';
-      document.getElementById('dataNasc').value = '';
-      document.getElementById('telefone').value = '';
-      document.getElementById('email').value = '';
-    }
+  function renderizarLista() {
+    const lista = document.getElementById('listaPacientes');
+    lista.innerHTML = '';
 
-    function salvarPaciente() {
-      const nome = document.getElementById('nome').value.trim();
-      const cpf = document.getElementById('cpf').value.trim();
-      const dataNasc = document.getElementById('dataNasc').value;
-      const telefone = document.getElementById('telefone').value.trim();
-      const email = document.getElementById('email').value.trim();
+    pacientes.forEach((p, index) => {
+      const item = document.createElement('div');
+      item.classList.add('resp_salvo');
+      item.innerHTML = `
+        <p> ${p.nome} | CPF: ${p.cpf}</p>
+        <button onclick="verDetalhes(${index})">Detalhes</button>
+      `;
+      lista.appendChild(item);
+    });
+  }
 
-      if (!nome || !cpf || !dataNasc) {
-        alert('Preencha pelo menos Nome, CPF e Data de Nascimento.');
+  function verDetalhes(index) {
+    indexAtual = index;
+    const p = pacientes[index];
+
+    document.getElementById('detNome').value = p.nome;
+    document.getElementById('detCpf').value = p.cpf;
+    document.getElementById('detRg').value = p.rg || '';
+    document.getElementById('detDataNascimento').value = p.dataNascimento || '';
+    document.getElementById('detSexo').value = p.sexo || '';
+
+    definirBloqueio(true);
+    document.getElementById('msg-detalhes').textContent = '';
+
+    const btn = document.getElementById('editar-detalhes');
+    btn.textContent = 'Editar';
+    modoEdicaoDetalhes = false;
+
+    const btnNovo = btn.cloneNode(true);
+    btn.parentNode.replaceChild(btnNovo, btn);
+
+    btnNovo.addEventListener('click', () => {
+      const msg = document.getElementById('msg-detalhes');
+
+      if (modoEdicaoDetalhes) {
+        const p = pacientes[indexAtual];
+        p.nome = document.getElementById('detNome').value.trim();
+        p.dataNascimento = document.getElementById('detDataNascimento').value;
+        p.sexo = document.getElementById('detSexo').value;
+
+        renderizarLista();
+        msg.textContent = '';
+        btnNovo.textContent = 'Editar';
+        modoEdicaoDetalhes = false;
+        definirBloqueio(true);
         return;
       }
 
-      pacientes.push({ nome, cpf, dataNasc, telefone, email });
-      renderizarLista();
-      fecharFormulario();
-    }
+      definirBloqueio(false);
+      btnNovo.textContent = 'Salvar';
+      msg.textContent = '';
+      modoEdicaoDetalhes = true;
+    });
 
-    function renderizarLista() {
-      const lista = document.getElementById('listaPacientes');
+    document.getElementById('detalhes').classList.add('visivel');
+  }
 
-      lista.innerHTML = '';
-
-      if (pacientes.length === 0) {
-        lista.innerHTML = '<p id="msgVazia">Nenhum paciente cadastrado ainda.</p>';
-        return;
-      }
-
-      pacientes.forEach((p, index) => {
-        const dataFormatada = p.dataNasc.split('-').reverse().join('/');
-        const item = document.createElement('div');
-        item.innerHTML = `
-          👤 ${p.nome} | CPF: ${p.cpf} | ${dataFormatada}
-          <button onclick="verDetalhes(${index})">Detalhes</button>
-        `;
-        lista.appendChild(item);
-        lista.appendChild(document.createElement('br'));
-      });
-    }
-
-    function verDetalhes(index) {
-      const p = pacientes[index];
-      const dataFormatada = p.dataNasc.split('-').reverse().join('/');
-      document.getElementById('detNome').textContent = p.nome;
-      document.getElementById('detCpf').textContent = p.cpf;
-      document.getElementById('detDataNasc').textContent = dataFormatada;
-      document.getElementById('detTelefone').textContent = p.telefone || '—';
-      document.getElementById('detEmail').textContent = p.email || '—';
-      document.getElementById('detalhes').style.display = 'block';
-    }
-
-    function fecharDetalhes() {
-      document.getElementById('detalhes').style.display = 'none';
-    }
-  </script>
+</script>
 
 </body>
 </html>
