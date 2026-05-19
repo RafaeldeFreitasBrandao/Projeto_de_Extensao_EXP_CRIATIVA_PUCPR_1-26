@@ -34,7 +34,7 @@ exports.criaResponsavel = async (req, res) => {
 
     try {
         const [existente] = await db.query(
-            `SELECT id_responsavel FROM responsaveis WHERE CPF = ?`, [cpf]
+            `SELECT id_responsavel FROM responsaveis WHERE CPF = ?`, [CPF]
         );
 
         if (existente.length > 0) 
@@ -42,7 +42,7 @@ exports.criaResponsavel = async (req, res) => {
 
     
         const [result] = await db.query (
-            `INSERT INTO responsaveis (nome, CPF, email, telefone, grau)`, [nome, CPF, email, telefone, grau]
+            `INSERT INTO responsaveis (nome, CPF, email, telefone, grau) VALUES (?, ?, ?, ?, ?)`, [nome, CPF, email, telefone, grau]
         );
 
         res.status(201).json({

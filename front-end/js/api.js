@@ -50,22 +50,21 @@ export async function listarResponsaveis() {
     const resposta = await fetch(`${BASE}/responsaveis`, {
         method: 'GET',
         headers: getHeaders(),
-        body: JSON.stringify(dados)
     });
     return resposta.json();
 }
 
-export async function criarResponsaveis() {
+export async function criarResponsaveis(dados) {
     const resposta = await fetch(`${BASE}/responsaveis`,{
-        method: 'PUT',
+        method: 'POST',
         headers: getHeaders(),
         body:json.stringify(dados)
     });
     return resposta.json();
 }
 
-export async function editarResponsaveis() {
-    const resposta = await fetch(`${BASE}/responsaveis`, {
+export async function editarResponsaveis(id,dados) {
+    const resposta = await fetch(`${BASE}/responsaveis/${id}`, {
         method:'POST',
         headers: getHeaders(),
         body:json.stringify(dados)
