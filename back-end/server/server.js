@@ -12,6 +12,7 @@ const formsRoutes = require('./routes/forms_routes.js');
 const patientsRoutes = require('./routes/patients_routes.js');
 const usersRoutes = require('./routes/users_routes.js');
 const guardiansRoutes = require('./routes/guardians_routes.js');
+const pacientsRoutes = require('./routes/patients_routes.js')
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/formularios', formsRoutes);
 app.use('/api/usuarios', usersRoutes);
 app.use('/api/responsaveis', guardiansRoutes);
+app.use('/api/pacientes', pacientsRoutes)
 
 
 

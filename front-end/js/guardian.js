@@ -127,7 +127,7 @@ async function salvarResponsavel() {
         grau:     document.getElementById('detGrau').value.trim(),
     };
 
-    // Usa o id_responsavel que veio do banco para identificar qual editar
+
     const resultado = await editarResponsavel(r.id_responsavel, dados);
 
     if (resultado.erro) {
@@ -135,7 +135,7 @@ async function salvarResponsavel() {
         return;
     }
 
-    // Atualiza o objeto local com os novos dados
+
     Object.assign(r, dados);
     renderizarLista();
     msg.textContent     = 'Dados atualizados com sucesso!';

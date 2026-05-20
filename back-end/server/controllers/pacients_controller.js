@@ -2,7 +2,7 @@ const db = require('../db/connection.js');
 
 //Função que vai exibir todos os pacientes da tabela 
 
-exports.listaPacientes = async (req, res) => {
+exports.listarPacientes = async (req, res) => {
 
     try {
         //Puxa todos os Pacientes da tabela, ordenado por ordem alfabética
@@ -24,7 +24,7 @@ exports.listaPacientes = async (req, res) => {
 
 //Registra um novo paciente no banco de dados
 
-exports.criaPaciente = async (req, res) => {
+exports.criarPaciente = async (req, res) => {
 
     const {nome, CPF, RG, data_nascimento, sexo} = req.body;
 

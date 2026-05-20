@@ -18,6 +18,7 @@ body {
 
     background-color:var(--primary-color);
 
+    margin-top: 50px;
     
 }
 
@@ -27,8 +28,8 @@ body {
     justify-content: center;
     align-items: center;
 
-    height: 550px;
-    width: 450px;
+    height: 650px;
+    width: 500px;
 
     background-color: white;
     border-radius: 30px;
@@ -45,14 +46,15 @@ body {
     border-radius: 20px;
     border-style: 1px;
     font-weight: bolder;
+    font-size: var(--primary-font-size);
 }
 
 .input_container button {
     height:60px;
-    width: 250px;
+    width: 230px;
 
-    margin-top: 20px;
-    margin-bottom: -20px;
+    margin-top: 45px;
+    margin-bottom: -10px;
 
     border-radius: 20px;
 
@@ -72,6 +74,9 @@ body {
 
     font-size: var(--input-font-size);
 
+    margin-top: 10px;
+    margin-bottom: -10px;
+
 }
 
 .input_container button:hover {
@@ -82,16 +87,16 @@ body {
 
 h1 {
     color: rgb(0, 119, 255);
-    font-size: 40px;
+    font-size: 50px;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 h3 {
     color: rgb(0, 119, 255);
-    font-size: 25px;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    font-size: 30px;
+    margin-top: 50px;
+    margin-bottom: 15px;
 }
 
 #entry-button-vrf{

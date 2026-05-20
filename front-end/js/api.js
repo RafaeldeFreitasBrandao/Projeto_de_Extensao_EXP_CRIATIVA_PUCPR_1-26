@@ -1,5 +1,7 @@
 const BASE = 'http://localhost:3000/api';
 
+//Funções para página do login
+
 export async function login(nome_usuario, senha) {
     const resposta = await fetch(
         `${BASE}/auth/login`,{
@@ -18,6 +20,8 @@ function getHeaders() {
     };
 }
 
+
+//Funções para a página da conta
 
 export async function buscarMinhaConta() {
     const resposta = await fetch(`${BASE}/usuarios/minha-conta`, {
@@ -46,6 +50,9 @@ export async function atualizarMinhaConta(dados) {
     return resposta.json();
 }
 
+
+//Funções para a página dos responsáveis
+
 export async function listarResponsaveis() {
     const resposta = await fetch(`${BASE}/responsaveis`, {
         method: 'GET',
@@ -67,6 +74,34 @@ export async function editarResponsavel(id,dados) {
     const resposta = await fetch(`${BASE}/responsaveis/${id}`, {
         method:'PUT',
         headers: getHeaders(),
+        body:JSON.stringify(dados)
+    });
+    return resposta.json();
+}
+
+//Funções para a página dos pacientes
+
+export async function listarPacientes() {
+    const resposta = await fetch(`${BASE}/pacientes`, {
+        method:'GET',
+        headers:getHeaders()
+    });
+    return resposta.json();
+}
+
+export async function criarPaciente(dados) {
+    const resposta = await fetch(`${BASE}/pacientes`, {
+        method: 'POST',
+        headers:getHeaders(),
+        body:JSON.stringify(dados)
+    });
+    return resposta.json();
+}
+
+export async function editarPaciente(id,dados) {
+    const resposta = await fetch(`${BASE}/pacientes/${id}`, {
+        method:"PUT",
+        headers:getHeaders(),
         body:JSON.stringify(dados)
     });
     return resposta.json();
