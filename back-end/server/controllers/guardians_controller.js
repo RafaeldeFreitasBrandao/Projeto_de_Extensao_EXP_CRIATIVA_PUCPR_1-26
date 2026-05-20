@@ -2,7 +2,7 @@ const db = require('../db/connection.js');
 
 //Função que vai exibir todos os responsáveis da tabela 
 
-exports.listaResponsaveis = async (req, res) => {
+exports.listarResponsaveis = async (req, res) => {
 
     try {
         //Puxa todos os responsáveis da tabela, ordenado por ordem alfabética
@@ -24,17 +24,17 @@ exports.listaResponsaveis = async (req, res) => {
 
 //Registra um novo responsável no banco de dados
 
-exports.criaResponsavel = async (req, res) => {
+exports.criarResponsavel = async (req, res) => {
 
-    const {nome, CPF, email, telefone, grau} = req.body;
+    const {nome, cpf, email, telefone, grau} = req.body;
 
 
-    if(!nome ||!CPF || !email || !telefone || !grau) 
+    if(!nome ||!cpf || !email || !telefone || !grau) 
         return res.status(400).json({erro: 'Preencha todos os campos'});
 
     try {
         const [existente] = await db.query(
-            `SELECT id_responsavel FROM responsaveis WHERE CPF = ?`, [CPF]
+            `SELECT id_responsavel FROM responsaveis WHERE CPF = ?`, [cpf]
         );
 
         if (existente.length > 0) 
@@ -42,7 +42,7 @@ exports.criaResponsavel = async (req, res) => {
 
     
         const [result] = await db.query (
-            `INSERT INTO responsaveis (nome, CPF, email, telefone, grau) VALUES (?, ?, ?, ?, ?)`, [nome, CPF, email, telefone, grau]
+            `INSERT INTO responsaveis (nome, CPF, email, telefone, grau) VALUES (?, ?, ?, ?, ?)`, [nome, cpf, email, telefone, grau]
         );
 
         res.status(201).json({

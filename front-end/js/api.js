@@ -54,20 +54,20 @@ export async function listarResponsaveis() {
     return resposta.json();
 }
 
-export async function criarResponsaveis(dados) {
+export async function criarResponsavel(dados) {
     const resposta = await fetch(`${BASE}/responsaveis`,{
         method: 'POST',
         headers: getHeaders(),
-        body:json.stringify(dados)
+        body:JSON.stringify(dados)
     });
     return resposta.json();
 }
 
-export async function editarResponsaveis(id,dados) {
+export async function editarResponsavel(id,dados) {
     const resposta = await fetch(`${BASE}/responsaveis/${id}`, {
-        method:'POST',
+        method:'PUT',
         headers: getHeaders(),
-        body:json.stringify(dados)
+        body:JSON.stringify(dados)
     });
     return resposta.json();
 }

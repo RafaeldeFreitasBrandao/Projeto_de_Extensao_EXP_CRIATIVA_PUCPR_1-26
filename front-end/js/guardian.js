@@ -1,5 +1,5 @@
   // Adicionar no topo do guardian.js
-import { listarResponsaveis, criarResponsavel, editarResponsavel } from '../../js/api.js';
+import { listarResponsaveis, criarResponsavel, editarResponsavel } from '../js/api.js';
 
   const responsaveis = [];
   let indexAtual = null;
@@ -48,7 +48,7 @@ async function salvarResponsavel() {
         return;
     }
 
-    const resultado = await criarResponsavel({ nome, CPF, telefone, email, grau });
+    const resultado = await criarResponsavel({ nome, cpf, telefone, email, grau });
 
     if (resultado.erro) {
         alert(resultado.erro);
@@ -81,7 +81,7 @@ async function salvarResponsavel() {
     const r = responsaveis[index];
 
     document.getElementById('detNome').value     = r.nome;
-    document.getElementById('detCpf').value      = r.CPF;
+    document.getElementById('detCpf').value      = r.cpf;
     document.getElementById('detTelefone').value = r.telefone || '';
     document.getElementById('detEmail').value    = r.email    || '';
     document.getElementById('detGrau').value     = r.grau     || '';
