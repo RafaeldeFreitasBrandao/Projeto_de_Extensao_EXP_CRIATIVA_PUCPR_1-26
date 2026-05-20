@@ -3,6 +3,22 @@ import { listarResponsaveis, criarResponsavel, editarResponsavel } from '../js/a
 
   const responsaveis = [];
   let indexAtual = null;
+
+  window.addEventListener('load', async () => {
+
+    const dados = await listarResponsaveis();
+
+    if (dados.erro) {
+        console.error(dados.erro);
+        return;
+
+    }
+
+    dados.forEach(r => responsaveis.push(r));
+    renderizarLista();
+
+  });
+
   let modoEdicaoDetalhes = false;
 
   function definirBloqueio(bloquear) {
@@ -142,3 +158,4 @@ window.fecharFormulario = fecharFormulario;
 window.salvarResponsavel = salvarResponsavel;
 window.verDetalhes      = verDetalhes;
 window.fecharDetalhes   = fecharDetalhes;
+
