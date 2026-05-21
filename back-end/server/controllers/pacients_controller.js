@@ -7,7 +7,7 @@ exports.listarPacientes = async (req, res) => {
     try {
         //Puxa todos os Pacientes da tabela, ordenado por ordem alfabética
         const[rows] = await db.query(
-            `SELECT nome, CPF, RG, data_nascimento, sexo FROM pacientes ORDER BY nome ASC`
+            `SELECT id_paciente, nome, CPF AS cpf, RG AS rg, data_nascimento AS dataNascimento, sexo FROM pacientes ORDER BY nome ASC`
         );
 
         res.json(rows);
@@ -25,16 +25,17 @@ exports.listarPacientes = async (req, res) => {
 //Registra um novo paciente no banco de dados
 
 exports.criarPaciente = async (req, res) => {
+    console.log('REQ.BODY RECEBIDO:', req.body);
 
-    const {nome, CPF, RG, data_nascimento, sexo} = req.body;
+    const {nome, cpf, rg, dataNascimento, sexo} = req.body;
 
 
-    if(!nome ||!CPF || !RG || !data_nascimento || !sexo) 
+    if(!nome ||!cpf || !rg || !dataNascimento || !sexo) 
         return res.status(400).json({erro: 'Preencha todos os campos'});
 
     try {
         const [existente] = await db.query(
-            `SELECT id_paciente FROM pacientes WHERE CPF = ?`, [CPF]
+            `SELECT id_paciente FROM pacientes WHERE CPF = ?`, [cpf]
         );
 
         if (existente.length > 0) 
@@ -42,13 +43,13 @@ exports.criarPaciente = async (req, res) => {
 
     
         const [result] = await db.query (
-            `INSERT INTO pacientes (nome, CPF, RG, data_nascimento, sexo) VALUES (?, ?, ?, ?, ?)`, [nome, CPF, RG, data_nascimento, sexo]
+            `INSERT INTO pacientes (nome, CPF, RG, data_nascimento, sexo) VALUES (?, ?, ?, ?, ?)`, [nome, cpf, rg, dataNascimento, sexo]
         );
 
         res.status(201).json({
             ok:true,
             id_paciente: result.insertId, 
-            nome, CPF, RG, data_nascimento, sexo
+            nome, cpf, rg, dataNascimento, sexo
         });
 
 
@@ -62,9 +63,9 @@ exports.criarPaciente = async (req, res) => {
     exports.editarPaciente = async (req, res) => {
 
         const {id} = req.params;
-        const {nome, CPF, RG, data_nascimento, sexo} =req.body;
+        const {nome, cpf, rg, dataNascimento, sexo} =req.body;
 
-        if(!nome && !data_nascimento && !sexo) 
+        if(!nome && !dataNascimento && !sexo) 
             return res.status(400).json({erro:'Nenhum dado para atualizar'});
 
         try {
@@ -72,7 +73,7 @@ exports.criarPaciente = async (req, res) => {
             const valores = [];
 
             if (nome)     { campos.push('nome = ?');     valores.push(nome); }
-            if (data_nascimento) { campos.push('data_nascimento = ?'); valores.push(data_nascimento); }
+            if (dataNascimento) { campos.push('data_nascimento = ?'); valores.push(dataNascimento); }
             if (sexo)      { campos.push('sexo = ?');      valores.push(sexo); }
 
             valores.push(id);

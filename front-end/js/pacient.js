@@ -14,7 +14,7 @@ import { listarPacientes, criarPaciente, editarPaciente } from '../js/api.js';
   
       }
   
-      dados.forEach(r => responsaveis.push(r));
+      dados.forEach(r => pacientes.push(r));
       renderizarLista();
   
     });
@@ -97,7 +97,11 @@ import { listarPacientes, criarPaciente, editarPaciente } from '../js/api.js';
     document.getElementById('detNome').value = p.nome;
     document.getElementById('detCpf').value = p.cpf;
     document.getElementById('detRg').value = p.rg || '';
-    document.getElementById('detDataNascimento').value = p.dataNascimento || '';
+
+    let data = p.dataNascimento || '';
+    if (data.length > 10) data = data.substring(0, 10);
+        document.getElementById('detDataNascimento').value = data;
+
     document.getElementById('detSexo').value = p.sexo || '';
 
     definirBloqueio(true);
@@ -114,10 +118,10 @@ import { listarPacientes, criarPaciente, editarPaciente } from '../js/api.js';
       const msg = document.getElementById('msg-detalhes');
 
       if (modoEdicaoDetalhes) {
-          const r = responsaveis[indexAtual];
+          const r = pacientes[indexAtual];
           const dados = {
               nome:             document.getElementById('detNome').value.trim(),
-              data_nascimento:  document.getElementById('detDataNascimento').value.trim(),
+              dataNascimento:  document.getElementById('detDataNascimento').value.trim(),
               sexo:             document.getElementById('detSexo').value.trim(),
           };
       

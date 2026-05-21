@@ -3,8 +3,8 @@ const router  = express.Router();
 const controller = require('../controllers/pacients_controller.js');
 const autenticar = require('../middleware/auth_middleware.js');
 
-route.get('/', autenticar, controller.listarPacientes);
-route.post('/', autenticar, controller.criarPaciente);
-route.put('/:id', autenticar, controller.editarPaciente);
+router.get('/', autenticar, controller.listarPacientes);
+router.post('/',autenticar, controller.criarPaciente);
+router.put('/:id', autenticar, controller.editarPaciente);
 
 module.exports = router;

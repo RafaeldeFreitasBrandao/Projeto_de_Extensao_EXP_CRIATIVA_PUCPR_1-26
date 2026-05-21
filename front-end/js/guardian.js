@@ -85,7 +85,7 @@ async function salvarResponsavel() {
       const item = document.createElement('div');
       item.classList.add('resp_salvo');
       item.innerHTML = `
-        <p>👤 ${r.nome} | CPF: ${r.cpf}</p>
+        <p>👤 ${r.nome} | CPF: ${r.CPF}</p>
         <button onclick="verDetalhes(${index})">Detalhes</button>
       `;
       lista.appendChild(item);
