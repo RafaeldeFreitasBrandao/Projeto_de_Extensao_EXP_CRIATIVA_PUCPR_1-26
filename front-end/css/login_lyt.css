@@ -16,11 +16,16 @@ body {
     height: 800px;
     width: 800px;
 
-    background-color:var(--primary-color);
+    border-radius: 30px;
+
+    background-color:none;
 
     margin-top: 50px;
     
+
 }
+
+
 
 .input_container {
     display: flex;
@@ -35,18 +40,26 @@ body {
     border-radius: 30px;
 
     font-size: var(--primary-font-size);
-
+    background-color: var(--secondary-color);
+    box-shadow: 5px 1px 5000px 5px var(--button-pry-login-color);
+    
+    transition: box-shadow 0.8s ease;
 
 }
 
+.input_container:hover {
+    box-shadow: 5px 1px 7000px 1px var( --button-thr-login-color);
+}
+
 .input_container input {
-    height: 55px;
-    width: 340px;
+    height: 65px;
+    width: 400px;
     border-color: rgb(0, 119, 255);
     border-radius: 20px;
     border-style: 1px;
     font-weight: bolder;
     font-size: var(--primary-font-size);
+    background-color: var(--thirdy-color);
 }
 
 .input_container button {
@@ -92,11 +105,14 @@ h1 {
     margin-top: 10px;
 }
 
+
+
 h3 {
     color: rgb(0, 119, 255);
     font-size: 30px;
     margin-top: 50px;
     margin-bottom: 15px;
+
 }
 
 #entry-button-vrf{

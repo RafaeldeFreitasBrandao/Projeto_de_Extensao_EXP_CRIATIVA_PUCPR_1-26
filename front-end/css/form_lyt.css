@@ -1,0 +1,11 @@
+h1 {
+    font-size: var(--title-font-size);
+    color: var(--button-pry-login-color);
+
+    margin-left: 50px;
+
+}
+
+i {
+    color: black;
+}

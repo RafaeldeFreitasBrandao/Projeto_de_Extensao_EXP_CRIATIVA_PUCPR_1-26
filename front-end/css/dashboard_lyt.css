@@ -32,6 +32,7 @@ body {
 .dash_head #user_a {    
     margin-left: 900px;
     margin-right: 300px;
+
 }
 
 .dash_head a {
@@ -42,13 +43,14 @@ body {
 
     color:var(--button-pry-login-color);
 
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease, color 0.4s ease;
 
 }
 
 .dash_head a:hover {
 
-    transform: scale(1.3);
+    transform: scale(1.25);
+    color:var(--thirdy-color);
 }
 
 .dash_main {
@@ -92,8 +94,6 @@ body {
     height: 500px;
     width: 300px;
 
-
-
     font-weight: bold;
     padding: 10px 15px;
     font-size: 35px;
@@ -102,7 +102,9 @@ body {
     background-color: var(--thirdy-color);
 
     border-radius: 15px;
+
 }
+
     
     .dash_main i {
     display: inline-flex;
