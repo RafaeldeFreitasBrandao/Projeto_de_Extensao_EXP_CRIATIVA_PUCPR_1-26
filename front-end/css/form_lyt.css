@@ -6,6 +6,115 @@ h1 {
 
 }
 
+h2 {
+    font-size: var(--title-fifth-font-size);
+    color:var(--button-pry-login-color);
+
+    margin-left: 30px;
+    margin-top:50px;
+}
+
+h3 {
+    font-size: var(--title-forfh-font-size);
+    color: var(--fifh-color);
+    margin-left:30px;
+    margin-bottom: 15px;
+    margin-top:30px;
+}
+
+#title_ppl {
+    color:var(--button-pry-login-color);
+}
+
 i {
     color: black;
+}
+
+#text_question {
+    font-size: var(--title-thrd-font-size);
+}
+
+#btn_ys {
+    background-color: var(--ys-button-color);
+}
+#btn_nn {
+    background-color: var(--nn-button-color);
+}
+
+input {
+    height: 50px;
+    width: 600px;
+
+    margin-left: 30px;
+
+    font-size: var(--input-font-size);
+    border-radius: 5px;
+    border-style: none;
+    background-color: var(--secondary-color);
+}
+
+.main_body {
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    height:100vh;
+    width: 100%;
+
+}
+
+.form_box {
+
+    display:flex;
+    flex-direction: row;
+
+    height:1100px;
+    width: 1500px;
+    background-color: var(--thirdy-color);
+
+    margin-left:50px;
+    margin-top:50px;
+
+    border-radius: 25px;
+}
+
+.sub_form_box {
+    display: flex;
+    flex-direction: column;
+
+    margin-top:20px;
+    margin-bottom: 30px;
+}
+
+#second_sub_form_box {
+    margin-top:170px;
+}
+
+.cont_button {
+    display: flex;
+    flex-direction: row;
+
+    margin-left: 30px;
+    margin-top:10px;
+
+    gap:30px;
+}
+
+.cont_button button{
+    height: 40px;
+    width: 100px;
+
+    border-radius: 10px;
+    border-style: none;
+    
+    font-size: var(--input-font-size);
+    color: var(--thirdy-color);
+
+    transition: transform 0.3s ease;
+}
+
+.cont_button button:hover {
+    transform: scale(1.08);
 }
