@@ -140,7 +140,7 @@
 
     align-items: center;
 
-    height:70px;
+    height:85px;
     width: 550px;
 
     justify-content: flex-start;
@@ -148,10 +148,10 @@
     background-color: var(--secondary-color);
     border-radius: 15px;
 
-    margin-top:30px;
+    margin-top:40px;
     margin-left: 30px;
 
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 
     box-shadow: 5px 5px 0px var(--shadow-box-color);
 }
@@ -161,30 +161,32 @@
 }
 
 .resp_salvo button {
-    height: 35px; 
-    width: 90px;
+    height: 45px; 
+    width: 100px;
     
     border-radius: 10px;
     border-style: none;
 
-    font-size: var(--primary-font-size);
+    font-size: var(--input-font-size);
     background-color: var(--button-pry-login-color);
     color: var(--thirdy-color);
 
     margin-left: auto;
     margin-right: 20px;
 
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .resp_salvo:hover {
 
     transform: scale(1.03);
+    box-shadow: 10px 10px 0px var(--button-forfh-login-color);
 
 }
 
 .resp_salvo button:hover {
-    transform: scale(1.08)translateY(0);
+    transform: scale(1.05)translateY(0);
+    background-color: var(--button-forfh-login-color);
 }
 
 .det_resp {
@@ -195,7 +197,7 @@
     align-items: center;
     justify-content: flex-start;
 
-    height: 670px;
+    height: 690px;
     width: 380px;
 
     margin-left: 30px;
@@ -251,4 +253,11 @@
 
 .det_resp button:hover {
     transform: scale(1.08);
+}
+
+#msg-detalhes {
+   margin-left: 70px;
+   margin-top: 16px;
+
+   color: var(--msg-alert-color);
 }
