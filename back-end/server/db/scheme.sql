@@ -11,7 +11,6 @@ CREATE TABLE administradores (
 
 CREATE TABLE usuarios_saude (
     id_usuario_saude  INT           	NOT NULL AUTO_INCREMENT,
-    id_administrador  INT           	NOT NULL,
     nome              VARCHAR(100)  	NOT NULL,
     CPF               CHAR(11)      	NOT NULL UNIQUE,
     email             VARCHAR(150)  	NOT NULL,
@@ -20,10 +19,7 @@ CREATE TABLE usuarios_saude (
     profissao         VARCHAR(100)		NOT NULL,
     unidade           VARCHAR(150)		NOT NULL,
     
-    PRIMARY KEY (id_usuario_saude),
-    CONSTRAINT fk_us_adm FOREIGN KEY (id_administrador)
-        REFERENCES administradores (id_administrador)
-        ON UPDATE CASCADE ON DELETE RESTRICT
+    PRIMARY KEY (id_usuario_saude)
 );
 
 CREATE TABLE pacientes (
@@ -33,6 +29,10 @@ CREATE TABLE pacientes (
     RG               VARCHAR(20)		UNIQUE,
     data_nascimento  DATE				NOT NULL,
     sexo 			 ENUM('masculino', 'feminino') NOT NULL, 
+    id_usuario_saude INT NOT NULL,
+    
+    CONSTRAINT fk_pac_usuario FOREIGN KEY (id_usuario_saude)
+      REFERENCES usuarios_saude (id_usuario_saude),
     
     PRIMARY KEY (id_paciente)
 );
@@ -43,6 +43,11 @@ CREATE TABLE responsaveis (
     CPF             CHAR(11)      		NOT NULL UNIQUE,
     email           VARCHAR(150)		NOT NULL,
     telefone        VARCHAR(20)			NOT NULL,
+    grau 			VARCHAR(100)		NOT NULL,
+    id_usuario_saude INT NOT NULL,
+    
+    CONSTRAINT fk_resp_usuario FOREIGN KEY (id_usuario_saude)
+      REFERENCES usuarios_saude (id_usuario_saude),
     
     PRIMARY KEY (id_responsavel)
 );
@@ -67,7 +72,11 @@ CREATE TABLE formularios (
     id_paciente         INT          	NOT NULL,
     id_usuario_saude    INT          	NOT NULL,
     data_preenchimento  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_responsavel 		INT NOT NULL,
     
+    CONSTRAINT fk_form_responsavel FOREIGN KEY (id_responsavel)
+	REFERENCES responsaveis (id_responsavel),
+		
     status              VARCHAR(50),
     
     PRIMARY KEY (id_formulario),
@@ -118,35 +127,3 @@ CREATE TABLE resultado (
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-/*
-CREATE TABLE Role (
-    id_role  INT          NOT NULL AUTO_INCREMENT,
-    nome     VARCHAR(50)  NOT NULL UNIQUE,
-    PRIMARY KEY (id_role)
-);
- 
-CREATE TABLE Usuario_Saude_Role (
-    id_usuario_saude  INT NOT NULL,
-    id_role           INT NOT NULL,
-    id_administrador  INT NOT NULL,
-    data_atribuicao   DATE,
-    PRIMARY KEY (id_usuario_saude, id_role),
-    CONSTRAINT fk_usr_usuario FOREIGN KEY (id_usuario_saude)
-        REFERENCES Usuario_Saude (id_usuario_saude)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT fk_usr_role FOREIGN KEY (id_role)
-        REFERENCES Role (id_role)
-        ON UPDATE CASCADE ON DELETE RESTRICT,
-    CONSTRAINT fk_usr_adm FOREIGN KEY (id_administrador)
-        REFERENCES Administrador (id_administrador)
-        ON UPDATE CASCADE ON DELETE RESTRICT
-);
- 
-INSERT INTO Role (nome) VALUES
-    ('Medico'),
-    ('Enfermeiro'),
-    ('Tecnico'),
-    ('Assistente'),
-    ('Coordenador');
-    
-*/

@@ -32,13 +32,16 @@ i {
 
 #text_question {
     font-size: var(--title-thrd-font-size);
+    
 }
 
-#btn_ys {
-    background-color: var(--ys-button-color);
-}
-#btn_nn {
+.btn_ys {
     background-color: var(--nn-button-color);
+    transition: background-color 0.3s ease;
+}
+
+.btn_ys.ativo {
+    background-color:var(--button-pry-login-color);
 }
 
 input {
@@ -63,6 +66,7 @@ input {
     height:100vh;
     width: 100%;
 
+
 }
 
 .form_box {
@@ -70,7 +74,7 @@ input {
     display:flex;
     flex-direction: row;
 
-    height:1100px;
+    height:1200px;
     width: 1400px;
     background-color: var(--thirdy-color);
 
@@ -89,7 +93,9 @@ input {
 }
 
 #second_sub_form_box {
-    margin-top:110px;
+    margin-top:30px;
+
+    border-left: 4px solid var(--button-pry-login-color);
 }
 
 .cont_button {
@@ -116,5 +122,30 @@ input {
 }
 
 .cont_button button:hover {
+    transform: scale(1.08);
+}
+
+#save_form {
+
+    height: 60px;
+    width: 150px;
+
+    align-self:flex-end;
+
+    margin-right: 100px;
+    margin-top: 40px;
+
+    border-radius: 15px;
+    border-style: none;
+
+    background-color: var(--button-pry-login-color);
+    color:var(--thirdy-color);
+
+    font-size: var(--input-font-size);
+
+    transition: all 0.3s ease;
+}
+
+#save_form:hover {
     transform: scale(1.08);
 }

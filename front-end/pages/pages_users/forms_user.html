@@ -36,28 +36,23 @@
 
         <h3 id="text_question">O paciente apresenta deficiência intelectual?</h3>
         <div class="cont_button">
-        <button id="btn_ys">Sim</button>
-        <button id="btn_nn">Não</button>
+        <button class="btn_ys" onclick="mudarCor()">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta Macroorquidismo?</h3>
         <div class="cont_button">
-        <button id="btn_ys">Sim</button>
-        <button id="btn_nn">Não</button>
+        <button class="btn_ys">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta hipermobilidade articular?</h3>
         <div class="cont_button">
-        <button id="btn_ys">Sim</button>
-        <button id="btn_nn">Não</button>
+        <button class="btn_ys">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta face alongada e/ou orelhas abano?</h3>
         <div class="cont_button">
-        <button id="btn_ys">Sim</button>
-        <button id="btn_nn">Não</button>
+        <button class="btn_ys">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta dificuldade de aprendizagem?</h3>
         <div class="cont_button">
-        <button id="btn_ys">Sim</button>
-        <button id="btn_nn">Não</button>
+        <button class="btn_ys">Não</button>
         </div>
 
       </div>
@@ -66,44 +61,61 @@
 
         <h3 id="text_question">O paciente apresenta deficit de atenção?</h3>
         <div class="cont_button">
-        <button id="btn_ys">Sim</button>
-        <button id="btn_nn">Não</button>
+        <button class="btn_ys">Não</button>
+
         </div>
         <h3 id="text_question">O paciente apresenta movimentos repetitivos?</h3>
         <div class="cont_button">
-        <button id="btn_ys">Sim</button>
-        <button id="btn_nn">Não</button>
+        <button class="btn_ys">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta atraso na fala?</h3>
         <div class="cont_button">
-        <button id="btn_ys">Sim</button>
-        <button id="btn_nn">Não</button>
+        <button class="btn_ys">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta hiperatividade?</h3>
         <div class="cont_button">
-        <button id="btn_ys">Sim</button>
-        <button id="btn_nn">Não</button>
+        <button class="btn_ys">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta evita contato visual</h3>
         <div class="cont_button">
-        <button id="btn_ys">Sim</button>
-        <button id="btn_nn">Não</button>
+        <button class="btn_ys">Não</button>
         </div>
         <h3 id="text_question">O paciente evita contato físico?</h3>
         <div class="cont_button">
-        <button id="btn_ys">Sim</button>
-        <button id="btn_nn">Não</button>
+        <button class="btn_ys">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta sinais de agressividade?</h3>
         <div class="cont_button">
-        <button id="btn_ys">Sim</button>
-        <button id="btn_nn">Não</button>
+        <button class="btn_ys">Não</button>
         </div>
 
+        <button id="save_form">Salvar</button>
       </div>
 
     </div>
 
   </div>
+
+  <script>
+
+    // Seleciona todos os botões pela classe
+  const botoes = document.querySelectorAll('.btn_ys');
+
+  botoes.forEach(botao => {
+    botao.addEventListener('click', function() {
+        // Alterna a classe 'ativo' no botão clicado
+        this.classList.toggle('ativo');
+
+        if (this.textContent === 'Não') {
+          this.textContent = 'Sim';
+       } else {
+          this.textContent = 'Não';
+      }
+    });
+  });
+
+
+
+  </script>
 </body>
 </html>
