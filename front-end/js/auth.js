@@ -24,6 +24,7 @@ document.getElementById('entry-button-vrf').addEventListener('click', async () =
     // Armazena o token e o perfil para o uso nas outras páginas 
     localStorage.setItem('token', dados.token);
     localStorage.setItem('perfil', dados.perfil);
+    localStorage.setItem('id', dados.id);
 
     // Redireciona conforme o perfil
     if (dados.perfil == 'admin') 

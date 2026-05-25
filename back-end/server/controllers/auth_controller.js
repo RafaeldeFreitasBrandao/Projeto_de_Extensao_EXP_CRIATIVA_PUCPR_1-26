@@ -48,7 +48,7 @@ exports.login = async (req, res) => {// define e exporta a função "login", o '
         process.env.SECRET_KEY,
         {expiresIn: '8h'}
         );
-        return res.json({token, perfil: 'usuario'});
+        return res.json({token, perfil: 'usuario', id:usuario.id_usuario_saude});
 
 
     } catch (err) {

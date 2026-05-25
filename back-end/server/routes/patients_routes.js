@@ -4,7 +4,8 @@ const controller = require('../controllers/pacients_controller.js');
 const autenticar = require('../middleware/auth_middleware.js');
 
 router.get('/', autenticar, controller.listarPacientes);
-router.post('/',autenticar, controller.criarPaciente);
+router.post('/', autenticar, controller.criarPaciente);
 router.put('/:id', autenticar, controller.editarPaciente);
+router.get('/:id', autenticar, controller.detalharPaciente);
 
 module.exports = router;

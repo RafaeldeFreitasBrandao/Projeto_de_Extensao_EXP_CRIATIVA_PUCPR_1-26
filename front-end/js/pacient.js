@@ -1,5 +1,5 @@
   // Adicionar no topo do guardian.js
-import { listarPacientes, criarPaciente, editarPaciente } from '../js/api.js';
+import { listarPacientes, criarPaciente, editarPaciente, detalharPaciente } from '../js/api.js';
 
   const pacientes = [];
   let indexAtual = null;
@@ -79,9 +79,16 @@ import { listarPacientes, criarPaciente, editarPaciente } from '../js/api.js';
     const lista = document.getElementById('listaPacientes');
     lista.innerHTML = '';
 
+    const idUsuarioLogado = Number(localStorage.getItem('id')); // ← adicionar esta linha
+
     pacientes.forEach((p, index) => {
-      const item = document.createElement('div');
-      item.classList.add('resp_salvo');
+        const item = document.createElement('div');
+        item.classList.add('resp_salvo');
+
+        if (p.id_usuario_saude !== idUsuarioLogado) {
+            item.classList.add('bloqueado');
+        }
+
       item.innerHTML = `
         <p> ${p.nome} | CPF: ${p.cpf}</p>
         <button onclick="verDetalhes(${index})">Detalhes</button>
@@ -90,19 +97,24 @@ import { listarPacientes, criarPaciente, editarPaciente } from '../js/api.js';
     });
   }
 
-  function verDetalhes(index) {
+  async function verDetalhes(index) {
     indexAtual = index;
     const p = pacientes[index];
 
-    document.getElementById('detNome').value = p.nome;
-    document.getElementById('detCpf').value = p.cpf;
-    document.getElementById('detRg').value = p.rg || '';
+    const detalhe = await detalharPaciente(p.id_paciente);
 
-    let data = p.dataNascimento || '';
+    if (detalhe.erro) {
+      alert(detalhe.erro);
+      return;
+    }
+
+    document.getElementById('detNome').value = detalhe.nome;
+    document.getElementById('detCpf').value = detalhe.cpf;
+    document.getElementById('detRg').value = detalhe.rg || '';
+    let data = detalhe.dataNascimento || '';
     if (data.length > 10) data = data.substring(0, 10);
-        document.getElementById('detDataNascimento').value = data;
-
-    document.getElementById('detSexo').value = p.sexo || '';
+    document.getElementById('detDataNascimento').value = data;
+    document.getElementById('detSexo').value = detalhe.sexo || '';
 
     definirBloqueio(true);
     document.getElementById('msg-detalhes').textContent = '';

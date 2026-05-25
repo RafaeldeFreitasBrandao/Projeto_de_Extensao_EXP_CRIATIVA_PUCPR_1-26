@@ -106,3 +106,10 @@ export async function editarPaciente(id,dados) {
     });
     return resposta.json();
 }
+
+export async function detalharPaciente(id) {
+    const r = await fetch(`${BASE}/pacientes/${id}`, {
+        method: 'GET', headers: getHeaders()
+    });
+    return r.json();
+}

@@ -261,3 +261,14 @@
 
    color: var(--msg-alert-color);
 }
+
+.resp_salvo.bloqueado {
+    opacity: 0.5;
+    filter: grayscale(100%);
+    pointer-events: none;/
+}
+
+
+.resp_salvo.bloqueado button {
+    cursor: not-allowed;
+}

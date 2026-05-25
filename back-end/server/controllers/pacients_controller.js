@@ -7,11 +7,10 @@ exports.listarPacientes = async (req, res) => {
     try {
         //Puxa todos os Pacientes da tabela, ordenado por ordem alfabética
         const[rows] = await db.query(
-            `SELECT id_paciente, nome, CPF AS cpf, RG AS rg, data_nascimento AS dataNascimento, sexo FROM pacientes ORDER BY nome ASC`
+            `SELECT id_paciente, nome, CPF AS cpf, id_usuario_saude FROM pacientes ORDER BY nome ASC`
         );
 
         res.json(rows);
-
 
     } catch (err) {
 
@@ -22,12 +21,47 @@ exports.listarPacientes = async (req, res) => {
 
 };
 
+//Permite ver os detalhes do paciente 
+
+exports.detalharPaciente = async (req, res) => {
+    const { id } = req.params;
+    const id_usuario = req.usuario.id;
+
+    try {
+        const [rows] = await db.query(
+            `SELECT id_paciente, nome,
+                    CPF             AS cpf,
+                    RG              AS rg,
+                    data_nascimento AS dataNascimento,
+                    sexo,
+                    id_usuario_saude
+             FROM pacientes WHERE id_paciente = ?`,
+            [id]
+        );
+
+        if (rows.length === 0)
+            return res.status(404).json({ erro: 'Paciente não encontrado' });
+
+        // Bloqueia se o usuário logado não for o dono
+        if (rows[0].id_usuario_saude !== id_usuario)
+            return res.status(403).json({ erro: 'Você não tem permissão para ver este paciente' });
+
+        res.json(rows[0]);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ erro: 'Erro interno no servidor' });
+    }
+};
+
 //Registra um novo paciente no banco de dados
 
 exports.criarPaciente = async (req, res) => {
-    console.log('REQ.BODY RECEBIDO:', req.body);
 
+    const id_usuario = req.usuario.id;
     const {nome, cpf, rg, dataNascimento, sexo} = req.body;
+
+    console.log('REQ.BODY RECEBIDO:', req.body);
+    console.log('id_usuario:', req.usuario.id);
 
 
     if(!nome ||!cpf || !rg || !dataNascimento || !sexo) 
@@ -43,7 +77,7 @@ exports.criarPaciente = async (req, res) => {
 
     
         const [result] = await db.query (
-            `INSERT INTO pacientes (nome, CPF, RG, data_nascimento, sexo) VALUES (?, ?, ?, ?, ?)`, [nome, cpf, rg, dataNascimento, sexo]
+            `INSERT INTO pacientes (nome, CPF, RG, data_nascimento, sexo, id_usuario_saude) VALUES (?, ?, ?, ?, ?, ?)`, [nome, cpf, rg, dataNascimento, sexo, id_usuario]
         );
 
         res.status(201).json({
@@ -63,12 +97,23 @@ exports.criarPaciente = async (req, res) => {
     exports.editarPaciente = async (req, res) => {
 
         const {id} = req.params;
+        const id_usuario = req.usuario.id;
         const {nome, cpf, rg, dataNascimento, sexo} =req.body;
 
         if(!nome && !dataNascimento && !sexo) 
             return res.status(400).json({erro:'Nenhum dado para atualizar'});
 
         try {
+
+            const [check] = await db.query(
+                `SELECT id_usuario_saude FROM pacientes WHERE id_paciente = ?`, [id]
+            );
+
+            if (check.length === 0)
+                return res.status(404).json({ erro: 'Paciente não encontrado' });
+            if (check[0].id_usuario_saude !== id_usuario)
+                return res.status(403).json({ erro: 'Você não tem permissão para editar este paciente' });
+
             const campos = [];
             const valores = [];
 
