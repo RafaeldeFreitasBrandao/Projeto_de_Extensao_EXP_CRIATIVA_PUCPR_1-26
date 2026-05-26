@@ -44,10 +44,6 @@ CREATE TABLE responsaveis (
     email           VARCHAR(150)		NOT NULL,
     telefone        VARCHAR(20)			NOT NULL,
     grau 			VARCHAR(100)		NOT NULL,
-    id_usuario_saude INT NOT NULL,
-    
-    CONSTRAINT fk_resp_usuario FOREIGN KEY (id_usuario_saude)
-      REFERENCES usuarios_saude (id_usuario_saude),
     
     PRIMARY KEY (id_responsavel)
 );
