@@ -11,13 +11,34 @@
 <body>
     <div class="big_content">
         <div class="main_content">
-            <div class="detail_content" id="detail_photo">
-                <div class="photo_content">
-            </div>
-            <h1>Paciente: <p></p></h1>
-            </div>
             <div class="detail_content">
-                <h1>Paciente: <p></p></h1>
+
+                <h1>Paciente X</h1>
+
+                <h3><i class="fa-solid fa-user" style="color: rgb(0, 0, 0);"></i> Nome:</h3>
+                <input type="text" placeholder="Nome" id="nome">
+
+                <h3><i class="fa-solid fa-id-badge" style="color: rgb(0, 0, 0);"></i> CPF:</h3>
+                    <input type="text" id="cpf" placeholder="CPF" maxlength="11">
+
+                <h3><i class="fa-solid fa-id-badge" style="color: rgb(0, 0, 0);"></i> RG:</h3>
+                    <input type="text" id="rg" placeholder="RG" maxlength="16">    
+            </div>
+            <div class="detail_content" id="second_detail_content">
+
+                <h3><i class="fa-solid fa-birthday-cake" style="color: rgb(0, 0, 0);"></i> Data de Nascimento:</h3>
+                    <input type="date" placeholder="data de Nascimento" id="dataNascimento">
+
+                <h3><i class="fa-solid fa-venus-mars" style="color: rgb(0, 0, 0);"></i> Sexo:</h3>
+                    <input type="text" id="sexo" placeholder="sexo">
+                
+            </div>
+
+            <div class="detail_content">
+                    
+                <button id="edit_button">Editar</button>
+                <button>Voltar</button>
+
             </div>
         </div>
     </div>

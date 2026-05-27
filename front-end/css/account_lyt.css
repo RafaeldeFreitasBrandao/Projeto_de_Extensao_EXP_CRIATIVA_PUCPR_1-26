@@ -48,12 +48,12 @@
 
 .data_container input {
     height: 55px;
-    width: 280px;
+    width: 350px;
     border-color: rgb(0, 119, 255);
     border-radius: 20px;
     border-style: 1px;
     font-weight: bolder;
-    font-size: large;
+    font-size: var(--input-font-size);
 }
 
 .data_container button {
@@ -62,8 +62,7 @@
     border: none;
     height:70px;
     width: 300px;
-    font-size: 19px;
-    border-radius: 5px;
+    font-size: var(--input-font-size);
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s ease;
     border-radius: 20px;
@@ -98,7 +97,7 @@ h1 {
 
 h3 {
     color: rgb(0, 119, 255);
-    font-size: 25px;
+    font-size:var(--second-font-size);
     margin-top: 20px;
     margin-bottom: 10px;
 }
