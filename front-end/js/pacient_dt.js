@@ -1,0 +1,90 @@
+import { detalharPaciente, editarPaciente } from "./api.js";
+
+let idPaciente = null;
+let modoEdicao = false;
+
+window.addEventListener('load', async () => {
+    
+    const params = new URLSearchParams(window.location.search);
+    idPaciente = params.get('id');
+
+    if (!idPaciente) {
+        window.location.href = 'pages/pages_users/pacients_user.html'
+    }
+
+    const dados = await detalharPaciente(idPaciente);
+
+    if (dados.erro) {
+
+        alert(dados.erro);
+        window.location.href = 'pages/pages_users/pacients_user.html'
+    }
+
+    document.querySelector('H2').textContent = dados.idPaciente;
+
+    document.getElementById('nome').value          = dados.nome;
+    document.getElementById('cpf').value           = dados.cpf;
+    document.getElementById('rg').value            = dados.rg || '';
+    document.getElementById('sexo').value          = dados.sexo || '';
+
+    let data = data.dataNascimento || '';
+    if (data.lenght > 10) data = data.substring(0,10);
+
+    document.getElementById('dataNascimento').value = data;
+
+    document.getElementById('responsavel').value = dados.nomeResponsavel || 'Nenhum';
+
+    definirBloqueio(true);
+});
+
+function definirBloqueio(bloquear) {
+
+    //Dados não editáveis
+    document.getElementById('cpf').disabled = true;
+    document.getElementById('rg').disabled = true;
+    document;getElementById('responsavel').disabled = true;
+
+    //Dados editáveis
+    document.getElementById('nome').disabled = bloquear;
+    document.getElementById('dataNascimento').disabled = bloquear;
+    document.getElementById('sexo').disabled =bloquear;
+
+}
+
+document.getElementById('edit_button').addEventListener("click", async () => {
+
+    const btn = document.getElementById('edit_button');
+    const msg = document.getElementById('msg');
+
+    if (!modoEdicao) {
+        definirBloqueio(false);
+        btn.textContent = 'Salvar';
+        modoEdicao = true;
+        return;
+    }
+
+    const dados = {
+        nome:               document.getElementById('nome').value.trim(),
+        dataNascimento:     document.getElementById('dataNascimento').value.trim(),
+        sexo:               document.getElementById('sexo').value.trim()
+    };
+
+    const resultado = await editarPaciente(idPaciente,dados);
+
+    if (resultado.erro) {
+
+        msg.textContent = resultado.erro;
+        return;
+
+    }
+
+    document.querySelector('H2').textContent = dados.idPaciente;
+
+    msg.textContent = 'Dados atualizados com sucesso!!';
+    btn.textContent = 'Editar';
+
+    modoEdicao = false;
+
+    definirBloqueio(true);
+
+});

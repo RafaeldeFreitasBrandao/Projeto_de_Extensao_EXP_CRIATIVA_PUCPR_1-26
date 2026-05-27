@@ -13,7 +13,7 @@
         <div class="main_content">
             <div class="detail_content">
 
-                <h1>Paciente X</h1>
+                <h1>Paciente <h2></h2></h1>
 
                 <h3><i class="fa-solid fa-user" style="color: rgb(0, 0, 0);"></i> Nome:</h3>
                 <input type="text" placeholder="Nome" id="nome">
@@ -31,17 +31,22 @@
 
                 <h3><i class="fa-solid fa-venus-mars" style="color: rgb(0, 0, 0);"></i> Sexo:</h3>
                     <input type="text" id="sexo" placeholder="sexo">
+
+                 <h3><i class="fa-solid fa-user-shield " style="color: rgb(0, 0, 0);"></i> Responsável:</h3>
+                    <input type="text" id="responsavel" placeholder="responsavel">
                 
             </div>
 
             <div class="detail_content">
                     
                 <button id="edit_button">Editar</button>
-                <button>Voltar</button>
+                <a href="pages/pages_users/pacients_user.html"><button>Voltar</button></a>
+                <p id="msg"></p>
 
             </div>
         </div>
     </div>
 
+    <script type="module" src="../js/pacient_detail.js"></script>
 </body>
 </html>

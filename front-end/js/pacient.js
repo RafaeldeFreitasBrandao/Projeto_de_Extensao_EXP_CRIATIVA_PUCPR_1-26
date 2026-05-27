@@ -21,18 +21,6 @@ import { listarPacientes, criarPaciente, editarPaciente, detalharPaciente } from
 
   let modoEdicaoDetalhes = false;
 
-  function definirBloqueio(bloquear) {
-    document.getElementById('detNome').disabled = bloquear;
-    document.getElementById('detRg').disabled = true;
-    document.getElementById('detDataNascimento').disabled = bloquear;
-    document.getElementById('detSexo').disabled = bloquear;
-    document.getElementById('detCpf').disabled = true;
-  }
-
-  function fecharDetalhes() {
-    document.getElementById('detalhes').classList.remove('visivel');
-    indexAtual = null;
-  }
 
   function abrirFormulario() {
     document.getElementById('formulario').classList.add('visivel');
@@ -92,75 +80,12 @@ import { listarPacientes, criarPaciente, editarPaciente, detalharPaciente } from
       item.innerHTML = `
         <p> ${p.nome} | CPF: ${p.cpf}</p>
         <button onclick="verDetalhes(${index})">Detalhes</button>
+        <a href="../pages/pacient_detail_user.html?id=${p.id_paciente}">
+    <button>Detalhes</button>
+        </a>
       `;
       lista.appendChild(item);
     });
-  }
-
-  async function verDetalhes(index) {
-    indexAtual = index;
-    const p = pacientes[index];
-
-    const detalhe = await detalharPaciente(p.id_paciente);
-
-    if (detalhe.erro) {
-      alert(detalhe.erro);
-      return;
-    }
-
-    document.getElementById('detNome').value = detalhe.nome;
-    document.getElementById('detCpf').value = detalhe.cpf;
-    document.getElementById('detRg').value = detalhe.rg || '';
-    let data = detalhe.dataNascimento || '';
-    if (data.length > 10) data = data.substring(0, 10);
-    document.getElementById('detDataNascimento').value = data;
-    document.getElementById('detSexo').value = detalhe.sexo || '';
-
-    definirBloqueio(true);
-    document.getElementById('msg-detalhes').textContent = '';
-
-    const btn = document.getElementById('editar-detalhes');
-    btn.textContent = 'Editar';
-    modoEdicaoDetalhes = false;
-
-    const btnNovo = btn.cloneNode(true);
-    btn.parentNode.replaceChild(btnNovo, btn);
-
-    btnNovo.addEventListener('click', async () => {
-      const msg = document.getElementById('msg-detalhes');
-
-      if (modoEdicaoDetalhes) {
-          const r = pacientes[indexAtual];
-          const dados = {
-              nome:             document.getElementById('detNome').value.trim(),
-              dataNascimento:  document.getElementById('detDataNascimento').value.trim(),
-              sexo:             document.getElementById('detSexo').value.trim(),
-          };
-      
-      
-          const resultado = await editarPaciente(r.id_paciente, dados);
-      
-          if (resultado.erro) {
-              msg.textContent = resultado.erro;
-              return;
-          }
-      
-      
-          Object.assign(r, dados);
-          renderizarLista();
-          msg.textContent     = 'Dados atualizados com sucesso!';
-          btnNovo.textContent = 'Editar';
-          modoEdicaoDetalhes  = false;
-          definirBloqueio(true);
-          return;
-          }
-            definirBloqueio(false);
-            btnNovo.textContent = 'Salvar';
-            msg.textContent     = '';
-            modoEdicaoDetalhes  = true;
-    });
-
-    document.getElementById('detalhes').classList.add('visivel');
   }
 
 window.abrirFormulario   = abrirFormulario;
