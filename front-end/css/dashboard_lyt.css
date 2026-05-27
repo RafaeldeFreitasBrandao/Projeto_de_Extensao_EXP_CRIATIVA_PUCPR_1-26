@@ -1,168 +1,147 @@
 body {
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
     justify-content: center;
 }
 
 .dash_head {
     display: flex;
-
     flex-direction: row;
-    
     align-items: center;
-
-    justify-content: flex-start;
-
-    height:125px;
+    justify-content: space-between;
     width: 100%;
-
-    background-color: var(--secondary-color);
-    color:var(--button-pry-login-color);
+    max-width: 100%;
+    height: auto;
+    padding: 28px 24px;
+    background-color: var(--sixth-color);
+    color: var(--thirdy-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid #00a896;
 }
 
 .dash_head h1 {
-    font-size: var(--title-font-size);
-    
-    margin-left:50px;
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: -0.5px;
 }
 
-.dash_head #user_a {    
-    margin-left: 900px;
-    margin-right: 300px;
 
-}
 
 .dash_head a {
-    display: flex;
-    flex-direction: row;
-
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-
-    color:var(--button-pry-login-color);
-
-    transition: transform 0.4s ease, color 0.4s ease;
-
+    color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    gap: 8px;
 }
 
 .dash_head a:hover {
-
-    transform: scale(1.25);
-    color:var(--thirdy-color);
+    background-color: var(--primary-color);
+    color: #00a896;
 }
 
 .dash_main {
     display: flex;
     flex-direction: row;
-
-
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-
-    gap: 80px;
-    width: 1800px;
-    height:700px;
-
-    margin-bottom: 100px;
-
-    border-color: rgba(0, 0, 0, 0.226);
-    border-radius: 15px;
-    border-width: 2px;
-    border-style: solid;
-    margin-top: 50px;
-    background-color: var(--secondary-color);
-   
+    align-items: flex-start;
+    gap: 40px;
+    width: auto;
+    height: auto;
+    margin: 48px;
+    padding: 48px;
+    background-color: var(--thirdy-color);
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
 }
 
 .dash_main nav {
-    display: contents;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    width: 100%;
 }
 
-.dash_main nav i{
-    margin-right: 0px;
-    margin-top: 10px;
+.dash_main nav i {
+    margin: 0;
 }
+
 .dash_main a {
     display: flex;
     flex-direction: column;
-
     align-items: center;
     justify-content: center;
-
-    height: 500px;
-    width: 300px;
-
+    height: 400px;
+    width: 200px;
+    padding: 24px 24px;
     font-weight: bold;
-    padding: 10px 15px;
-    font-size: 35px;
     text-decoration: none;
-    color: var(--button-pry-login-color);
+    color: var(--sixth-color);
     background-color: var(--thirdy-color);
-
-    border-radius: 15px;
-
+    border-radius: 16px;
+    border-left: 4px solid #00a896;
+    
 }
 
-    
-    .dash_main i {
-    display: inline-flex;
+.dash_main i {
+    color: #00a896;
     align-items: center;
     justify-content: center;
-
     margin-top: 5px;
-    font-weight: bold;    
-
-    padding: 10px 15px;
-    font-size: 130px;
+    font-weight: bold;
+    padding:10px 15px;
+    font-size: 110px;
     text-decoration: none;
-    
-} 
-    
+}
+
 .dash_main a:hover {
-    background-color: var(--button-pry-login-color);
-    color: white;
-    border-radius: 5px;
+    background-color: var(--thirdy-color);
+    border-left-color: var(--sixth-color);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     transform: scale(1.04);
-    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease;
 }
     
 
 
 .dash_bemvindo {
     display: flex;
-    margin-top: 50px;
     width: 100%;
     align-items: center;
     justify-content: center;
-    
-   
+    margin-top: 40px;
+    padding: 0 24px;
 }
 
 .dash_bemvindo h2 {
-    font-family: var(--primary-font-fmly);
     margin: 0;
-    font-size: var(--title-forfh-font-size);
-    color: var(--thirdy-color);
+    font-size: 1.8rem;
+    color: var(--sixth-color);
     font-weight: bolder;
+    text-align: center;
 }
 
 footer {
     display: flex;
-    margin-top: 80px;
+    justify-content: center;
+    margin-top: auto;
+    padding: 32px 24px;
 }
 
 footer a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-top: 5px;
-    font-weight: bold;
-    padding: 10px 15px;
-    font-size: 30px;
+    
     text-decoration: none;
-    color: var(--button-pry-login-color);
+    
 }
 
 footer a:hover {
