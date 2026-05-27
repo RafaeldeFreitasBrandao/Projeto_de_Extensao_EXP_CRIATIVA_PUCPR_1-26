@@ -29,19 +29,20 @@ exports.detalharPaciente = async (req, res) => {
 
     try {
         const [rows] = await db.query(
-            `SELECT p.id_paciente, p.nome,
+           `SELECT p.id_paciente, p.nome,
                     p.CPF             AS cpf,
                     p.RG              AS rg,
                     p.data_nascimento AS dataNascimento,
                     p.sexo,
                     p.id_usuario_saude,
-                    r.nome AS nomeResponsavel
+                    (SELECT r.nome
+                     FROM formularios f
+                     JOIN responsaveis r ON r.id_responsavel = f.id_responsavel
+                     WHERE f.id_paciente = p.id_paciente
+                     ORDER BY f.data_preenchimento DESC
+                     LIMIT 1) AS nomeResponsavel
                     FROM pacientes p
-                    LEFT JOIN formularios f   ON f.id_paciente = p.id_paciente
-                    LEFT JOIN responsaveis r  ON r.id_responsavel = f.id_responsavel
-                    WHERE p.id_paciente = ?
-                    ORDER BY f.data_preenchimento DESC
-                    LIMIT 1`,
+                    WHERE p.id_paciente = ?`,
                     [id]
         );
 

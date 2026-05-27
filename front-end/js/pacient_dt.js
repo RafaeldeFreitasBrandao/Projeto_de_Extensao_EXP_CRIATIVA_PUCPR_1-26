@@ -9,7 +9,7 @@ window.addEventListener('load', async () => {
     idPaciente = params.get('id');
 
     if (!idPaciente) {
-        window.location.href = 'pages/pages_users/pacients_user.html'
+        window.location.href = 'pages_users/pacients_user.html'
     }
 
     const dados = await detalharPaciente(idPaciente);
@@ -17,18 +17,18 @@ window.addEventListener('load', async () => {
     if (dados.erro) {
 
         alert(dados.erro);
-        window.location.href = 'pages/pages_users/pacients_user.html'
+        window.location.href = 'pages_users/pacients_user.html'
     }
 
-    document.querySelector('H2').textContent = dados.idPaciente;
+    document.querySelector('H2').textContent = dados.nome;
 
     document.getElementById('nome').value          = dados.nome;
     document.getElementById('cpf').value           = dados.cpf;
     document.getElementById('rg').value            = dados.rg || '';
     document.getElementById('sexo').value          = dados.sexo || '';
 
-    let data = data.dataNascimento || '';
-    if (data.lenght > 10) data = data.substring(0,10);
+    let data = dados.dataNascimento || '';
+    if (data.length > 10) data = data.substring(0,10);
 
     document.getElementById('dataNascimento').value = data;
 
@@ -42,7 +42,7 @@ function definirBloqueio(bloquear) {
     //Dados não editáveis
     document.getElementById('cpf').disabled = true;
     document.getElementById('rg').disabled = true;
-    document;getElementById('responsavel').disabled = true;
+    document.getElementById('responsavel').disabled = true;
 
     //Dados editáveis
     document.getElementById('nome').disabled = bloquear;
@@ -78,7 +78,7 @@ document.getElementById('edit_button').addEventListener("click", async () => {
 
     }
 
-    document.querySelector('H2').textContent = dados.idPaciente;
+    document.querySelector('H2').textContent = dados.nome;
 
     msg.textContent = 'Dados atualizados com sucesso!!';
     btn.textContent = 'Editar';

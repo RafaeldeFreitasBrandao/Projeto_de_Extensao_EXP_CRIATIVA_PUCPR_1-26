@@ -1,8 +1,8 @@
   // Adicionar no topo do guardian.js
-import { listarPacientes, criarPaciente, editarPaciente, detalharPaciente } from '../js/api.js';
+import { listarPacientes, criarPaciente, editarPaciente,} from '../js/api.js';
 
   const pacientes = [];
-  let indexAtual = null;
+ 
 
   window.addEventListener('load', async () => {
   
@@ -18,8 +18,6 @@ import { listarPacientes, criarPaciente, editarPaciente, detalharPaciente } from
       renderizarLista();
   
     });
-
-  let modoEdicaoDetalhes = false;
 
 
   function abrirFormulario() {
@@ -67,7 +65,7 @@ import { listarPacientes, criarPaciente, editarPaciente, detalharPaciente } from
     const lista = document.getElementById('listaPacientes');
     lista.innerHTML = '';
 
-    const idUsuarioLogado = Number(localStorage.getItem('id')); // ← adicionar esta linha
+    const idUsuarioLogado = Number(localStorage.getItem('id'));
 
     pacientes.forEach((p, index) => {
         const item = document.createElement('div');
@@ -79,8 +77,7 @@ import { listarPacientes, criarPaciente, editarPaciente, detalharPaciente } from
 
       item.innerHTML = `
         <p> ${p.nome} | CPF: ${p.cpf}</p>
-        <button onclick="verDetalhes(${index})">Detalhes</button>
-        <a href="../pages/pacient_detail_user.html?id=${p.id_paciente}">
+        <a href="../pacient_detail_user.html?id=${p.id_paciente}">
     <button>Detalhes</button>
         </a>
       `;
@@ -91,5 +88,3 @@ import { listarPacientes, criarPaciente, editarPaciente, detalharPaciente } from
 window.abrirFormulario   = abrirFormulario;
 window.fecharFormulario  = fecharFormulario;
 window.salvarPaciente    = salvarPaciente;
-window.verDetalhes       = verDetalhes;
-window.fecharDetalhes    = fecharDetalhes;
