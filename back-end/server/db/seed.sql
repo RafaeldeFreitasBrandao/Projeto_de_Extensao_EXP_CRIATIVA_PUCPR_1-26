@@ -4,7 +4,7 @@ INSERT INTO comportamentos (nome, valor_masculino, valor_feminino) VALUES
 ('Macroorquidismo', 0.26, 0.00),
 ('Hipermobilidade articular', 0.18, 0.14),
 ('Dificuldades de aprendizagem', 0.18, 0.28),
-('Deficit de atusuarios_saudeencao', 0.17, 0.12),
+('Deficit de atencao', 0.17, 0.12),
 ('Movimentos repetitivos', 0.15, 0.18),
 ('Atraso na fala', 0.14, 0.16),
 ('Hiperatividade', 0.13, 0.15),
