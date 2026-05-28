@@ -17,7 +17,7 @@ body {
     background-color: var(--sixth-color);
     color: var(--thirdy-color);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-bottom: 3px solid #00a896;
+    border-bottom: 3px solid var(--seventh-color);
 }
 
 .dash_head h1 {
@@ -34,7 +34,7 @@ body {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: #ffffff;
+    color: var(--thirdy-color);
     padding: 10px 16px;
     border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -43,7 +43,7 @@ body {
 
 .dash_head a:hover {
     background-color: var(--primary-color);
-    color: #00a896;
+    color: var(--seventh-color);
 }
 
 .dash_main {
@@ -87,12 +87,12 @@ body {
     color: var(--sixth-color);
     background-color: var(--thirdy-color);
     border-radius: 16px;
-    border-left: 4px solid #00a896;
+    border-left: 4px solid var(--seventh-color);
     
 }
 
 .dash_main i {
-    color: #00a896;
+    color: var(--seventh-color);
     align-items: center;
     justify-content: center;
     margin-top: 5px;
