@@ -1,0 +1,51 @@
+<html lang="pt-br">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/pacient_dt_lyt.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <div class="big_content">
+        <div class="main_content">
+            <div class="detail_content">
+
+                <h1>Responsável:</h1>
+                <h2></h2>
+
+                <h3><i class="fa-solid fa-user" style="color: rgb(0, 0, 0);"></i> Nome:</h3>
+                <input type="text" placeholder="Nome" id="nome">
+
+                <h3><i class="fa-solid fa-id-badge" style="color: rgb(0, 0, 0);"></i> CPF:</h3>
+                    <input type="text" id="cpf" placeholder="CPF" maxlength="11">
+ 
+            </div>
+            <div class="detail_content" id="second_detail_content">
+
+                <h3><i class="fa-solid fa-at" style="color: rgb(0, 0, 0);"></i> Email:</h3>
+                    <input type="text" id="email" placeholder="Email">  
+
+                <h3><i class="fa-solid fa-phone" style="color: rgb(0, 0, 0);"></i> Telefone:</h3>
+                    <input type="text" placeholder="Telefone" id="telefone">
+
+                <h3><i class="fa-solid fa-hands-holding-child" style="color: rgb(0, 0, 0);"></i> Grau:</h3>
+                    <input type="text" id="grau" placeholder="Grau">
+                
+            </div>
+
+            <div class="detail_content">
+                    
+                <button id="edit_button">Editar</button>
+                <a href="guardian_user.html"><button>Voltar</button></a>
+                <p id="msg"></p>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../pages_user/js/pacient_dt.js"></script>
+</body>
+</html>
