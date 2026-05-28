@@ -1,13 +1,13 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 const autenticar = require('../middleware/auth_middleware.js');
 const controller = require('../controllers/forms_controller.js');
-const controller_behavior = require('../controllers/behaviors_controlle');
 
-route.get('/', autenticar, controller.listarFormularios);
-route.post('/', autenticar, controller.criarFormulario);
-route.get('/', autenticar, controller.detalharFormulario);
-route.put('/', autenticar, controller.editarFormulario);
+router.get('/', autenticar, controller.listarFormularios);
+router.post('/', autenticar, controller.criarFormulario);
+router.get('/:id', autenticar, controller.detalharFormulario);
+router.put('/:id', autenticar, controller.editarFormulario);
+router.delete('/:id', autenticar, controller.deletarFormulario);
 
 module.exports = router;
