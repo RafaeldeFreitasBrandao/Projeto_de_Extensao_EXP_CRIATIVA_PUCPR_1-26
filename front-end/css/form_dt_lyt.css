@@ -1,21 +1,15 @@
-h1 {
-    font-size: var(--title-font-size);
-    color: var(--button-pry-login-color);
 
-    margin-left: 50px;
-
-}
 
 h2 {
     font-size: var(--title-fifth-font-size);
     color:var(--button-pry-login-color);
 
     margin-left: 30px;
-    margin-top:50px;
+    margin-top:30px;
 }
 
 h3 {
-    font-size: var(--title-forfh-font-size);
+    font-size: var(--title-thrd-font-size);
     color: var(--fifh-color);
     margin-left:30px;
     margin-bottom: 15px;
@@ -30,8 +24,8 @@ i {
     color: black;
 }
 
-#text_question {
-    font-size: var(--title-thrd-font-size);
+.text_question {
+    font-size: var(--second-font-size);
     
 }
 
@@ -45,12 +39,12 @@ i {
 }
 
 input {
-    height: 50px;
-    width: 600px;
+    height: 38px;
+    width: 350px;
 
     margin-left: 30px;
 
-    font-size: var(--input-font-size);
+    font-size: var(--primary-font-size);
     border-radius: 5px;
     border-style: none;
     background-color: var(--secondary-color);
@@ -66,6 +60,7 @@ input {
     height:100vh;
     width: 100%;
 
+
 }
 
 .form_box {
@@ -80,6 +75,8 @@ input {
     margin-left:50px;
     margin-top:50px;
 
+    margin-bottom: 200px;
+
     border-radius: 25px;
 }
 
@@ -93,6 +90,7 @@ input {
 
 #second_sub_form_box {
     margin-top:30px;
+    margin-left: 5px;
 
     border-left: 4px solid var(--button-pry-login-color);
 }
@@ -124,14 +122,23 @@ input {
     transform: scale(1.08);
 }
 
-#save_form {
+.content_button {
+    display: flex;
+    flex-direction: row;
+
+    margin-left:100px;
+    margin-top: 15px;
+
+    gap:30px;
+}
+
+.button_ft {
 
     height: 60px;
-    width: 150px;
+    width: 100px;
 
     align-self:flex-end;
 
-    margin-right: 100px;
     margin-top: 40px;
 
     border-radius: 15px;
@@ -145,6 +152,11 @@ input {
     transition: all 0.3s ease;
 }
 
-#save_form:hover {
+#edit_button {
+    background-color: var(--button-thrd-color);
+}
+
+.button_ft:hover {
     transform: scale(1.08);
 }
+
