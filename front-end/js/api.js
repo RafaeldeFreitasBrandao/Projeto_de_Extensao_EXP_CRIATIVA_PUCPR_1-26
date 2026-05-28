@@ -113,3 +113,36 @@ export async function detalharPaciente(id) {
     });
     return r.json();
 }
+
+export async function listarFormularios() {
+    const resposta = await fetch(`${BASE}/formularios`, {
+        method: 'GET',
+        headers: getHeaders(),
+    });
+    return resposta.json();
+}
+
+export async function detalharFormulario(id) {
+    const resposta = await fetch(`${BASE}/formularios/${id}`, {
+        method: 'GET',
+        headers: getHeaders(),
+    });
+    return resposta.json();
+}
+
+export async function editarFormulario(id, dados) {
+    const resposta = await fetch(`${BASE}/formularios/${id}`, {
+        method: 'PUT',
+        headers: getHeaders(),
+        body: JSON.stringify(dados)
+    });
+    return resposta.json();
+}
+
+export async function deletarFormulario(id) {
+    const resposta = await fetch(`${BASE}/formularios/${id}`, {
+        method: 'DELETE',
+        headers: getHeaders(),
+    });
+    return resposta.json();
+}
