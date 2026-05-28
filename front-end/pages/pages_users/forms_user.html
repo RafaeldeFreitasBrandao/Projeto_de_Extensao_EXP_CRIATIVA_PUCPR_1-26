@@ -29,10 +29,10 @@
         <h2><i class="fa-solid fa-clipboard-question"></i>  Preencha o Formulário:</h2>
 
         <h3 id="title_ppl"><i class="fa-solid fa-child"></i>  Paciente:</h3>
-        <input type="text" placeholder="CPF do paciente">
+        <input type="text" placeholder="CPF do paciente" maxlength="11">
 
         <h3 id="title_ppl"><i class="fa-solid fa-user-shield"></i>  Responsável:</h3>
-        <input type="text" placeholder="CPF do responsável">
+        <input type="text" placeholder="CPF do responsável" maxlength="16">
 
         <h3 id="text_question">O paciente apresenta deficiência intelectual?</h3>
         <div class="cont_button">
@@ -94,28 +94,11 @@
 
     </div>
 
+
+    <div id="listaFormularios"></div>
+
   </div>
 
-  <script>
-
-    // Seleciona todos os botões pela classe
-  const botoes = document.querySelectorAll('.btn_ys');
-
-  botoes.forEach(botao => {
-    botao.addEventListener('click', function() {
-        // Alterna a classe 'ativo' no botão clicado
-        this.classList.toggle('ativo');
-
-        if (this.textContent === 'Não') {
-          this.textContent = 'Sim';
-       } else {
-          this.textContent = 'Não';
-      }
-    });
-  });
-
-
-
-  </script>
+  <script type="module" src="../../js/form.js"></script>
 </body>
 </html>
