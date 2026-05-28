@@ -15,7 +15,7 @@ exports.listarFormularios = async (req, res) => {
             FROM formularios f
             JOIN pacientes p ON f.id_paciente = p.id_paciente
             WHERE f.id_usuario_saude = ?
-            ORDER BY f.data_preechimento DESC`,
+            ORDER BY f.data_preenchimento DESC`,
             [id_usuario]
         );
         res.json(rows);
@@ -51,14 +51,14 @@ exports.criarFormulario = async (req, res) => {
         const { id_paciente, sexo } = pacRows[0];
         //Busca o responsável pelo CPF
         const [resRows] = await db.query(
-            `SELECT id_responsavel, FROM responsavel WHERE CPF = ?`, 
+            `SELECT id_responsavel FROM responsaveis WHERE CPF = ?`, 
             [cpf_responsavel]
         );
 
-        if (respRows.length === 0)
+        if (resRows.length === 0)
             return res.status(404).json({erro: 'Responsável não encontrado'});
         
-        const {id_responsavel} = respRows[0];
+        const {id_responsavel} = resRows[0];
 
         //Cria o formulario
         const [formResult] = await db.query(
@@ -79,11 +79,11 @@ exports.criarFormulario = async (req, res) => {
 
         //Cálculo da pontuação de acordo com sexo do paciente 
 
-        const coluna = sexo === 'masculino'? 'masculino' : 'feminino';
+        const coluna = sexo === 'masculino'? 'valor_masculino' : 'valor_feminino';
 
         let soma_total = 0;
 
-        if (comportamentos.length === 0) {
+        if (comportamentos.length > 0) {
 
             const placeholders = comportamentos.map(() => '?').join(',');
             const [campRows] = await db.query(
@@ -91,7 +91,7 @@ exports.criarFormulario = async (req, res) => {
                 WHERE id_comportamento in (${placeholders})`, comportamentos
             );
 
-            soma_total = compRows.reduce((acc, r) => acc + parseFloat(r.valor), 0);
+            soma_total = campRows.reduce((acc, r) => acc + parseFloat(r.valor), 0);
         }
 
         //Salva o resultado
@@ -116,12 +116,12 @@ exports.criarFormulario = async (req, res) => {
 
 exports.detalharFormulario = async (req, res) => {
     
-    const { id } = req.param;
+    const { id } = req.params;
     const id_usuario = req.usuario.id;
 
     try {
         const [formRows] = await db.query(
-            `SELECT f.id_formulario, f.data_preenchimento, f.status
+            `SELECT f.id_formulario, f.data_preenchimento, f.status,
             p.nome AS nome_paciente, p.CPF AS cpf_paciente, p.sexo,
             r.nome AS nome_responsavel, r.CPF AS cpf_responsavel 
             FROM formularios f 
@@ -143,7 +143,7 @@ exports.detalharFormulario = async (req, res) => {
         );
 
         const [resRows] = await db.query(
-        `SELECT soma_total FROM resultados WHERE id_formulario - ?`,
+        `SELECT soma_total FROM resultado WHERE id_formulario = ?`,
         [id]
         );
 
@@ -174,7 +174,7 @@ exports.editarFormulario = async (req, res) => {
 
         const [check] = await db.query(
             `SELECT p.sexo FROM formularios f 
-            JOIN pacientes p ON f.id_paciente = p.paciente
+            JOIN pacientes p ON f.id_paciente = p.id_paciente
             WHERE f.id_formulario = ? AND f.id_usuario_saude = ?`,
             [id, id_usuario]
         );
@@ -189,12 +189,10 @@ exports.editarFormulario = async (req, res) => {
             [id]
         );
 
-        if (comportamentos.length > 0)
-            const valores = comportamentos.map(cid => [id,cid]);
-            await db.query(`
-                INSERT INTO formulario_comportamento (id_formulario, id_comportamento) VALUES ?
-                `, [valores]
-            );
+        if (comportamentos.length > 0) {
+            const valores = comportamentos.map(cid => [id, cid]);
+            await db.query(`INSERT INTO formulario_comportamento (id_formulario, id_comportamento) VALUES ?`, [valores]);
+            }
 
         const coluna = sexo === 'masculino' ? 'valor_masculino' : 'valor_feminino';
         let soma_total = 0;

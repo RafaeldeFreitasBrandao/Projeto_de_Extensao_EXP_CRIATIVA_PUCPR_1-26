@@ -4,7 +4,7 @@ exports.listarComportamentos = async (req, res) => {
 
     try {
         const [rows] = await db.query(`
-           SELECT id_comportamentos, nome, valor_masculino, valor_feminino
+           SELECT id_comportamento, nome, valor_masculino, valor_feminino
            FROM comportamentos 
            ORDER BY id_comportamento ASC
             `);
