@@ -21,45 +21,7 @@ function getHeaders() {
 }
 
 
-//Funções para a página da conta
-
-export async function buscarMinhaConta() {
-    const resposta = await fetch(`${BASE}/usuarios/minha-conta`, {
-        method: 'GET',
-        headers: getHeaders()
-    });
-
-    return resposta.json();
-}
-
-export async function verificaSenha(senha) {
-    const resposta = await fetch(`${BASE}/usuarios/verificar-senha`, {
-        method: 'POST',
-        headers:getHeaders(),
-        body: JSON.stringify({senha})
-    });
-    return resposta.json();
-}
-
-export async function atualizarMinhaConta(dados) {
-    const resposta = await fetch (`${BASE}/usuarios/minha-conta`, {
-        method: 'PUT',
-        headers: getHeaders(),
-        body: JSON.stringify(dados)
-    });
-    return resposta.json();
-}
-
-
 //Funções para a página dos responsáveis
-
-export async function listarResponsaveis() {
-    const resposta = await fetch(`${BASE}/responsaveis`, {
-        method: 'GET',
-        headers: getHeaders(),
-    });
-    return resposta.json();
-}
 
 export async function criarResponsavel(dados) {
     const resposta = await fetch(`${BASE}/responsaveis`,{
@@ -70,14 +32,7 @@ export async function criarResponsavel(dados) {
     return resposta.json();
 }
 
-export async function editarResponsavel(id,dados) {
-    const resposta = await fetch(`${BASE}/responsaveis/${id}`, {
-        method:'PUT',
-        headers: getHeaders(),
-        body:JSON.stringify(dados)
-    });
-    return resposta.json();
-}
+
 
 //Funções para a página dos pacientes
 
