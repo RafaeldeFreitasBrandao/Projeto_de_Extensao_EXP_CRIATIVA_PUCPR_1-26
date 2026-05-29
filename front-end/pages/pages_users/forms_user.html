@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Principal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/form_lyt.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/components.css">
+</head>
+<body>
+
+  <div class="reg_header">
+
+  <a href="dashboard_user.html"><button class="return_reg">Voltar</button></a>
+  
+  <h1><i class="fa-solid fa-clipboard-list"></i>  Formulários</h1>
+
+  </div>
+
+  <div class="main_body">
+
+    <div class="form_box">
+
+      <div class="sub_form_box">
+
+
+        <h2><i class="fa-solid fa-clipboard-question"></i>  Preencha o Formulário:</h2>
+
+        <h3 id="title_ppl"><i class="fa-solid fa-child"></i>  Paciente:</h3>
+        <input type="text" placeholder="CPF do paciente" maxlength="11">
+
+        <h3 id="title_ppl"><i class="fa-solid fa-user-shield"></i>  Responsável:</h3>
+        <input type="text" placeholder="CPF do responsável" maxlength="16">
+
+        <h3 id="text_question">O paciente apresenta deficiência intelectual?</h3>
+        <div class="cont_button">
+        <button class="btn_ys" onclick="mudarCor()">Não</button>
+        </div>
+        <h3 id="text_question">O paciente apresenta Macroorquidismo?</h3>
+        <div class="cont_button">
+        <button class="btn_ys">Não</button>
+        </div>
+        <h3 id="text_question">O paciente apresenta hipermobilidade articular?</h3>
+        <div class="cont_button">
+        <button class="btn_ys">Não</button>
+        </div>
+        <h3 id="text_question">O paciente apresenta face alongada e/ou orelhas abano?</h3>
+        <div class="cont_button">
+        <button class="btn_ys">Não</button>
+        </div>
+        <h3 id="text_question">O paciente apresenta dificuldade de aprendizagem?</h3>
+        <div class="cont_button">
+        <button class="btn_ys">Não</button>
+        </div>
+
+      </div>
+
+      <div class="sub_form_box" id="second_sub_form_box">
+
+        <h3 id="text_question">O paciente apresenta deficit de atenção?</h3>
+        <div class="cont_button">
+        <button class="btn_ys">Não</button>
+
+        </div>
+        <h3 id="text_question">O paciente apresenta movimentos repetitivos?</h3>
+        <div class="cont_button">
+        <button class="btn_ys">Não</button>
+        </div>
+        <h3 id="text_question">O paciente apresenta atraso na fala?</h3>
+        <div class="cont_button">
+        <button class="btn_ys">Não</button>
+        </div>
+        <h3 id="text_question">O paciente apresenta hiperatividade?</h3>
+        <div class="cont_button">
+        <button class="btn_ys">Não</button>
+        </div>
+        <h3 id="text_question">O paciente apresenta evita contato visual</h3>
+        <div class="cont_button">
+        <button class="btn_ys">Não</button>
+        </div>
+        <h3 id="text_question">O paciente evita contato físico?</h3>
+        <div class="cont_button">
+        <button class="btn_ys">Não</button>
+        </div>
+        <h3 id="text_question">O paciente apresenta sinais de agressividade?</h3>
+        <div class="cont_button">
+        <button class="btn_ys">Não</button>
+        </div>
+
+        <button id="save_form">Salvar</button>
+      </div>
+
+    </div>
+
+
+    <div id="listaFormularios"></div>
+
+  </div>
+
+  <script type="module" src="../../js/form.js"></script>
+</body>
+</html>
