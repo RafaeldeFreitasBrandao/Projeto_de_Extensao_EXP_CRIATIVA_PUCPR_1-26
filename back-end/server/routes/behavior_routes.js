@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const autenticar = require('../middleware/auth_middleware.js');
-const controller = require('../controllers/controllers_behavior.js');
+const controller = require('../controllers/controller_behavior.js');
 
 router.get('/', autenticar, controller.listarComportamentos);
 

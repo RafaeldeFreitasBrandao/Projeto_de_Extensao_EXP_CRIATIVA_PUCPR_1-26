@@ -1,9 +1,8 @@
 h1 {
     font-size: var(--title-font-size);
-    color: var(--button-pry-login-color);
+    color: var(--secondary-color);
 
-    margin-left: 50px;
-
+    margin-right: 780px;
 }
 
 h2 {
@@ -22,6 +21,7 @@ p {
 }
 
 i {
-    color: black;
+    color: var(--button-pry-login-color);
 }
+
 

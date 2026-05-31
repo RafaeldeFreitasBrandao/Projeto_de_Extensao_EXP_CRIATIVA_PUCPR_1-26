@@ -6,6 +6,7 @@
     --fifh-color:#000000;
     --sixth-color:#1e3a5f;
     --seventh-color:#00a896;
+    --eighth-color:#bed6fb;
 
     --button-pry-login-color: rgb(0, 119, 255);
     --button-sncd-login-color: rgb(0, 119, 255);
@@ -45,6 +46,12 @@ button {
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
 
+}
+
+img {
+    height:150px;
+    width: 150px;
+    margin-right: 0px;
 }
 
 

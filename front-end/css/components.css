@@ -21,14 +21,13 @@
     display:flex;
     flex-direction: row;
 
+
     width: 100vw;   
 
     align-items: center;
     justify-content: flex-start;
 
-    background-color: var(--secondary-color );
-
-    gap: 15px;
+    background-color: var(--sixth-color);
 }
 
  #add_reg {
