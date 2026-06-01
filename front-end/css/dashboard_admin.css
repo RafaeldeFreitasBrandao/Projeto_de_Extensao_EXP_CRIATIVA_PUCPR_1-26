@@ -1,16 +1,17 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  background: #7a7a7a6c;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #333;
-  color: white;
-  padding: 15px;
+  background: #062345;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  
 }
 
 .icons span {
@@ -26,9 +27,10 @@ body {
 
 .users {
   flex: 1;
-  background: white;
+  color: white;
+  background:  #062345;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 15px;
 }
 
 .user-grid {
@@ -38,11 +40,12 @@ body {
 }
 
 .card {
-  background: #ddd;
+  background: #dddddd;
   padding: 20px;
   text-align: center;
   border-radius: 6px;
   cursor: pointer;
+  color: black;
 }
 
 .card:hover {
@@ -50,25 +53,26 @@ body {
 }
 
 .card.add {
-  background: #a8e6cf;
+  color: black;
 }
 
 .card.active {
-  background: #81c784;
-  color: white;
+  color: black;
 }
 
 .log {
   flex: 1;
-  background: white;
+  color: white;
+  background:  #062345;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 15px;
 }
 
 #logContent {
   height: 200px;
   overflow-y: auto;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   padding: 10px;
   margin-bottom: 10px;
+  border-radius: 15px;
 }
