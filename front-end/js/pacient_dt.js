@@ -9,7 +9,7 @@ window.addEventListener('load', async () => {
     idPaciente = params.get('id');
 
     if (!idPaciente) {
-        window.location.href = 'pages_users/pacients_user.html'
+        window.location.href = 'pacients_user.html'
     }
 
     const dados = await detalharPaciente(idPaciente);
@@ -17,7 +17,7 @@ window.addEventListener('load', async () => {
     if (dados.erro) {
 
         alert(dados.erro);
-        window.location.href = 'pages_users/pacients_user.html'
+        window.location.href = 'pacients_user.html'
     }
 
     document.querySelector('H2').textContent = dados.nome;
