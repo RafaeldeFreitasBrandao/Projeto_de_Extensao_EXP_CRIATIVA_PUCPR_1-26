@@ -167,3 +167,31 @@ export async function listarComportamentos() {
     });
     return resposta.json();
 }
+
+// Funções para os relatórios
+
+export async function listarRelatorios() {
+    const resposta = await fetch(`${BASE}/relatorios`, {
+        method: 'GET',
+        headers: getHeaders(),
+    });
+    return resposta.json();
+}
+
+export async function criarRelatorio(dados) {
+    const resposta = await fetch(`${BASE}/relatorios`,{
+        method: 'POST',
+        headers: getHeaders(),
+        body:JSON.stringify(dados)
+    });
+    return resposta.json();
+}
+
+export async function editarRelatorio(id,dados) {
+    const resposta = await fetch(`${BASE}/relatorios/${id}`, {
+        method:'PUT',
+        headers: getHeaders(),
+        body:JSON.stringify(dados)
+    });
+    return resposta.json();
+}

@@ -1,0 +1,64 @@
+<html lang="pt-br">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/report_dt_lyt.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <div class="big_content">
+        <div class="main_content">
+            <div class="detail_content">
+
+                <h1>Resultado do Formulário:</h1>
+                <h2></h2>
+
+                <h3><i class="fa-solid fa-user" style="color: rgb(0, 0, 0);"></i> Nome do paciente:</h3>
+                <input type="text" placeholder="Nome" id="paciente_nome">
+
+                <h3><i class="fa-solid fa-id-badge" style="color: rgb(0, 0, 0);"></i> CPF:</h3>
+                    <input type="text" id="paciente_cpf" placeholder="CPF" maxlength="11">
+
+                <h3><i class="fa-solid fa-user" style="color: rgb(0, 0, 0);"></i> Nome do responsável:</h3>
+                <input type="text" placeholder="Nome" id="responsavel_nome">
+
+                <h3><i class="fa-solid fa-id-badge" style="color: rgb(0, 0, 0);"></i> CPF:</h3>
+                    <input type="text" id="responsavel_cpf" placeholder="CPF" maxlength="11">
+
+                <h3><i class="fa-solid fa-hands-holding-child" style="color: rgb(0, 0, 0);"></i> Grau:</h3>
+                    <input type="text" id="grau" placeholder="Grau">
+ 
+            </div>
+            <div class="detail_content" id="second_detail_content">
+
+                <h3><i class="fa-solid fa-at" style="color: rgb(0, 0, 0);"></i> Resultado:</h3> <!-- para saber se precisa fazer exame ou nao-->
+                    <input type="text" id="resultado" placeholder="Resultado">  
+
+                <h3><i class="fa-solid fa-phone" style="color: rgb(0, 0, 0);"></i> Soma do Teste:</h3>
+                    <input type="text" placeholder="Soma do teste" id="soma_teste">
+
+                <h3><i class="fa-solid fa-at" style="color: rgb(0, 0, 0);"></i> Data de Preenchimento:</h3> 
+                    <input type="text" id="data_preenchimento" placeholder="Data de preenchimento">  
+
+             
+
+                
+                
+            </div>
+
+            <div class="detail_content">
+                    
+                <button id="edit_button">Editar</button>
+                <a href="report_user.html"><button>Voltar</button></a>
+                <p id="msg"></p>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../../js/report_dt.js"></script>
+</body>
+</html>
