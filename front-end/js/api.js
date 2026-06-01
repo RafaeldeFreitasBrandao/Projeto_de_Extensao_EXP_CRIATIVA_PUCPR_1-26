@@ -114,6 +114,8 @@ export async function detalharPaciente(id) {
     return r.json();
 }
 
+//Funções para os formulários 
+
 export async function listarFormularios() {
     const resposta = await fetch(`${BASE}/formularios`, {
         method: 'GET',
@@ -143,6 +145,16 @@ export async function deletarFormulario(id) {
     const resposta = await fetch(`${BASE}/formularios/${id}`, {
         method: 'DELETE',
         headers: getHeaders(),
+    });
+    return resposta.json();
+}
+
+//Funções para os comportamentos 
+
+export async function listarComportamentos() {
+    const resposta = await fetch(`${BASE}/comportamentos`, {
+        method = 'GET',
+        headers:getHeaders()
     });
     return resposta.json();
 }

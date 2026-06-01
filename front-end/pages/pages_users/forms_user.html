@@ -29,30 +29,27 @@
         <h2><i class="fa-solid fa-clipboard-question"></i>  Preencha o Formulário:</h2>
 
         <h3 id="title_ppl"><i class="fa-solid fa-child"></i>  Paciente:</h3>
-        <input type="text" placeholder="CPF do paciente" maxlength="11">
-
-        <h3 id="title_ppl"><i class="fa-solid fa-user-shield"></i>  Responsável:</h3>
-        <input type="text" placeholder="CPF do responsável" maxlength="16">
+        <input type="text" id="cpfPaciente" placeholder="CPF do paciente" maxlength="11">
 
         <h3 id="text_question">O paciente apresenta deficiência intelectual?</h3>
         <div class="cont_button">
-        <button class="btn_ys" onclick="mudarCor()">Não</button>
+        <button class="btn_ys" data-id="1">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta Macroorquidismo?</h3>
         <div class="cont_button">
-        <button class="btn_ys">Não</button>
+        <button class="btn_ys"data-id="2">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta hipermobilidade articular?</h3>
         <div class="cont_button">
-        <button class="btn_ys">Não</button>
+        <button class="btn_ys" data-id="3">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta face alongada e/ou orelhas abano?</h3>
         <div class="cont_button">
-        <button class="btn_ys">Não</button>
+        <button class="btn_ys" data-id="4">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta dificuldade de aprendizagem?</h3>
         <div class="cont_button">
-        <button class="btn_ys">Não</button>
+        <button class="btn_ys" data-id="5">Não</button>
         </div>
 
       </div>
@@ -61,32 +58,32 @@
 
         <h3 id="text_question">O paciente apresenta deficit de atenção?</h3>
         <div class="cont_button">
-        <button class="btn_ys">Não</button>
+        <button class="btn_ys"data-id="6">Não</button>
 
         </div>
         <h3 id="text_question">O paciente apresenta movimentos repetitivos?</h3>
         <div class="cont_button">
-        <button class="btn_ys">Não</button>
+        <button class="btn_ys" data-id="7">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta atraso na fala?</h3>
         <div class="cont_button">
-        <button class="btn_ys">Não</button>
+        <button class="btn_ys" data-id="8">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta hiperatividade?</h3>
         <div class="cont_button">
-        <button class="btn_ys">Não</button>
+        <button class="btn_ys" data-id="9">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta evita contato visual</h3>
         <div class="cont_button">
-        <button class="btn_ys">Não</button>
+        <button class="btn_ys" data-id="10">Não</button>
         </div>
         <h3 id="text_question">O paciente evita contato físico?</h3>
         <div class="cont_button">
-        <button class="btn_ys">Não</button>
+        <button class="btn_ys" data-id="11">Não</button>
         </div>
         <h3 id="text_question">O paciente apresenta sinais de agressividade?</h3>
         <div class="cont_button">
-        <button class="btn_ys">Não</button>
+        <button class="btn_ys" data-id="12">Não</button>
         </div>
 
         <button id="save_form">Salvar</button>
