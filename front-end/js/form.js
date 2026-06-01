@@ -1,4 +1,4 @@
-import { listarFormularios, criarFormulario,detalharFormulario, editarFormulario } from "./api.js";
+import { listarFormularios, criarFormulario, } from "./api.js";
 
     const formularios = [];
 
@@ -50,3 +50,45 @@ function renderizarLista() {
         lista.appendChild(item);
     });
 }
+
+document.getElementById('save_form').addEventListener('click', async () => {
+
+    const cpf_paciente   = document.getElementById('cpfPaciente').value.trim();
+    const cpf_responsavel = document.getElementById('cpfResponsavel').value.trim();
+
+    if (!cpf_paciente || !cpf_responsavel) {
+        alert('Preencha o CPF do paciente e do responsável.');
+        return;
+    }
+
+  
+    const comportamentos = [];
+    document.querySelectorAll('.btn_ys').forEach(btn => {
+        if (btn.classList.contains('ativo')) {
+            comportamentos.push(Number(btn.dataset.id));
+        }
+    });
+
+    const resultado = await criarFormulario({ cpf_paciente, cpf_responsavel, comportamentos });
+
+    if (resultado.erro) {
+        alert(resultado.erro);
+        return;
+    }
+
+
+    const dadosAtualizados = await listarFormularios();
+    if (!dadosAtualizados.erro) {
+        formularios.length = 0;
+        dadosAtualizados.forEach(r => formularios.push(r));
+        renderizarLista();
+    }
+
+
+    document.getElementById('cpfPaciente').value = '';
+    document.getElementById('cpfResponsavel').value = '';
+    document.querySelectorAll('.btn_ys').forEach(btn => {
+        btn.classList.remove('ativo');
+        btn.textContent = 'Não';
+    });
+});

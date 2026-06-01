@@ -1,3 +1,5 @@
+
+
 h1 {
     font-size: var(--title-font-size);
     color: var(--button-pry-login-color);
@@ -147,4 +149,58 @@ input {
 
 #save_form:hover {
     transform: scale(1.08);
+}
+
+.form_salvo {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+
+    height:85px;
+    width: 550px;
+
+
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+
+    margin-top:40px;
+
+    transition: all 0.3s ease;
+
+    box-shadow: 5px 5px 0px var(--shadow-box-color);
+}
+
+.form_salvo p {
+    margin-left: 20px;
+}
+
+.form_salvo button {
+    height: 45px; 
+    width: 100px;
+    
+    border-radius: 10px;
+    border-style: none;
+
+    margin-right: 20px;
+
+    font-size: var(--input-font-size);
+    background-color: var(--button-pry-login-color);
+    color: var(--thirdy-color);
+
+
+    transition: all 0.3s ease;
+}
+
+.form_salvo:hover {
+
+    transform: scale(1.03);
+    box-shadow: 10px 10px 0px var(--button-forfh-login-color);
+
+}
+
+.form_salvo button:hover {
+    transform: scale(1.05)translateY(0);
+    background-color: var(--button-forfh-login-color);
 }

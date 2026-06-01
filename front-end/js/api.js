@@ -124,6 +124,15 @@ export async function listarFormularios() {
     return resposta.json();
 }
 
+export async function criarFormulario(dados) {
+    const resposta = await fetch (`${BASE}/formularios`, {
+        method: 'POST',
+        headers:getHeaders(),
+        body: JSON.stringify(dados)
+    });
+    return resposta.json();
+}
+
 export async function detalharFormulario(id) {
     const resposta = await fetch(`${BASE}/formularios/${id}`, {
         method: 'GET',
@@ -153,8 +162,8 @@ export async function deletarFormulario(id) {
 
 export async function listarComportamentos() {
     const resposta = await fetch(`${BASE}/comportamentos`, {
-        method = 'GET',
-        headers:getHeaders()
+        method: 'GET',
+        headers:getHeaders(),
     });
     return resposta.json();
 }
