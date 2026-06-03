@@ -1,27 +1,39 @@
 h1 {
-    font-size: var(--title-font-size);
-    color: var(--secondary-color);
+    font-size: var(--title-fifth-font-size);
+    color: var(--thirdy-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
 
-    margin-right: 780px;
+h1 i {
+    color: var(--thirdy-color);
 }
 
 h2 {
-    font-size:var(--title-snd-font-size);
+    font-size: var(--title-snd-font-size);
     color: var(--button-pry-login-color);
+    margin-top: 0;
+    margin-bottom: 8px;
 }
 
 h3 {
-    font-size:var(--title-thrd-font-size);
-    color: var(--button-pry-login-color);
-}
-
-p {
-    font-size: var(--input-font-size);
-    margin-left:210px;
+    font-size: var(--title-thrd-font-size);
+    color: var(--sixth-color);
+    margin-top: 18px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 i {
     color: var(--button-pry-login-color);
 }
 
-
+p {
+    font-size: var(--primary-font-size);
+    margin-left: 0;
+}
