@@ -21,7 +21,7 @@ window.addEventListener('load', async () => {
 	}
 
 
-	document.querySelector('H2').textContent = dados.nome_paciente || `Formulário ${dados.id_formulario}`;
+	document.querySelector('H3').textContent = dados.nome_paciente || `Formulário ${dados.id_formulario}`;
 	document.getElementById('paciente_nome').value = dados.nome_paciente || '';
 	document.getElementById('paciente_cpf').value = dados.cpf_paciente || '';
 	document.getElementById('responsavel_nome').value = dados.nome_responsavel || '';
