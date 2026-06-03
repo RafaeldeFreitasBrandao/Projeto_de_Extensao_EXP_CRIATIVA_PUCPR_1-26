@@ -20,8 +20,7 @@ window.addEventListener('load', async () => {
         window.location.href = 'guardian_user.html'
     }
 
-    document.querySelector('H2').textContent = dados.nome;
-
+    document.getElementById('cpf').value           = dados.CPF || '';
     document.getElementById('nome').value          = dados.nome;
     document.getElementById('telefone').value           = dados.telefone;
     document.getElementById('email').value            = dados.email || '';
@@ -72,7 +71,7 @@ document.getElementById('edit_button').addEventListener("click", async () => {
 
     }
 
-    document.querySelector('H2').textContent = dados.nome;
+
 
     msg.textContent = 'Dados atualizados com sucesso!!';
     btn.textContent = 'Editar';
