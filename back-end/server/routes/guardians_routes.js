@@ -5,6 +5,7 @@ const autenticar = require('../middleware/auth_middleware.js');
 
 router.get('/', autenticar, controller.listarResponsaveis);
 router.post('/', autenticar, controller.criarResponsavel);
+router.get('/:id', autenticar, controller.detalharResponsavel);
 router.put('/:id', autenticar, controller.editarResponsavel);
 
 module.exports = router;

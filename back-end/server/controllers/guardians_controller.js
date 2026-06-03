@@ -7,7 +7,7 @@ exports.listarResponsaveis = async (req, res) => {
     try {
         //Puxa todos os responsáveis da tabela, ordenado por ordem alfabética
         const[rows] = await db.query(
-            `SELECT nome, CPF, email, telefone, grau FROM responsaveis ORDER BY nome ASC`
+            `SELECT id_responsavel, nome, CPF, email, telefone, grau FROM responsaveis ORDER BY nome ASC`
         );
 
         res.json(rows);
@@ -92,4 +92,26 @@ exports.criarResponsavel = async (req, res) => {
             console.error(err)
             return res.status(500).json({erro: 'Erro interno no servidor'});
         }
+};
+
+exports.detalharResponsavel = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const [rows] = await db.query(
+            `SELECT id_responsavel, nome, CPF, email, telefone, grau 
+             FROM responsaveis 
+             WHERE id_responsavel = ?`,
+            [id]
+        );
+
+        if (rows.length === 0)
+            return res.status(404).json({ erro: 'Responsável não encontrado' });
+
+        res.json(rows[0]);
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ erro: 'Erro interno no servidor' });
+    }
 };

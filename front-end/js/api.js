@@ -79,6 +79,13 @@ export async function editarResponsavel(id,dados) {
     return resposta.json();
 }
 
+export async function detalharResponsavel(id) {
+    const resposta = await fetch(`${BASE}/responsaveis/${id}`, {
+        method: 'GET', headers: getHeaders()
+    });
+    return resposta.json();
+}
+
 //Funções para a página dos pacientes
 
 export async function listarPacientes() {
