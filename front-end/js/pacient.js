@@ -35,7 +35,23 @@ import { listarPacientes, criarPaciente, editarPaciente,} from '../js/api.js';
     document.getElementById('rg').value = '';
     document.getElementById('dataNascimento').value  = '';
     document.getElementById('sexo').value  = '';
+    document.getElementById('foto').value = '';
+    document.getElementById('fotoPreviw').style.display = 'none';
   }
+
+  document.getElementById('foto').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    const preview = document.getElementById('fotoPreview');
+
+    if (file) {
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = 'block';
+
+    } else {
+      preview.style.display = 'none';
+    }
+
+  });
 
   async function salvarPaciente() {
     const nome = document.getElementById('nome').value.trim();
@@ -43,13 +59,14 @@ import { listarPacientes, criarPaciente, editarPaciente,} from '../js/api.js';
     const rg = document.getElementById('rg').value.trim();
     const dataNascimento = document.getElementById('dataNascimento').value;
     const sexo = document.getElementById('sexo').value;
+    const fotoFile = document.getElementById('foto').files[0] || null;
 
     if (!nome || !cpf || !rg || !dataNascimento || !sexo) {
       alert('Preencha todos os campos obrigatórios.');
       return;
     }
 
-    const resultado = await criarPaciente({ nome, cpf, rg, dataNascimento, sexo });
+    const resultado = await criarPaciente({ nome, cpf, rg, dataNascimento, sexo }, fotoFile);
     
         if (resultado.erro) {
             alert(resultado.erro);
@@ -84,6 +101,8 @@ import { listarPacientes, criarPaciente, editarPaciente,} from '../js/api.js';
       lista.appendChild(item);
     });
   }
+
+
 
 window.abrirFormulario   = abrirFormulario;
 window.fecharFormulario  = fecharFormulario;

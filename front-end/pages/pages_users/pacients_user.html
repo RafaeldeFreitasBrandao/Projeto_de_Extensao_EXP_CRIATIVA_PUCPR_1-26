@@ -34,6 +34,11 @@
       <option value="masculino">Masculino</option>
       <option value="feminino">Feminino</option>
     </select>
+    <h3><i class="fa-solid fa-camera"></i> Foto (opcional)</h3>
+    <input type="file" id="foto" accept="image/*">
+    <img id="fotoPreview" alt="Pré-visualização"
+     style="display:none; width:100px; height:100px;
+            object-fit:cover; border-radius:50%; margin-top:8px;">
     <div class="reg_button">
       <button onclick="salvarPaciente()">Salvar</button>
       <button id="cancel_button" onclick="fecharFormulario()">Cancelar</button>

@@ -33,6 +33,26 @@ window.addEventListener('load', async () => {
     document.getElementById('responsavel').value = dados.nomeResponsavel || 'Nenhum';
 
     definirBloqueio(true);
+
+    const imgEl = document.getElementById('fotoPaciente');
+    if (dados.foto) {
+        imgEl.src = `http://localhost:3000/uploads/${dados.foto}`;
+        imgEl.style.display = 'block';
+    } else {
+        imgEl.style.display = 'none';
+    }
+});
+
+document.getElementById('trocarFotoBtn').addEventListener('click', async () => {
+    const file = document.getElementById('novaFoto').files[0];
+    if (!file) { alert('Selecione uma imagem.'); return; }
+
+    const resultado = await atualizarFotoPaciente(idPaciente, file);
+    if (resultado.erro) { alert(resultado.erro); return; }
+
+    document.getElementById('fotoPaciente').src =
+        `http://localhost:3000/uploads/${resultado.foto}`;
+    document.getElementById('msg').textContent = 'Foto atualizada!';
 });
 
 function definirBloqueio(bloquear) {
@@ -46,6 +66,10 @@ function definirBloqueio(bloquear) {
     document.getElementById('nome').disabled = bloquear;
     document.getElementById('dataNascimento').disabled = bloquear;
     document.getElementById('sexo').disabled =bloquear;
+
+    document.getElementById('labelNovaFoto').style.display = bloquear ? 'none' : 'flex';
+    document.getElementById('novaFoto').style.display      = bloquear ? 'none' : 'block';
+    document.getElementById('trocarFotoBtn').style.display = bloquear ? 'none' : 'block';
 
 }
 

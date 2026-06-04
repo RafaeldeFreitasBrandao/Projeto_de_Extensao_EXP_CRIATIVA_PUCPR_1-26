@@ -34,6 +34,7 @@ exports.detalharPaciente = async (req, res) => {
                     p.RG              AS rg,
                     p.data_nascimento AS dataNascimento,
                     p.sexo,
+                    p.foto,
                     p.id_usuario_saude,
                     (SELECT r.nome
                      FROM formularios f
@@ -66,6 +67,7 @@ exports.criarPaciente = async (req, res) => {
 
     const id_usuario = req.usuario.id;
     const {nome, cpf, rg, dataNascimento, sexo} = req.body;
+    const foto = req.file ? req.file.filename : null;
 
     console.log('REQ.BODY RECEBIDO:', req.body);
     console.log('id_usuario:', req.usuario.id);
@@ -84,13 +86,13 @@ exports.criarPaciente = async (req, res) => {
 
     
         const [result] = await db.query (
-            `INSERT INTO pacientes (nome, CPF, RG, data_nascimento, sexo, id_usuario_saude) VALUES (?, ?, ?, ?, ?, ?)`, [nome, cpf, rg, dataNascimento, sexo, id_usuario]
+            `INSERT INTO pacientes (nome, CPF, RG, data_nascimento, sexo, id_usuario_saude, foto) VALUES (?, ?, ?, ?, ?, ?, ?)`, [nome, cpf, rg, dataNascimento, sexo, id_usuario, foto]
         );
 
         res.status(201).json({
             ok:true,
             id_paciente: result.insertId, 
-            nome, cpf, rg, dataNascimento, sexo
+            nome, cpf, rg, dataNascimento, sexo, foto
         });
 
 
@@ -145,3 +147,44 @@ exports.criarPaciente = async (req, res) => {
             return res.status(500).json({erro: 'Erro interno no servidor'});
         }
 };
+
+exports.atualizarFotoPaciente = async (req, res) => {
+
+    const {id} = req.params;
+    const id_usuario = req.usuario.id;
+
+    if (!req.file)
+        return res.status(400).json({erro:'Nenhuma imagem enviada'});
+
+    try {
+        const [check] = await db.query(
+            `SELECT id_usuario_saude, foto FROM pacientes WHERE id_paciente = ?`, [id]
+        );
+
+        if (check.length === 0)
+            return res.status(404).json({erro:'Paciente não encontrado'});
+
+        if(check[0].id_usuario_saude !== id_usuario)
+            return res.status(403).json({erro:'Sem permissão'});
+
+        if (check[0].foto) {
+
+            const fs = require('fs');
+            const path = require('path');
+            const old = path.join(__dirname, '..', 'uploads', check[0].foto);
+
+            if (fs.existsSync(old)) fs.unlinkSync(old);
+
+        }
+
+        await db.query(`
+            UPDATE pacientes SET foto = ? WHERE id_paciente = ?`, [req.file.filename, id]
+        );
+
+        res.json ({ok: true, foto: req.file.filename});
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({erro: 'Erro no servidor'});
+    }
+}

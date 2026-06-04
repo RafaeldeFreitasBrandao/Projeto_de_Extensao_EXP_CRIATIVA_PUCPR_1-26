@@ -46,7 +46,19 @@
 
                     <h3><i class="fa-solid fa-user-shield " style="color: rgb(0, 0, 0);"></i> Responsável:</h3>
                         <input type="text" id="responsavel" placeholder="responsavel">
+                    
+                    
+                    <img id="fotoPaciente" alt="Foto do paciente"
+                        style="width:110px; height:110px; object-fit:cover;
+                                border-radius:50%; margin: 20px 0 0 30px; display:none;">
 
+                    
+                    <h3 id="labelNovaFoto" style="display:none">
+                        <i class="fa-solid fa-camera"></i> Trocar Foto:
+                    </h3>
+                    <input type="file" id="novaFoto" accept="image/*"
+                        style="display:none; margin-left:30px;">
+                    <button id="trocarFotoBtn" style="display:none">Salvar Foto</button>
 
                     <button id="edit_button">Editar</button>
                     <a href="pacients_user.html"><button>Voltar</button></a>

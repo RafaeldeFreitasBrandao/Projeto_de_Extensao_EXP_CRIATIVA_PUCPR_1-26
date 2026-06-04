@@ -96,11 +96,32 @@ export async function listarPacientes() {
     return resposta.json();
 }
 
-export async function criarPaciente(dados) {
+export async function criarPaciente(dados, fotoFile = null) {
+    const form = new FormData();
+    form.append('nome',          dados.nome);
+    form.append('cpf',           dados.cpf);
+    form.append('rg',            dados.rg);
+    form.append('dataNascimento',dados.dataNascimento);
+    form.append('sexo',          dados.sexo);
+    if (fotoFile) form.append('foto', fotoFile);
+
+    
     const resposta = await fetch(`${BASE}/pacientes`, {
         method: 'POST',
-        headers:getHeaders(),
-        body:JSON.stringify(dados)
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+        body: form
+    });
+    return resposta.json();
+}
+
+export async function atualizarFotoPaciente(id, fotoFile) {
+    const form = new FormData();
+    form.append('foto', fotoFile);
+
+    const resposta = await fetch(`${BASE}/pacientes/${id}/foto`, {
+        method: 'PATCH',
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+        body: form
     });
     return resposta.json();
 }
