@@ -1,4 +1,4 @@
-import { detalharPaciente, editarPaciente } from "./api.js";
+import { detalharPaciente, editarPaciente, atualizarFotoPaciente } from "./api.js";
 
 let idPaciente = null;
 let modoEdicao = false;
