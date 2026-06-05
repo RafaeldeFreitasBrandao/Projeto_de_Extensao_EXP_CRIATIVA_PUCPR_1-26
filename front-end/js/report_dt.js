@@ -30,6 +30,14 @@ window.addEventListener('load', async () => {
 	document.getElementById('resultado').value = dados.status || '';
 	document.getElementById('soma_teste').value = dados.soma_total ?? '';
 	document.getElementById('data_preenchimento').value = dados.data_preenchimento || '';
+
+	const imgEl = document.getElementById('fotoPaciente');
+	if (dados.foto_paciente) {
+		imgEl.src = `http://localhost:3000/uploads/${dados.foto_paciente}`;
+		imgEl.style.display = 'block';
+	} else {
+		imgEl.style.display = 'none';
+	}
 	
 
 	

@@ -1,94 +1,120 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultado</title>
+    <title>Detalhe do Formulário</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/components.css">
-    <link rel="stylesheet" href="../../css/report_dt_lyt.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../css/form_dt_lyt.css">
 </head>
 <body>
 
+  <!-- CABEÇALHO -->
   <div class="reg_header">
     <img src="../../data/logo.png" alt="Logo">
-    <h1><i class="fa-solid fa-square-poll-vertical"></i> Resultado</h1>
-    <a href="report_user.html"><button class="return_reg">Voltar</button></a>
+    <h1><i class="fa-solid fa-clipboard-list"></i> Formulário</h1>
+    <a href="forms_user.html"><button class="return_reg">Voltar</button></a>
   </div>
 
   <div class="main_body">
 
-    <h3 id="report_title">Carregando...</h3>
+    <div class="form_box">
 
-    <div class="report_card">
+      <!-- COLUNA 1: dados do paciente + 2 primeiras perguntas -->
+      <div class="sub_form_box">
 
-      <div class="report_sections">
+        <h2><i class="fa-solid fa-clipboard-question"></i> Detalhes</h2>
 
-        <div class="report_section">
-          <h2><i class="fa-solid fa-user-injured"></i> Paciente</h2>
+        <h3 class="title_ppl"><i class="fa-solid fa-child"></i> Nome do Paciente:</h3>
+        <input type="text" id="nomePaciente" placeholder="Nome do Paciente" disabled>
 
-          <label>Nome</label>
-          <input type="text" id="paciente_nome" placeholder="Nome do paciente">
+        <h3 class="title_ppl"><i class="fa-solid fa-child"></i> Nome do Responsável:</h3>
+        <input type="text" id="nomeResponsavel" placeholder="Nome do Responsável" disabled>
 
-          <label>CPF</label>
-          <input type="text" id="paciente_cpf" placeholder="CPF">
+        <h3 class="text_question">Apresenta deficiência intelectual?</h3>
+        <div class="cont_button">
+          <button class="btn_ys" data-id="1">Não</button>
         </div>
 
-        <div class="report_section" id="second_report_section">
-          <h2><i class="fa-solid fa-user-shield"></i> Responsável</h2>
-
-          <label>Nome</label>
-          <input type="text" id="responsavel_nome" placeholder="Nome do responsável">
-
-          <label>CPF</label>
-          <input type="text" id="responsavel_cpf" placeholder="CPF">
-
-          <label>Grau de Parentesco</label>
-          <input type="text" id="grau" placeholder="Grau">
+        <h3 class="text_question">Apresenta Macroorquidismo?</h3>
+        <div class="cont_button">
+          <button class="btn_ys" data-id="2">Não</button>
         </div>
 
       </div>
 
-      <div class="result_section">
+      <!-- COLUNA 2: perguntas 3 a 7 -->
+      <div class="sub_form_box" id="second_col">
 
-        <h2><i class="fa-solid fa-square-poll-vertical"></i> Dados do Formulário</h2>
+        <h3 class="text_question">Apresenta hipermobilidade articular?</h3>
+        <div class="cont_button">
+          <button class="btn_ys" data-id="3">Não</button>
+        </div>
 
-        <div class="result_grid">
+        <h3 class="text_question">Apresenta face alongada e/ou orelhas abano?</h3>
+        <div class="cont_button">
+          <button class="btn_ys" data-id="4">Não</button>
+        </div>
 
-          <div class="result_field">
-            <label>Resultado</label>
-            <input type="text" id="resultado" placeholder="—">
-          </div>
+        <h3 class="text_question">Apresenta déficit de atenção?</h3>
+        <div class="cont_button">
+          <button class="btn_ys" data-id="5">Não</button>
+        </div>
 
-          <div class="result_field">
-            <label>Pontuação Total</label>
-            <input type="text" id="soma_teste" placeholder="—">
-          </div>
+        <h3 class="text_question">Apresenta movimentos repetitivos?</h3>
+        <div class="cont_button">
+          <button class="btn_ys" data-id="6">Não</button>
+        </div>
 
-          <div class="result_field">
-            <label>Data de Preenchimento</label>
-            <input type="text" id="data_preenchimento" placeholder="—">
-          </div>
-
-          <div class="result_field">
-            <label>Data de Cálculo</label>
-            <input type="text" id="data_calculo" placeholder="—">
-          </div>
-
+        <h3 class="text_question">Apresenta atraso na fala?</h3>
+        <div class="cont_button">
+          <button class="btn_ys" data-id="7">Não</button>
         </div>
 
       </div>
 
-      <div class="action_row">
-        <button id="edit_button"><i class="fa-solid fa-pen"></i> Editar</button>
-        <p id="msg"></p>
+      <!-- COLUNA 3: perguntas 8 a 12 + botão editar -->
+      <div class="sub_form_box" id="third_col">
+
+        <h3 class="text_question">Apresenta hiperatividade?</h3>
+        <div class="cont_button">
+          <button class="btn_ys" data-id="8">Não</button>
+        </div>
+
+        <h3 class="text_question">Apresenta dificuldade de aprendizagem?</h3>
+        <div class="cont_button">
+          <button class="btn_ys" data-id="9">Não</button>
+        </div>
+
+        <h3 class="text_question">Evita contato visual?</h3>
+        <div class="cont_button">
+          <button class="btn_ys" data-id="10">Não</button>
+        </div>
+
+        <h3 class="text_question">Evita contato físico?</h3>
+        <div class="cont_button">
+          <button class="btn_ys" data-id="11">Não</button>
+        </div>
+
+        <h3 class="text_question">Apresenta sinais de agressividade?</h3>
+        <div class="cont_button">
+          <button class="btn_ys" data-id="12">Não</button>
+        </div>
+
+        <div class="content_button">
+          <button class="button_ft" id="edit_button">
+            <i class="fa-solid fa-pen"></i> Editar
+          </button>
+        </div>
+
       </div>
 
     </div>
 
   </div>
 
-  <script type="module" src="../../js/report_dt.js"></script>
+  <script type="module" src="../../js/form_dt.js"></script>
 </body>
 </html>

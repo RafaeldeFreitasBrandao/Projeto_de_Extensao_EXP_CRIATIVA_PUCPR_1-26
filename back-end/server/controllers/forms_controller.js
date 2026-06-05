@@ -122,7 +122,7 @@ exports.detalharFormulario = async (req, res) => {
     try {
         const [formRows] = await db.query(
             `SELECT f.id_formulario, f.data_preenchimento, f.status,
-            p.nome AS nome_paciente, p.CPF AS cpf_paciente, p.sexo,
+            p.nome AS nome_paciente, p.CPF AS cpf_paciente, p.sexo, p.foto AS foto_paciente,
             r.nome AS nome_responsavel, r.CPF AS cpf_responsavel 
             FROM formularios f 
             JOIN pacientes p ON f.id_paciente = p.id_paciente

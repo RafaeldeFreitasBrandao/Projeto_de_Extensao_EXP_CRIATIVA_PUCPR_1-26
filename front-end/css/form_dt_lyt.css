@@ -1,162 +1,202 @@
-
-
-h2 {
+/* ========== HEADINGS ========== */
+h1 {
     font-size: var(--title-fifth-font-size);
-    color:var(--button-pry-login-color);
-
-    margin-left: 30px;
-    margin-top:30px;
+    color: var(--thirdy-color);
+    margin: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
 }
 
-h3 {
-    font-size: var(--title-thrd-font-size);
-    color: var(--fifh-color);
-    margin-left:30px;
-    margin-bottom: 15px;
-    margin-top:30px;
-}
-
-#title_ppl {
-    color:var(--button-pry-login-color);
+h1 i {
+    color: var(--thirdy-color);
 }
 
 i {
-    color: black;
-}
-
-.text_question {
-    font-size: var(--second-font-size);
-    
-}
-
-.btn_ys {
-    background-color: var(--nn-button-color);
-    transition: background-color 0.3s ease;
-}
-
-.btn_ys.ativo {
-    background-color:var(--button-pry-login-color);
-}
-
-input {
-    height: 38px;
-    width: 350px;
-
     margin-left: 30px;
-
-    font-size: var(--primary-font-size);
-    border-radius: 5px;
-    border-style: none;
-    background-color: var(--secondary-color);
+}
+h2 {
+    font-size: var(--title-forfh-font-size);
+    color: var(--button-pry-login-color);
+    margin-left: 30px;
+    margin-top: 28px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.main_body {
+h2 i {
+    color: var(--button-pry-login-color);
+}
 
+/* Rótulos dos campos (Nome do Paciente / Responsável) */
+.title_ppl {
+    font-size: var(--title-thrd-font-size);
+    color: var(--button-pry-login-color);
+    margin-left: 30px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.title_ppl i {
+    color: var(--button-pry-login-color);
+}
+
+/* Texto das perguntas */
+.text_question {
+    font-size: var(--primary-font-size);
+    color: var(--fifh-color);
+    font-weight: 500;
+    margin-left: 30px;
+    margin-top: 16px;
+    margin-bottom: 6px;
+}
+
+i {
+    color: var(--button-pry-login-color);
+}
+
+/* ========== INPUTS ========== */
+input {
+    height: 48px;
+    width: calc(100% - 60px);
+    margin-left: 30px;
+    font-size: var(--primary-font-size);
+    border-radius: 8px;
+    border: 1.5px solid var(--eighth-color);
+    background-color: #f5f8ff;
+    padding: 0 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+    border-color: var(--button-pry-login-color);
+    box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.15);
+}
+
+input:disabled {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    cursor: not-allowed;
+    opacity: 0.85;
+}
+
+/* ========== LAYOUT ========== */
+.main_body {
     display: flex;
     flex-direction: column;
-
     align-items: center;
-
-    height:100vh;
     width: 100%;
-
-
+    padding: 40px 48px;
+    box-sizing: border-box;
+    background-color: var(--secondary-color);
+    min-height: calc(100vh - 90px);
 }
 
 .form_box {
-
-    display:flex;
+    display: flex;
     flex-direction: row;
-
-    height:1200px;
-    width: 1400px;
+    width: 100%;
+    max-width: 1100px;
+    height: auto;
     background-color: var(--thirdy-color);
-
-    margin-left:50px;
-    margin-top:50px;
-
-    margin-bottom: 200px;
-
-    border-radius: 25px;
+    border-radius: 20px;
+    border-top: 4px solid var(--button-pry-login-color);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+    padding-bottom: 32px;
 }
 
 .sub_form_box {
     display: flex;
     flex-direction: column;
-
-    margin-top:20px;
-    margin-bottom: 30px;
+    flex: 1;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-#second_sub_form_box {
-    margin-top:30px;
-    margin-left: 5px;
-
-    border-left: 4px solid var(--button-pry-login-color);
+/* Divisores entre colunas */
+#second_col,
+#third_col {
+    border-left: 2px solid var(--eighth-color);
+    padding-top: 12px;
 }
 
+/* ========== BOTÕES DE PERGUNTA ========== */
 .cont_button {
     display: flex;
     flex-direction: row;
-
     margin-left: 30px;
-    margin-top:10px;
-
-    gap:30px;
+    margin-top: 6px;
+    gap: 12px;
 }
 
-.cont_button button{
+.cont_button button {
     height: 40px;
-    width: 100px;
-
-    border-radius: 10px;
+    width: 90px;
+    border-radius: 8px;
     border-style: none;
-    
-    font-size: var(--input-font-size);
+    font-size: var(--primary-font-size);
+    font-weight: 600;
     color: var(--thirdy-color);
-
-    transition: transform 0.3s ease;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .cont_button button:hover {
-    transform: scale(1.08);
+    transform: scale(1.06);
+    filter: brightness(1.08);
 }
 
+/* Inativo = laranja */
+.btn_ys {
+    background-color: var(--nn-button-color);
+    transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ativo = azul */
+.btn_ys.ativo {
+    background-color: var(--button-pry-login-color);
+    box-shadow: 0 2px 8px rgba(0, 119, 255, 0.30);
+}
+
+/* ========== BOTÃO EDITAR ========== */
 .content_button {
     display: flex;
     flex-direction: row;
-
-    margin-left:100px;
-    margin-top: 15px;
-
-    gap:30px;
+    margin-left: 30px;
+    margin-top: auto;
+    padding-top: 28px;
+    gap: 12px;
 }
 
 .button_ft {
-
-    height: 60px;
-    width: 100px;
-
-    align-self:flex-end;
-
-    margin-top: 40px;
-
-    border-radius: 15px;
+    height: 48px;
+    width: 140px;
+    border-radius: 10px;
     border-style: none;
-
     background-color: var(--button-pry-login-color);
-    color:var(--thirdy-color);
-
-    font-size: var(--input-font-size);
-
-    transition: all 0.3s ease;
-}
-
-#edit_button {
-    background-color: var(--button-thrd-color);
+    color: var(--thirdy-color);
+    font-size: var(--primary-font-size);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
 }
 
 .button_ft:hover {
-    transform: scale(1.08);
+    transform: scale(1.05);
+    box-shadow: 0 4px 14px rgba(0, 119, 255, 0.35);
+    filter: brightness(1.08);
 }
-
