@@ -200,3 +200,64 @@ input:disabled {
     box-shadow: 0 4px 14px rgba(0, 119, 255, 0.35);
     filter: brightness(1.08);
 }
+@media (max-width: 900px) {
+    .main_body {
+        padding: 24px 16px;
+    }
+ 
+    .form_box {
+        flex-direction: column;
+    }
+ 
+    .sub_form_box {
+        width: 100%;
+    }
+ 
+    #second_sub_form_box,
+    #second_col,
+    #third_col {
+        border-left: none;
+        border-top: 2px solid var(--eighth-color);
+        padding-top: 16px;
+    }
+ 
+    input {
+        width: calc(100% - 60px);
+        box-sizing: border-box;
+    }
+ 
+    .content_button {
+        padding-top: 20px;
+        flex-wrap: wrap;
+    }
+ 
+    .button_ft {
+        flex: 1;
+        min-width: 120px;
+    }
+}
+ 
+@media (max-width: 480px) {
+    h2 {
+        font-size: 20px;
+        margin-left: 16px;
+    }
+ 
+    .title_ppl,
+    .text_question {
+        margin-left: 16px;
+    }
+ 
+    input {
+        margin-left: 16px;
+        width: calc(100% - 32px);
+    }
+ 
+    .cont_button {
+        margin-left: 16px;
+    }
+ 
+    .content_button {
+        margin-left: 16px;
+    }
+}

@@ -179,3 +179,75 @@ footer a:hover {
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+@media (max-width: 768px) {
+    .dash_head {
+        height: auto;
+        padding: 12px 16px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+ 
+    .dash_head img {
+        height: 60px;
+        width: 60px;
+        margin-left: 0;
+    }
+ 
+    .dash_head h1 {
+        font-size: 20px;
+        margin-left: 8px;
+        flex: 1;
+    }
+ 
+    .dash_head a {
+        padding: 8px;
+        margin-right: 4px;
+    }
+ 
+    .dash_bemvindo {
+        margin-top: 28px;
+        padding: 0 16px;
+    }
+ 
+    .dash_bemvindo h2 {
+        font-size: 24px;
+    }
+ 
+    .dash_main {
+        margin: 24px 16px 40px;
+        padding: 24px 16px;
+        gap: 20px;
+    }
+ 
+    .dash_main a {
+        height: 160px;
+        width: 150px;
+        font-size: 18px;
+        gap: 12px;
+    }
+ 
+    .dash_main nav i {
+        font-size: 44px;
+    }
+}
+ 
+@media (max-width: 480px) {
+    .dash_head h1 {
+        font-size: 16px;
+    }
+ 
+    .dash_bemvindo h2 {
+        font-size: 20px;
+        letter-spacing: 0;
+    }
+ 
+    .dash_main a {
+        height: 140px;
+        width: 130px;
+        font-size: 16px;
+    }
+ 
+    .dash_main nav i {
+        font-size: 36px;
+    }
+}

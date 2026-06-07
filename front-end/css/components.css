@@ -310,3 +310,93 @@ a {
     margin-top: 10px;
     color: var(--msg-alert-color);
 }
+@media (max-width: 768px) {
+    .reg_header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 14px 16px;
+        gap: 10px;
+    }
+ 
+    .reg_header img {
+        height: 60px;
+        width: 60px;
+    }
+ 
+    .reg_header h1 {
+        font-size: 22px;
+        flex: 1 1 100%;
+        order: -1;
+    }
+ 
+    .return_reg {
+        height: 44px;
+        width: 100px;
+        font-size: 14px;
+        margin-right: 0;
+    }
+ 
+    #add_reg {
+        height: 44px;
+        width: auto;
+        padding: 0 16px;
+        font-size: 14px;
+        margin-right: 0;
+    }
+}
+ 
+@media (max-width: 480px) {
+    .reg_header {
+        gap: 8px;
+    }
+ 
+    .reg_header h1 {
+        font-size: 18px;
+    }
+ 
+    .return_reg,
+    #add_reg {
+        flex: 1;
+    }
+}
+ 
+@media (max-width: 680px) {
+    .resp_salvo {
+        width: calc(100% - 32px);
+        margin-left: 16px;
+        flex-direction: column;
+        height: auto;
+        padding: 14px 16px;
+        gap: 10px;
+        align-items: flex-start;
+    }
+ 
+    .resp_salvo button {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+ 
+@media (max-width: 680px) {
+    .det_resp {
+        width: calc(100% - 32px);
+        margin-left: 16px;
+    }
+ 
+    .det_resp input {
+        width: calc(100% - 44px);
+    }
+}
+
+@media (max-width: 768px) {
+    .reg_form {
+        width: calc(100% - 32px);
+        margin: 24px 16px;
+        padding: 24px 20px;
+    }
+ 
+    .reg_form input,
+    .reg_form select {
+        font-size: 16px;
+    }
+}

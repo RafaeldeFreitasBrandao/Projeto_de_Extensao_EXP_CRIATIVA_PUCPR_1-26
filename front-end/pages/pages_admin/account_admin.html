@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../../css/base_admin.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/components.css">
     <link rel="stylesheet" href="../../css/account_admin.css">
 
     <link rel="stylesheet"
@@ -18,91 +19,95 @@
 
     <div class="big_content">
 
-        <h1>
-            <i class="fa-solid fa-user-shield"></i>
-            Painel Administrativo
-        </h1>
-
         <div class="accnt_container">
 
-            <div class="data_container">
-
-                <h2>Navegação</h2>
-
-                <a href="dashboard_admin.html">
-                    <button>
-                        <i class="fa-solid fa-chart-line"></i>
-                        Dashboard
-                    </button>
-                </a>
-
-                <a href="form_admin.html">
-                    <button>
-                        <i class="fa-solid fa-file-lines"></i>
-                        Formulários
-                    </button>
-                </a>
-
-                <a href="guardians_admin.html">
-                    <button>
-                        <i class="fa-solid fa-people-roof"></i>
-                        Guardians
-                    </button>
-                </a>
-
-                <a href="pacients_admin.html">
-                    <button>
-                        <i class="fa-solid fa-hospital-user"></i>
-                        Pacients
-                    </button>
-                </a>
-
-                <a href="report_admin.html">
-                    <button>
-                        <i class="fa-solid fa-chart-pie"></i>
-                        Reports
-                    </button>
-                </a>
-
-                <a href="users_admin.html">
-                    <button>
-                        <i class="fa-solid fa-users"></i>
-                        Users
-                    </button>
-                </a>
-
+            <div class="header_content">
+                <h1>
+                    <i class="fa-solid fa-user-shield"></i>
+                    Painel Administrativo
+                </h1>
             </div>
 
-            <div class="data_container">
+            <div class="main_content">
 
-                <h2>Resumo Geral</h2>
+                <div class="data_container" id="nav_box">
+                    <h3><i class="fa-solid fa-compass"></i> Navegação</h3>
 
-                <h3>Formulários Respondidos</h3>
-                <input type="text" value="" readonly>
+                    <div class="nav_links">
+                        <a href="dashboard_admin.html">
+                            <button class="nav_btn">
+                                <i class="fa-solid fa-chart-line"></i>
+                                Dashboard
+                            </button>
+                        </a>
 
-                <h3>Pacientes Cadastrados</h3>
-                <input type="text" value="" readonly>
+                        <a href="form_admin.html">
+                            <button class="nav_btn">
+                                <i class="fa-solid fa-file-lines"></i>
+                                Formulários
+                            </button>
+                        </a>
 
-                <h3>Responsáveis</h3>
-                <input type="text" value="" readonly>
+                        <a href="guardians_admin.html">
+                            <button class="nav_btn">
+                                <i class="fa-solid fa-people-roof"></i>
+                                Responsáveis
+                            </button>
+                        </a>
 
-                <h3>Usuários do Sistema</h3>
-                <input type="text" value="" readonly>
+                        <a href="pacients_admin.html">
+                            <button class="nav_btn">
+                                <i class="fa-solid fa-hospital-user"></i>
+                                Pacientes
+                            </button>
+                        </a>
 
-                <h3>Taxa de Resposta</h3>
-                <input type="text" value="" readonly>
+                        <a href="report_admin.html">
+                            <button class="nav_btn">
+                                <i class="fa-solid fa-chart-pie"></i>
+                                Relatórios
+                            </button>
+                        </a>
+
+                        <a href="users_admin.html">
+                            <button class="nav_btn">
+                                <i class="fa-solid fa-users"></i>
+                                Usuários
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="data_container">
+                    <h3><i class="fa-solid fa-chart-bar"></i> Resumo Geral</h3>
+
+                    <h3 class="field_label"><i class="fa-solid fa-clipboard-list"></i> Formulários Respondidos:</h3>
+                    <input type="text" value="" readonly placeholder="—">
+
+                    <h3 class="field_label"><i class="fa-solid fa-hospital-user"></i> Pacientes Cadastrados:</h3>
+                    <input type="text" value="" readonly placeholder="—">
+
+                    <h3 class="field_label"><i class="fa-solid fa-people-roof"></i> Responsáveis:</h3>
+                    <input type="text" value="" readonly placeholder="—">
+
+                    <h3 class="field_label"><i class="fa-solid fa-users"></i> Usuários do Sistema:</h3>
+                    <input type="text" value="" readonly placeholder="—">
+
+                    <h3 class="field_label"><i class="fa-solid fa-percent"></i> Taxa de Resposta:</h3>
+                    <input type="text" value="" readonly placeholder="—">
+                </div>
+
+                <div class="data_container">
+                    <h3><i class="fa-solid fa-clock-rotate-left"></i> Últimos Formulários</h3>
+
+                    <div class="empty_state">
+                        <i class="fa-regular fa-folder-open"></i>
+                        <p>Nenhum formulário recente.</p>
+                    </div>
+                </div>
 
             </div>
-
-            <div class="data_container">
-
-                <h2>Últimos Formulários</h2>
-
-
-            </div>
-
         </div>
-
     </div>
 
 </body>

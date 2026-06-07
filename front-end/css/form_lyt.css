@@ -222,3 +222,61 @@ input:focus {
     transform: scale(1.06);
     filter: brightness(1.1);
 }
+@media (max-width: 900px) {
+    .main_body {
+        padding: 24px 16px;
+    }
+ 
+    .form_box {
+        flex-direction: column;
+    }
+ 
+    .sub_form_box {
+        width: 100%;
+        margin-right: 0;
+    }
+ 
+    #second_sub_form_box {
+        margin-top: 0;
+        border-left: none;
+        border-top: 2px solid var(--eighth-color);
+        padding-top: 16px;
+    }
+ 
+    input {
+        width: calc(100% - 60px);
+        box-sizing: border-box;
+    }
+ 
+    #save_form {
+        align-self: center;
+        margin-right: 0;
+        width: 80%;
+        max-width: 300px;
+    }
+ 
+    .form_salvo {
+        width: calc(100% - 32px);
+        margin-left: 16px;
+    }
+}
+ 
+@media (max-width: 480px) {
+    h2 {
+        font-size: 22px;
+        margin-left: 16px;
+    }
+ 
+    h3 {
+        margin-left: 16px;
+    }
+ 
+    input {
+        margin-left: 16px;
+        width: calc(100% - 32px);
+    }
+ 
+    .cont_button {
+        margin-left: 16px;
+    }
+}
