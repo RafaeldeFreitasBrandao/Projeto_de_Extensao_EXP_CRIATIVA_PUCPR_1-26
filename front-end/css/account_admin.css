@@ -110,6 +110,14 @@
     box-sizing: border-box;
 }
 
+.data_container input:not(:disabled) {
+    background-color: #f5f8ff;
+    cursor: text;
+    color: var(--fifh-color);
+    border-color: var(--button-pry-login-color);
+    box-shadow: 0 0 0 3px var(--button-forfh-login-color-op);
+}
+
 .nav_links {
     display: flex;
     flex-direction: column;
@@ -150,6 +158,95 @@
     border-color: var(--sixth-color);
     transform: scale(1.02);
     box-shadow: 0 4px 14px rgba(0, 119, 255, 0.25);
+}
+
+/* Botão salvar */
+.nav_btn.salvar {
+    background-color: var(--seventh-color);
+    border-color: var(--seventh-color);
+}
+
+.nav_btn.salvar:hover {
+    background-color: #008a7a;
+    border-color: #008a7a;
+    box-shadow: 0 4px 14px rgba(0, 168, 150, 0.35);
+}
+
+/* Caixa de botão e mensagem inline */
+.button_box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin-top: 28px;
+}
+
+#msg-info {
+    font-size: var(--primary-font-size);
+    margin: 0;
+}
+
+/* Toast de erro — fora do painel principal */
+#toast-erro {
+    position: fixed;
+    top: 28px;
+    right: 28px;
+    z-index: 999;
+    min-width: 280px;
+    max-width: 400px;
+    background-color: var(--thirdy-color);
+    border-left: 5px solid var(--msg-alert-color);
+    border-radius: 10px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+    padding: 16px 20px;
+    display: none;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 14px;
+    animation: slideIn 0.25s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+#toast-erro i.toast-icon {
+    color: var(--msg-alert-color);
+    font-size: 22px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+#toast-erro .toast-body {
+    flex: 1;
+}
+
+#toast-erro .toast-body strong {
+    display: block;
+    font-size: var(--primary-font-size);
+    color: var(--sixth-color);
+    margin-bottom: 4px;
+}
+
+#toast-erro .toast-body span {
+    font-size: 15px;
+    color: var(--primary-color);
+}
+
+#toast-fechar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-size: 18px;
+    padding: 0;
+    flex-shrink: 0;
+    transition: color 0.2s;
+}
+
+#toast-fechar:hover {
+    color: var(--msg-alert-color);
 }
 
 .empty_state {
@@ -263,5 +360,12 @@
 
     .field_label {
         font-size: 15px;
+    }
+
+    #toast-erro {
+        top: 12px;
+        right: 12px;
+        left: 12px;
+        max-width: unset;
     }
 }

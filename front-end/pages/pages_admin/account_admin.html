@@ -17,6 +17,18 @@
 
 <body>
 
+    <!-- Toast de erro — fora do painel principal -->
+    <div id="toast-erro">
+        <i class="fa-solid fa-circle-exclamation toast-icon"></i>
+        <div class="toast-body">
+            <strong>Erro</strong>
+            <span id="toast-msg"></span>
+        </div>
+        <button id="toast-fechar" title="Fechar">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
     <div class="big_content">
 
         <div class="accnt_container">
@@ -30,6 +42,7 @@
 
             <div class="main_content">
 
+                <!-- Coluna 1: Navegação -->
                 <div class="data_container" id="nav_box">
                     <h3><i class="fa-solid fa-compass"></i> Navegação</h3>
 
@@ -78,37 +91,34 @@
                     </div>
                 </div>
 
+                <!-- Coluna 2: Dados da Conta -->
                 <div class="data_container">
-                    <h3><i class="fa-solid fa-chart-bar"></i> Resumo Geral</h3>
+                    <h3><i class="fa-solid fa-user-gear"></i> Minha Conta</h3>
 
-                    <h3 class="field_label"><i class="fa-solid fa-clipboard-list"></i> Formulários Respondidos:</h3>
-                    <input type="text" value="" readonly placeholder="—">
+                    <h3 class="field_label">
+                        <i class="fa-solid fa-user"></i> Nome de Usuário:
+                    </h3>
+                    <input type="text" id="nome_usuario" placeholder="Nome de usuário">
 
-                    <h3 class="field_label"><i class="fa-solid fa-hospital-user"></i> Pacientes Cadastrados:</h3>
-                    <input type="text" value="" readonly placeholder="—">
+                    <h3 class="field_label">
+                        <i class="fa-solid fa-lock"></i> Senha:
+                    </h3>
+                    <input type="password" id="senha" placeholder="Senha">
 
-                    <h3 class="field_label"><i class="fa-solid fa-people-roof"></i> Responsáveis:</h3>
-                    <input type="text" value="" readonly placeholder="—">
-
-                    <h3 class="field_label"><i class="fa-solid fa-users"></i> Usuários do Sistema:</h3>
-                    <input type="text" value="" readonly placeholder="—">
-
-                    <h3 class="field_label"><i class="fa-solid fa-percent"></i> Taxa de Resposta:</h3>
-                    <input type="text" value="" readonly placeholder="—">
-                </div>
-
-                <div class="data_container">
-                    <h3><i class="fa-solid fa-clock-rotate-left"></i> Últimos Formulários</h3>
-
-                    <div class="empty_state">
-                        <i class="fa-regular fa-folder-open"></i>
-                        <p>Nenhum formulário recente.</p>
+                    <div class="button_box">
+                        <button id="edit-button" class="nav_btn">
+                            <i class="fa-solid fa-pen"></i>
+                            Editar
+                        </button>
+                        <p id="msg-info"></p>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
+
+    <script type="module" src="../../js/account_admin.js"></script>
 
 </body>
 
