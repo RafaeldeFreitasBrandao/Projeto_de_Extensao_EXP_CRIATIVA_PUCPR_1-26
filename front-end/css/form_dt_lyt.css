@@ -1,4 +1,4 @@
-
+/* ========== HEADINGS ========== */
 h1 {
     font-size: var(--title-fifth-font-size);
     color: var(--thirdy-color);
@@ -15,79 +15,34 @@ h1 i {
 }
 
 h2 {
-    font-size: var(--title-forfh-font-size);
+    font-size: var(--title-thrd-font-size);
     color: var(--button-pry-login-color);
-    margin-left: 30px;
-    margin-top: 28px;
-    margin-bottom: 12px;
+    margin: 0 0 16px 0;
     display: flex;
     align-items: center;
     gap: 10px;
+    font-weight: 600;
 }
 
 h2 i {
     color: var(--button-pry-login-color);
 }
 
-/* Rótulos dos campos (Nome do Paciente / Responsável) */
-.title_ppl {
-    font-size: var(--title-thrd-font-size);
-    color: var(--button-pry-login-color);
-    margin-left: 30px;
-    margin-top: 20px;
-    margin-bottom: 8px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.title_ppl i {
-    color: var(--button-pry-login-color);
-}
-
-/* Texto das perguntas */
-.text_question {
-    font-size: var(--primary-font-size);
-    color: var(--fifh-color);
-    font-weight: 500;
-    margin-left: 30px;
-    margin-top: 16px;
-    margin-bottom: 6px;
-}
-
 i {
     color: var(--button-pry-login-color);
 }
 
-/* ========== INPUTS ========== */
-input {
-    height: 48px;
-    width: calc(100% - 60px);
-    margin-left: 30px;
+/* ========== LABELS ========== */
+label {
     font-size: var(--primary-font-size);
-    border-radius: 8px;
-    border: 1.5px solid var(--eighth-color);
-    background-color: #f5f8ff;
-    padding: 0 14px;
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    color: var(--fifh-color);
+    font-weight: 500;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    display: block;
 }
 
-input:focus {
-    border-color: var(--button-pry-login-color);
-    box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.15);
-}
-
-input:disabled {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
-    cursor: not-allowed;
-    opacity: 0.85;
-}
-
-/* ========== LAYOUT ========== */
+/* ========== OUTER LAYOUT ========== */
 .main_body {
     display: flex;
     flex-direction: column;
@@ -99,46 +54,104 @@ input:disabled {
     min-height: calc(100vh - 90px);
 }
 
-.form_box {
+/* ========== MAIN CARD ========== */
+.form_dt_card {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     max-width: 1100px;
-    height: auto;
     background-color: var(--thirdy-color);
     border-radius: 20px;
     border-top: 4px solid var(--button-pry-login-color);
     box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
-    padding-bottom: 32px;
+    overflow: hidden;
 }
 
-.sub_form_box {
+/* ========== LINHA SUPERIOR: Paciente | Responsável ========== */
+.form_dt_sections {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.form_dt_section {
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding: 28px 32px 24px 32px;
 }
 
-/* Divisores entre colunas */
-#second_col,
-#third_col {
+#second_form_dt_section {
     border-left: 2px solid var(--eighth-color);
-    padding-top: 12px;
 }
 
-/* ========== BOTÕES DE PERGUNTA ========== */
+/* ========== INPUTS ========== */
+.form_dt_section input {
+    height: 48px;
+    width: 100%;
+    font-size: var(--primary-font-size);
+    border-radius: 8px;
+    border: 1.5px solid var(--eighth-color);
+    background-color: #f5f8ff;
+    padding: 0 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form_dt_section input:focus {
+    border-color: var(--button-pry-login-color);
+    box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.15);
+}
+
+.form_dt_section input:disabled {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    cursor: not-allowed;
+    opacity: 0.85;
+}
+
+/* ========== SEÇÃO DE SINTOMAS ========== */
+.symptoms_section {
+    border-top: 2px solid var(--eighth-color);
+    padding: 28px 32px 24px 32px;
+}
+
+.symptoms_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0 32px;
+}
+
+.symptom_col {
+    display: flex;
+    flex-direction: column;
+}
+
+.symptom_item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.symptom_label {
+    font-size: var(--primary-font-size);
+    color: var(--fifh-color);
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+/* ========== BOTÕES SIM/NÃO ========== */
 .cont_button {
     display: flex;
     flex-direction: row;
-    margin-left: 30px;
-    margin-top: 6px;
-    gap: 12px;
+    gap: 10px;
 }
 
 .cont_button button {
-    height: 40px;
-    width: 90px;
+    height: 38px;
+    width: 84px;
     border-radius: 8px;
     border-style: none;
     font-size: var(--primary-font-size);
@@ -165,17 +178,17 @@ input:disabled {
     box-shadow: 0 2px 8px rgba(0, 119, 255, 0.30);
 }
 
-/* ========== BOTÃO EDITAR ========== */
-.content_button {
+/* ========== LINHA DE AÇÕES ========== */
+.action_row {
     display: flex;
     flex-direction: row;
-    margin-left: 30px;
-    margin-top: auto;
-    padding-top: 28px;
-    gap: 12px;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 32px 28px 32px;
+    border-top: 2px solid var(--eighth-color);
 }
 
-.button_ft {
+#edit_button {
     height: 48px;
     width: 140px;
     border-radius: 10px;
@@ -185,15 +198,22 @@ input:disabled {
     font-size: var(--primary-font-size);
     font-weight: 600;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex;            
+    align-items: center;      
+    justify-content: center; 
     gap: 8px;
     transition: all 0.2s ease;
 }
-
-.button_ft:hover {
+#edit_button:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 14px rgba(0, 119, 255, 0.35);
     filter: brightness(1.08);
+}
+
+/* ========== MENSAGEM ========== */
+#msg {
+    font-size: var(--primary-font-size);
+    color: var(--msg-alert-color);
+    font-weight: 500;
+    margin: 0;
 }
