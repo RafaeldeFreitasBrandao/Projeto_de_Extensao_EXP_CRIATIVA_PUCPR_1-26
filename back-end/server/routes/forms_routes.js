@@ -9,6 +9,7 @@ router.get('/', autenticar, controller.listarFormularios);
 router.post('/', autenticar, controller.criarFormulario);
 router.get('/:id', autenticar, controller.detalharFormulario);
 router.put('/:id', autenticar, controller.editarFormulario);
+router.get('/admin/todos', autenticar, controller.listarTodosFormularios);
 
 
 

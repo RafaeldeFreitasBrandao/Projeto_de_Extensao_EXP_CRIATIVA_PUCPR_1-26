@@ -251,3 +251,11 @@ export async function editarUsuario(id, dados) {
     });
     return resposta.json();
 }
+
+export async function listarTodosFormularios() {
+    const resposta = await fetch(`${BASE}/formularios/admin/todos`, {
+        method: 'GET',
+        headers: getHeaders()
+    });
+    return resposta.json();
+}

@@ -231,3 +231,27 @@ exports.editarFormulario = async (req, res) => {
     }
 
 };
+exports.listarTodosFormularios = async (req, res) => {
+
+    if (req.usuario.perfil !== 'admin')
+        return res.status(403).json({ erro: 'Acesso negado.' });
+
+    try {
+        const [rows] = await db.query(
+            `SELECT f.id_formulario,
+            f.data_preenchimento,
+            f.status,
+            p.nome AS nome_paciente,
+            p.CPF AS cpf_paciente,
+            u.nome AS nome_usuario
+            FROM formularios f
+            JOIN pacientes p ON f.id_paciente = p.id_paciente
+            JOIN usuarios_saude u ON f.id_usuario_saude = u.id_usuario_saude
+            ORDER BY f.data_preenchimento DESC`
+        );
+        res.json(rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ erro: 'Erro interno no servidor' });
+    }
+};
