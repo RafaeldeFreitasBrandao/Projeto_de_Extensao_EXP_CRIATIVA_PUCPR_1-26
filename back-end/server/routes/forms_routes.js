@@ -7,10 +7,10 @@ const controller = require('../controllers/forms_controller.js');
 
 router.get('/', autenticar, controller.listarFormularios);
 router.post('/', autenticar, controller.criarFormulario);
+router.get('/admin/todos', autenticar, controller.listarTodosFormularios);
+router.get('/admin/:id', autenticar, controller.detalharFormularioAdmin);
 router.get('/:id', autenticar, controller.detalharFormulario);
 router.put('/:id', autenticar, controller.editarFormulario);
-router.get('/admin/todos', autenticar, controller.listarTodosFormularios);
-
 
 
 module.exports = router;

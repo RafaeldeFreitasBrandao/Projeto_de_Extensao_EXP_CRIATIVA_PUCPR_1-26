@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado</title>
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/report_dt_lyt.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+  <div class="reg_header">
+    <img src="../../data/logo.png" alt="Logo">
+    <h1><i class="fa-solid fa-square-poll-vertical"></i> Resultado</h1>
+    <a href="report_admin.html"><button class="return_reg">Voltar</button></a>
+  </div>
+
+  <div class="main_body">
+
+    <!-- JS popula via document.querySelector('H3') -->
+    <h3 id="report_title">Carregando...</h3>
+
+    <div class="report_card">
+
+      <!-- ===== LINHA SUPERIOR: Paciente | Responsável ===== -->
+      <div class="report_sections">
+
+        <div class="report_section">
+          <h2><i class="fa-solid fa-user-injured"></i> Paciente</h2>
+
+          <label>Nome</label>
+          <input type="text" id="paciente_nome" placeholder="Nome do paciente">
+
+          <label>CPF</label>
+          <input type="text" id="paciente_cpf" placeholder="CPF">
+
+          <!-- Foto atual -->
+          <img id="fotoPaciente" alt="Foto do paciente"
+              style="width:110px; height:110px; object-fit:cover;
+                      border-radius:50%; margin: 20px 0 0 30px; display:none;">
+
+          <!-- Troca de foto (aparece só no modo edição, via JS) -->
+          <h3 id="labelNovaFoto" style="display:none">
+              <i class="fa-solid fa-camera"></i> Trocar Foto:
+          </h3>
+          <input type="file" id="novaFoto" accept="image/*"
+                style="display:none; margin-left:30px;">
+          <button id="trocarFotoBtn" style="display:none">Salvar Foto</button>
+        </div>
+
+        <div class="report_section" id="second_report_section">
+          <h2><i class="fa-solid fa-user-shield"></i> Responsável</h2>
+
+          <label>Nome</label>
+          <input type="text" id="responsavel_nome" placeholder="Nome do responsável">
+
+          <label>CPF</label>
+          <input type="text" id="responsavel_cpf" placeholder="CPF">
+
+          <label>Grau de Parentesco</label>
+          <input type="text" id="grau" placeholder="Grau">
+        </div>
+
+      </div>
+
+      <!-- ===== LINHA INFERIOR: Dados do Formulário ===== -->
+      <div class="result_section">
+
+        <h2><i class="fa-solid fa-square-poll-vertical"></i> Dados do Formulário</h2>
+
+        <div class="result_grid">
+
+          <div class="result_field">
+            <label>Resultado</label>
+            <input type="text" id="resultado" placeholder="—">
+          </div>
+
+          <div class="result_field">
+            <label>Pontuação Total</label>
+            <input type="text" id="soma_teste" placeholder="—">
+          </div>
+
+          <div class="result_field">
+            <label>Data de Preenchimento</label>
+            <input type="text" id="data_preenchimento" placeholder="—">
+          </div>
+
+          <div class="result_field">
+            <label>Data de Cálculo</label>
+            <input type="text" id="data_calculo" placeholder="—">
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ===== AÇÕES ===== -->
+      <div class="action_row">
+        <button id="edit_button"><i class="fa-solid fa-pen"></i> Editar</button>
+        <p id="msg"></p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script type="module" src="../../js/report_dt_admin.js"></script>
+</body>
+</html>

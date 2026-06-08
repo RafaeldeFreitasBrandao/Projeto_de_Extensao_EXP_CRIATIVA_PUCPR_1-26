@@ -255,3 +255,51 @@ exports.listarTodosFormularios = async (req, res) => {
         res.status(500).json({ erro: 'Erro interno no servidor' });
     }
 };
+exports.detalharFormularioAdmin = async (req, res) => {
+
+    if (req.usuario.perfil !== 'admin')
+        return res.status(403).json({ erro: 'Acesso negado.' });
+
+    const { id } = req.params;
+
+    try {
+        const [formRows] = await db.query(
+            `SELECT f.id_formulario, f.data_preenchimento, f.status,
+            p.nome AS nome_paciente, p.CPF AS cpf_paciente, p.sexo, p.foto AS foto_paciente,
+            r.nome AS nome_responsavel, r.CPF AS cpf_responsavel, r.grau,
+            u.nome AS nome_usuario
+            FROM formularios f 
+            JOIN pacientes p ON f.id_paciente = p.id_paciente
+            JOIN responsaveis r ON f.id_responsavel = r.id_responsavel
+            JOIN usuarios_saude u ON f.id_usuario_saude = u.id_usuario_saude
+            WHERE f.id_formulario = ?`,
+            [id]
+        );
+
+        if (formRows.length === 0)
+            return res.status(404).json({ erro: 'Formulário não encontrado' });
+
+        const [compRows] = await db.query(
+            `SELECT c.id_comportamento, c.nome
+            FROM formulario_comportamento fc
+            JOIN comportamentos c ON fc.id_comportamento = c.id_comportamento
+            WHERE fc.id_formulario = ?`,
+            [id]
+        );
+
+        const [resRows] = await db.query(
+            `SELECT soma_total FROM resultado WHERE id_formulario = ?`,
+            [id]
+        );
+
+        res.json({
+            ...formRows[0],
+            comportamentos: compRows,
+            soma_total: resRows[0]?.soma_total ?? 0
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ erro: 'Erro no servidor' });
+    }
+};

@@ -259,3 +259,11 @@ export async function listarTodosFormularios() {
     });
     return resposta.json();
 }
+
+export async function detalharFormularioAdmin(id) {
+    const resposta = await fetch(`${BASE}/formularios/admin/${id}`, {
+        method: 'GET',
+        headers: getHeaders()
+    });
+    return resposta.json();
+}
