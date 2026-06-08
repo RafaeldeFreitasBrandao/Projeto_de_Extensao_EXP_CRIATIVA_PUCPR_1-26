@@ -3,7 +3,7 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuário de Saude</title>
+    <title>Usuário de Saúde</title>
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/components.css">
     <link rel="stylesheet" href="../../css/guardian_lyt.css">
@@ -13,13 +13,13 @@
 
   <div class="reg_header">
     <img src="../../data/logo.png" alt="Logo">
-    <h1><i class="fa-solid fa-notes-medical"></i> Usuário de Saude</h1>
+    <h1><i class="fa-solid fa-notes-medical"></i> Usuário de Saúde</h1>
     <a href="dashboard_admin.html"><button class="return_reg">Voltar</button></a>
     <button id="add_reg" onclick="abrirFormulario()">+ Criar Usuário</button>
   </div>
 
   <div class="reg_form" id="formulario">
-    <h2>Novo Usuário de Saude</h2>
+    <h2>Novo Usuário de Saúde</h2>
     <h3><i class="fa-solid fa-user"></i> Nome</h3>
     <input type="text" id="nome" placeholder="Nome completo">
     <h3><i class="fa-solid fa-id-badge"></i> CPF</h3>
@@ -30,6 +30,8 @@
     <input type="text" id="telefone" placeholder="(00) 00000-0000">
     <h3><i class="fa-solid fa-lock"></i> Senha</h3>
     <input type="password" id="senha" placeholder="Digite a senha">
+    <h3><i class="fa-solid fa-check-double"></i> Confirmar Senha</h3>
+    <input type="password" id="confirmar_senha" placeholder="Digite a senha">
     <h3><i class="fa-solid fa-user-doctor"></i> Profissão</h3>
     <input type="text" id="profissao" placeholder="Ex: Enfermeiro, Médico, Psicólogo">
     <h3><i class="fa-solid fa-hospital"></i> Unidade de Saúde</h3>
@@ -43,6 +45,8 @@
   </div>
 
   <div id="listaUser"></div>
+
+  <script type="module" src="../../js/users.js"></script>
 
 </body>
 </html>

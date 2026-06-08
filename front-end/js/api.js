@@ -223,3 +223,31 @@ export async function editarRelatorio(id,dados) {
     });
     return resposta.json();
 }
+
+// Funções para os usuários de saúde
+
+export async function listarUsuarios() {
+    const resposta = await fetch(`${BASE}/usuarios`, {
+        method: 'GET',
+        headers: getHeaders()
+    });
+    return resposta.json();
+}
+
+export async function criarUsuario(dados) {
+    const resposta = await fetch(`${BASE}/usuarios`, {
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(dados)
+    });
+    return resposta.json();
+}
+
+export async function editarUsuario(id, dados) {
+    const resposta = await fetch(`${BASE}/usuarios/${id}`, {
+        method: 'PUT',
+        headers: getHeaders(),
+        body: JSON.stringify(dados)
+    });
+    return resposta.json();
+}
