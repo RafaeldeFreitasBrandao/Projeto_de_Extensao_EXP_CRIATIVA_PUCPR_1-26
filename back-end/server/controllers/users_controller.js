@@ -93,7 +93,8 @@ exports.atualizarMinhaConta = async (req, res) => {
         return res.status(500).json({erro: 'Erro interno no servidor'})
     }
 
-    exports.criarUsuario = async (req, res) => {
+};
+exports.criarUsuario = async (req, res) => {
 
     if (req.usuario.perfil !== 'admin')
         return res.status(403).json({ erro: 'Acesso negado.' });
@@ -124,4 +125,20 @@ exports.atualizarMinhaConta = async (req, res) => {
         return res.status(500).json({ erro: 'Erro interno no servidor.' });
     }
 };
+exports.listarUsuarios = async (req, res) => {
+
+    if (req.usuario.perfil !== 'admin')
+        return res.status(403).json({ erro: 'Acesso negado.' });
+
+    try {
+        const [rows] = await db.query(
+            `SELECT id_usuario_saude, nome, CPF, email, telefone, profissao, unidade 
+             FROM usuarios_saude`
+        );
+        res.json(rows);
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ erro: 'Erro interno no servidor.' });
+    }
 };

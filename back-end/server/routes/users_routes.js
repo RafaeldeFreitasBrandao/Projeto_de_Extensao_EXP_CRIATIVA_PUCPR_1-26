@@ -12,4 +12,6 @@ router.put('/minha-conta', autenticar, controller.atualizarMinhaConta)
 
 router.post('/', autenticar, controller.criarUsuario);
 
+router.get('/', autenticar, controller.listarUsuarios);
+
 module.exports = router;
