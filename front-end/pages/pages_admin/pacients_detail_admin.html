@@ -1,0 +1,77 @@
+<html lang="pt-br">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/pacient_dt_lyt.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <div class="big_content">
+
+        <div class="main_content">
+
+            <div class="header_main">
+
+                <h1><i class="fa-solid fa-user" style="color: rgb(0, 0, 0);"></i>Paciente</h1>
+            
+            </div>
+
+            <div class="very_big_content">
+
+                <div class="detail_content" id="un_content">
+
+                    <h3><i class="fa-solid fa-user" style="color: rgb(0, 0, 0);"></i> Nome:</h3>
+                    <input type="text" placeholder="Nome" id="nome">
+
+                    <h3><i class="fa-solid fa-id-badge" style="color: rgb(0, 0, 0);"></i> CPF:</h3>
+                        <input type="text" id="cpf" placeholder="CPF" maxlength="11">
+
+                     <h3><i class="fa-solid fa-id-badge" style="color: rgb(0, 0, 0);"></i> RG:</h3>
+                        <input type="text" id="rg" placeholder="RG" maxlength="16">  
+
+                    <h3><i class="fa-solid fa-birthday-cake" style="color: rgb(0, 0, 0);"></i> Data de Nascimento:</h3>
+                        <input type="date" placeholder="data de Nascimento" id="dataNascimento">
+    
+                </div>
+
+
+
+                <div class="detail_content" id="second_detail_content">
+
+                    <h3><i class="fa-solid fa-venus-mars" style="color: rgb(0, 0, 0);"></i> Sexo:</h3>
+                        <input type="text" id="sexo" placeholder="sexo">
+
+                    <h3><i class="fa-solid fa-user-shield " style="color: rgb(0, 0, 0);"></i> Responsável:</h3>
+                        <input type="text" id="responsavel" placeholder="responsavel">
+                    
+                    
+                    <img id="fotoPaciente" alt="Foto do paciente"
+                        style="width:110px; height:110px; object-fit:cover;
+                                border-radius:50%; margin: 20px 0 0 30px; display:none;">
+
+                    
+                    <h3 id="labelNovaFoto" style="display:none">
+                        <i class="fa-solid fa-camera"></i> Trocar Foto:
+                    </h3>
+                    <input type="file" id="novaFoto" accept="image/*"
+                        style="display:none; margin-left:30px;">
+                    <button id="trocarFotoBtn" style="display:none">Salvar Foto</button>
+
+                    <button id="edit_button">Editar</button>
+                    <a href="pacients_admin.html"><button>Voltar</button></a>
+                    <p id="msg"></p>
+                    
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <script type="module" src="../../js/pacient_dt.js"></script>
+</body>
+</html>
