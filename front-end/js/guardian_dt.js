@@ -7,9 +7,12 @@ window.addEventListener('load', async () => {
     
     const params = new URLSearchParams(window.location.search);
     idResponsavel = params.get('id');
+    const isAdmin = window.location.pathname.includes('/pages_admin/') || window.location.pathname.includes('pages_admin');
+    const listaResponsaveisPage = isAdmin ? 'guardians_admin.html' : 'guardian_user.html';
 
     if (!idResponsavel) {
-        window.location.href = 'guardian_user.html'
+        window.location.href = listaResponsaveisPage;
+        return;
     }
 
     const dados = await detalharResponsavel(idResponsavel);
@@ -17,7 +20,8 @@ window.addEventListener('load', async () => {
     if (dados.erro) {
 
         alert(dados.erro);
-        window.location.href = 'guardian_user.html'
+        window.location.href = listaResponsaveisPage;
+        return;
     }
 
     document.getElementById('cpf').value           = dados.CPF || '';

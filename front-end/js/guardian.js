@@ -1,6 +1,7 @@
 import { listarResponsaveis, criarResponsavel } from '../js/api.js';
 
 const responsaveis = [];
+const isAdmin = window.location.pathname.includes('/pages_admin/') || window.location.pathname.includes('pages_admin');
 
 window.addEventListener('load', async () => {
     const dados = await listarResponsaveis();
@@ -62,9 +63,10 @@ function renderizarLista() {
     responsaveis.forEach((r) => {
         const item = document.createElement('div');
         item.classList.add('resp_salvo');
+        const detailPage = isAdmin ? 'guardian_detail_admin.html' : 'guardian_detail_user.html';
         item.innerHTML = `
             <p> ${r.nome} | CPF: ${r.CPF}</p>
-            <a href="guardian_detail_user.html?id=${r.id_responsavel}">
+            <a href="${detailPage}?id=${r.id_responsavel}">
                 <button>Detalhes</button>
             </a>
         `;

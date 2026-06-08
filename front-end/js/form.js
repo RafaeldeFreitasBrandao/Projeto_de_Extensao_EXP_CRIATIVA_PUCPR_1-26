@@ -1,6 +1,7 @@
 import { listarFormularios, criarFormulario, } from "./api.js";
 
     const formularios = [];
+    const isAdmin = window.location.pathname.includes('/pages_admin/') || window.location.pathname.includes('pages_admin');
 
   const botoes = document.querySelectorAll('.btn_ys');
 
@@ -41,10 +42,11 @@ function renderizarLista() {
     formularios.forEach((p, index) => {
         const item = document.createElement('div');
         item.classList.add('form_salvo');
+        const detailPage = isAdmin ? 'forms_detail_admin.html' : 'forms_detail_user.html';
 
         item.innerHTML = `
         <p> Formulário: #${p.id_formulario}#</p>
-        <a href="forms_detail_user.html?id=${p.id_formulario}">
+        <a href="${detailPage}?id=${p.id_formulario}">
         <button>Detalhes</button>
         </a>`
         lista.appendChild(item);

@@ -2,6 +2,7 @@
 import { listarPacientes, criarPaciente, editarPaciente,} from '../js/api.js';
 
   const pacientes = [];
+  const isAdmin = window.location.pathname.includes('/pages_admin/') || window.location.pathname.includes('pages_admin');
  
 
   window.addEventListener('load', async () => {
@@ -92,10 +93,11 @@ import { listarPacientes, criarPaciente, editarPaciente,} from '../js/api.js';
             item.classList.add('bloqueado');
         }
 
+      const detailPage = isAdmin ? 'pacients_detail_admin.html' : 'pacient_detail_user.html';
       item.innerHTML = `
         <p> ${p.nome} | CPF: ${p.cpf}</p>
-        <a href="pacient_detail_user.html?id=${p.id_paciente}">
-    <button>Detalhes</button>
+        <a href="${detailPage}?id=${p.id_paciente}">
+          <button>Detalhes</button>
         </a>
       `;
       lista.appendChild(item);

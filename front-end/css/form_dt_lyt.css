@@ -29,7 +29,7 @@ h2 i {
 }
 
 i {
-    color: var(--button-pry-login-color);
+    color: var(--thirdy-color);
 }
 
 /* ========== LABELS ========== */
@@ -209,6 +209,29 @@ label {
     box-shadow: 0 4px 14px rgba(0, 119, 255, 0.35);
     filter: brightness(1.08);
 }
+#delete_button {
+    background-color: var(--msg-alert-color);
+    color: var(--thirdy-color);
+    height: 48px;
+    width: 140px;
+    border-radius: 10px;
+    border-style: none;
+    font-size: var(--primary-font-size);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;            
+    align-items: center;      
+    justify-content: center; 
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+#delete_button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 14px rgba(0, 119, 255, 0.35);
+    filter: brightness(1.08);
+}
+
 
 /* ========== MENSAGEM ========== */
 #msg {

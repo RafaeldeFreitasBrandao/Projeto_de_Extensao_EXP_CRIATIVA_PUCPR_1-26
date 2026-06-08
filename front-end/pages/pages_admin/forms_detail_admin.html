@@ -11,91 +11,123 @@
 </head>
 <body>
 
+  <!-- CABEÇALHO -->
+  <div class="reg_header">
+    <img src="../../data/logo.png" alt="Logo">
+    <h1><i class="fa-solid fa-clipboard-list"></i> Formulário</h1>
+    <a href="form_admin.html"><button class="return_reg">Voltar</button></a>
+  </div>
+
   <div class="main_body">
+    <div class="form_dt_card">
 
-    <div class="form_box">
+      <!-- ===== LINHA SUPERIOR: Paciente | Responsável ===== -->
+      <div class="form_dt_sections">
 
-      <div class="sub_form_box">
-
-
-        <h2><i class="fa-solid fa-clipboard-question"></i> Formulário</h2>
-
-        <h3 id="title_ppl"><i class="fa-solid fa-child"></i> Nome do Paciente:</h3>
-        <input type="text" id="nomePaciente" placeholder="Nome do Paciente" disabled>
-
-        <h3 id="title_ppl"><i class="fa-solid fa-child"></i> Nome do Responsavel:</h3>
-        <input type="text" id="nomeResponsavel" placeholder="Nome do Responsavel" disabled>
-
-        <h3 class="text_question">Apresenta deficiência intelectual?</h3>
-        <div class="cont_button">
-        <button class="btn_ys" data-id="1">Não</button>
-        </div>
-        <h3 class="text_question">Apresenta Macroorquidismo?</h3>
-        <div class="cont_button">
-        <button class="btn_ys" data-id="2">Não</button>
+        <div class="form_dt_section">
+          <h2><i class="fa-solid fa-user-injured"></i> Paciente</h2>
+          <label>Nome</label>
+          <input type="text" id="nomePaciente" placeholder="Nome do paciente" disabled>
         </div>
 
+        <div class="form_dt_section" id="second_form_dt_section">
+          <h2><i class="fa-solid fa-user-shield"></i> Responsável</h2>
+          <label>Nome</label>
+          <input type="text" id="nomeResponsavel" placeholder="Nome do responsável" disabled>
+        </div>
 
       </div>
 
-      <div class="sub_form_box" id="second_sub_form_box">
+      <!-- ===== LINHA INFERIOR: Sintomas ===== -->
+      <div class="symptoms_section">
 
-        <h3 class="text_question">Apresenta hipermobilidade articular?</h3>
-        <div class="cont_button">
-        <button class="btn_ys" data-id="3">Não</button>
-        </div>
+        <h2><i class="fa-solid fa-stethoscope"></i> Sintomas</h2>
 
-        <h3 class="text_question">Apresenta face alongada e/ou orelhas abano?</h3>
-        <div class="cont_button">
-        <button class="btn_ys" data-id="4">Não</button>
-        </div>
+        <div class="symptoms_grid">
 
-        <h3 class="text_question">Apresenta deficit de atenção?</h3>
-        <div class="cont_button">
-        <button class="btn_ys" data-id="5">Não</button>
+          <div class="symptom_col">
 
-        </div>
-        <h3 class="text_question">Apresenta movimentos repetitivos?</h3>
-        <div class="cont_button">
-        <button class="btn_ys" data-id="6">Não</button>
-        </div>
-        <h3 class="text_question">Apresenta atraso na fala?</h3>
-        <div class="cont_button">
-        <button class="btn_ys" data-id="7">Não</button>
+            <div class="symptom_item">
+              <span class="symptom_label">Deficiência intelectual?</span>
+              <div class="cont_button"><button class="btn_ys" data-id="1">Não</button></div>
+            </div>
+
+            <div class="symptom_item">
+              <span class="symptom_label">Macroorquidismo?</span>
+              <div class="cont_button"><button class="btn_ys" data-id="2">Não</button></div>
+            </div>
+
+            <div class="symptom_item">
+              <span class="symptom_label">Hipermobilidade articular?</span>
+              <div class="cont_button"><button class="btn_ys" data-id="3">Não</button></div>
+            </div>
+
+            <div class="symptom_item">
+              <span class="symptom_label">Face alongada e/ou orelhas abano?</span>
+              <div class="cont_button"><button class="btn_ys" data-id="4">Não</button></div>
+            </div>
+
+          </div>
+
+          <div class="symptom_col">
+
+            <div class="symptom_item">
+              <span class="symptom_label">Déficit de atenção?</span>
+              <div class="cont_button"><button class="btn_ys" data-id="5">Não</button></div>
+            </div>
+
+            <div class="symptom_item">
+              <span class="symptom_label">Movimentos repetitivos?</span>
+              <div class="cont_button"><button class="btn_ys" data-id="6">Não</button></div>
+            </div>
+
+            <div class="symptom_item">
+              <span class="symptom_label">Atraso na fala?</span>
+              <div class="cont_button"><button class="btn_ys" data-id="7">Não</button></div>
+            </div>
+
+            <div class="symptom_item">
+              <span class="symptom_label">Hiperatividade?</span>
+              <div class="cont_button"><button class="btn_ys" data-id="8">Não</button></div>
+            </div>
+
+          </div>
+
+          <div class="symptom_col">
+
+            <div class="symptom_item">
+              <span class="symptom_label">Dificuldade de aprendizagem?</span>
+              <div class="cont_button"><button class="btn_ys" data-id="9">Não</button></div>
+            </div>
+
+            <div class="symptom_item">
+              <span class="symptom_label">Evita contato visual?</span>
+              <div class="cont_button"><button class="btn_ys" data-id="10">Não</button></div>
+            </div>
+
+            <div class="symptom_item">
+              <span class="symptom_label">Evita contato físico?</span>
+              <div class="cont_button"><button class="btn_ys" data-id="11">Não</button></div>
+            </div>
+
+            <div class="symptom_item">
+              <span class="symptom_label">Sinais de agressividade?</span>
+              <div class="cont_button"><button class="btn_ys" data-id="12">Não</button></div>
+            </div>
+
+          </div>
+
         </div>
       </div>
 
-       <div class="sub_form_box" id="second_sub_form_box">
-        <h3 class="text_question">Apresenta hiperatividade?</h3>
-        <div class="cont_button">
-        <button class="btn_ys" data-id="8">Não</button>
-        </div>
-        <h3 class="text_question">Apresenta dificuldade de aprendizagem?</h3>
-        <div class="cont_button">
-        <button class="btn_ys" data-id="9">Não</button>
-        </div>
-        <h3 class="text_question">Apresenta evita contato visual</h3>
-        <div class="cont_button">
-        <button class="btn_ys" data-id="10">Não</button>
-        </div>
-        <h3 class="text_question">Evita contato físico?</h3>
-        <div class="cont_button">
-        <button class="btn_ys" data-id="11">Não</button>
-        </div>
-        <h3 class="text_question">Apresenta sinais de agressividade?</h3>
-        <div class="cont_button">
-        <button class="btn_ys" data-id="12">Não</button>
-        </div>
-
-        <div  class="content_button">
-        <button class="button_ft" id="edit_button">Editar</button>
-        <a href="forms_user.html"><button class="button_ft">Voltar</button></a>
-        </div>
-        </div>
+      <!-- ===== AÇÕES ===== -->
+      <div class="action_row">
+        <button id="edit_button"><i class="fa-solid fa-pen"></i> Editar</button>
+        <button id="delete_button"><i class="fa-solid fa-trash"></i> Excluir</button>
+        <p id="msg"></p>
+      </div>
 
     </div>
-
-
   </div>
 
   <script type="module" src="../../js/form_dt.js"></script>

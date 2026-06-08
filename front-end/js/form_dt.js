@@ -7,9 +7,11 @@ window.addEventListener('load', async () => {
 
     const params = new URLSearchParams(window.location.search);
     idFormulario = params.get('id');
+    const isAdmin = window.location.pathname.includes('/pages_admin/') || window.location.pathname.includes('pages_admin');
+    const listaFormulariosPage = isAdmin ? 'form_admin.html' : 'forms_user.html';
 
     if (!idFormulario) {
-        window.location.href = 'forms_user.html';
+        window.location.href = listaFormulariosPage;
         return;
     }
 
@@ -17,7 +19,7 @@ window.addEventListener('load', async () => {
 
     if (dados.erro) {
         alert(dados.erro);
-        window.location.href = 'forms_user.html';
+        window.location.href = listaFormulariosPage;
         return;
 
     }

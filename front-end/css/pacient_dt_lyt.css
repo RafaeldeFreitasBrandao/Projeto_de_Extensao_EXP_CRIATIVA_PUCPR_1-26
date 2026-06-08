@@ -177,6 +177,17 @@ i {
     filter: brightness(1.08);
 }
 
+#delete_button {
+    background-color: var(--msg-alert-color);
+    color: var(--thirdy-color);
+}
+
+#delete_button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 14px rgba(0, 119, 255, 0.35);
+    filter: brightness(1.08);
+}
+
 .detail_content a {
     text-decoration: none;
 }

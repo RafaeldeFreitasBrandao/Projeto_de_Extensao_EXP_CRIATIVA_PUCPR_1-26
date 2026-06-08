@@ -7,9 +7,12 @@ window.addEventListener('load', async () => {
     
     const params = new URLSearchParams(window.location.search);
     idPaciente = params.get('id');
+    const isAdmin = window.location.pathname.includes('/pages_admin/') || window.location.pathname.includes('pages_admin');
+    const listaPacientesPage = isAdmin ? 'pacients_admin.html' : 'pacients_user.html';
 
     if (!idPaciente) {
-        window.location.href = 'pacients_user.html'
+        window.location.href = listaPacientesPage;
+        return;
     }
 
     const dados = await detalharPaciente(idPaciente);
@@ -17,7 +20,8 @@ window.addEventListener('load', async () => {
     if (dados.erro) {
 
         alert(dados.erro);
-        window.location.href = 'pacients_user.html'
+        window.location.href = listaPacientesPage;
+        return;
     }
 
     document.getElementById('nome').value          = dados.nome;
