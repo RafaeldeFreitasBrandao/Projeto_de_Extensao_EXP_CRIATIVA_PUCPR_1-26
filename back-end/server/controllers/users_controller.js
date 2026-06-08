@@ -92,4 +92,36 @@ exports.atualizarMinhaConta = async (req, res) => {
     } catch (err) {
         return res.status(500).json({erro: 'Erro interno no servidor'})
     }
+
+    exports.criarUsuario = async (req, res) => {
+
+    if (req.usuario.perfil !== 'admin')
+        return res.status(403).json({ erro: 'Acesso negado.' });
+
+    const { nome, cpf, email, telefone, senha, profissao, unidade } = req.body;
+
+    if (!nome || !cpf || !email || !telefone || !senha || !profissao || !unidade)
+        return res.status(400).json({ erro: 'Preencha todos os campos obrigatórios.' });
+
+    try {
+        const [existing] = await db.query(
+            `SELECT id_usuario_saude FROM usuarios_saude WHERE CPF = ?`, [cpf]
+        );
+
+        if (existing.length > 0)
+            return res.status(409).json({ erro: 'Já existe um usuário com esse CPF.' });
+
+        const [result] = await db.query(
+            `INSERT INTO usuarios_saude (nome, CPF, email, telefone, senha_hash, profissao, unidade)
+             VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            [nome, cpf, email, telefone, senha, profissao, unidade]
+        );
+
+        res.status(201).json({ id_usuario_saude: result.insertId, nome, cpf, email, profissao, unidade });
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ erro: 'Erro interno no servidor.' });
+    }
+};
 };

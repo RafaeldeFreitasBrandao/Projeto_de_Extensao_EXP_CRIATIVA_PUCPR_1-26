@@ -10,4 +10,6 @@ router.post('/verificar-senha', autenticar, controller.verificaSenha)
 
 router.put('/minha-conta', autenticar, controller.atualizarMinhaConta)
 
+router.post('/', autenticar, controller.criarUsuario);
+
 module.exports = router;
