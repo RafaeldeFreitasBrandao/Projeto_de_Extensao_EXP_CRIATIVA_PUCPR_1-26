@@ -1,4 +1,4 @@
-
+/* ========== HEADINGS ========== */
 h1 {
     font-size: var(--title-fifth-font-size);
     color: var(--thirdy-color);
@@ -28,7 +28,7 @@ h2 i {
     color: var(--button-pry-login-color);
 }
 
-
+/* Subtítulo com o nome do paciente (populado pelo JS via querySelector('H3')) */
 h3 {
     font-size: var(--title-thrd-font-size);
     color: var(--sixth-color);
@@ -40,7 +40,7 @@ i {
     color: var(--button-pry-login-color);
 }
 
-
+/* ========== OUTER LAYOUT ========== */
 .main_body {
     display: flex;
     flex-direction: column;
@@ -52,7 +52,7 @@ i {
     min-height: calc(100vh - 90px);
 }
 
-
+/* ========== MAIN CARD ========== */
 .report_card {
     display: flex;
     flex-direction: column;
@@ -65,7 +65,7 @@ i {
     overflow: hidden;
 }
 
-
+/* ========== TOP ROW: Paciente + Responsável side by side ========== */
 .report_sections {
     display: flex;
     flex-direction: row;
@@ -83,7 +83,7 @@ i {
     border-left: 2px solid var(--eighth-color);
 }
 
-
+/* ========== FIELD LABELS ========== */
 label {
     font-size: var(--primary-font-size);
     color: var(--fifh-color);
@@ -93,7 +93,7 @@ label {
     display: block;
 }
 
-
+/* ========== INPUTS ========== */
 .report_section input,
 .result_field input {
     height: 48px;
@@ -122,7 +122,7 @@ label {
     opacity: 0.85;
 }
 
-
+/* ========== BOTTOM ROW: Dados do Formulário ========== */
 .result_section {
     border-top: 2px solid var(--eighth-color);
     padding: 28px 32px 24px 32px;
@@ -139,7 +139,7 @@ label {
     flex-direction: column;
 }
 
-
+/* ========== ACTIONS ROW ========== */
 .action_row {
     display: flex;
     flex-direction: row;
@@ -180,62 +180,10 @@ label {
     filter: none;
 }
 
+/* ========== MESSAGE ========== */
 #msg {
     font-size: var(--primary-font-size);
     color: var(--msg-alert-color);
     font-weight: 500;
     margin: 0;
-}
-@media (max-width: 900px) {
-    .main_body {
-        padding: 24px 16px;
-    }
- 
-    .report_sections {
-        flex-direction: column;
-    }
- 
-    .report_section {
-        padding: 20px 20px 16px 20px;
-    }
- 
-    #second_report_section {
-        border-left: none;
-        border-top: 2px solid var(--eighth-color);
-    }
- 
-    .result_grid {
-        grid-template-columns: 1fr;
-    }
- 
-    .result_section {
-        padding: 20px 20px 16px 20px;
-    }
- 
-    .action_row {
-        padding: 16px 20px 20px 20px;
-        flex-wrap: wrap;
-    }
- 
-    #edit_button {
-        flex: 1;
-    }
-}
- 
-@media (max-width: 480px) {
-    h2 {
-        font-size: 18px;
-    }
- 
-    h3 {
-        font-size: 16px;
-    }
- 
-    .action_row {
-        flex-direction: column;
-    }
- 
-    #edit_button {
-        width: 100%;
-    }
 }
