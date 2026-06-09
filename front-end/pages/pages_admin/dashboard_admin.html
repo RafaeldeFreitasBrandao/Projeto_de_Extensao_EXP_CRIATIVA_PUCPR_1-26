@@ -3,29 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <title>Painel Principal</title>
+  <link rel="stylesheet" href="/front-end/css/base.css">
   <link rel="stylesheet" href="/front-end/css/dashboard_admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="/front-end/js/dashboard_admin.js"></script>
 </head>
 <body>
 
-  <header class="header">
-    <h1>Painel Principal</h1>
+  <div class="dash_head">
+        <img src="../../data/logo.png" alt="Logo">
+        <h1>Painel Principal</h1>
+
+        <a href="account_admin.html" id="user_a" title="Minha Conta">
+            <i class="fa-regular fa-circle-user fa-3x"></i>
+        </a>
+
+        <a href="../login.html" title="Sair">
+            <i class="fa-solid fa-person-walking-arrow-right fa-3x"></i>
+        </a>
     </div>
-  </header>
 
   <main class="container">
 
     <section class="users">
-      <h2>Usuários</h2>
 
       <div class="user-grid">
-        <div class="card add">+</div>
 
-        <div class="card">Usuário 1</div>
-        <div class="card">Usuário 2</div>
-        <div class="card active">Usuário 3</div>
-        <div class="card">Usuário 4</div>
+        <a href="users_admin.html">
+          <div class="card"><i class="fa-solid fa-user-nurse"></i> Usuários</div>
+        </a>
 
+        <a href="pacients_admin.html">
+          <div class="card"> <i class="fa-solid fa-user-plus"></i> Pacientes</div>
+        </a>
+
+        <a href="guardians_admin.html">
+          <div class="card active"><i class="fa-solid fa-user-shield"></i> Responsáveis</div>
+        </a>
+
+        <a href="form_admin.html">
+          <div class="card"><i class="fa-solid fa-clipboard-list"></i> Formulários</div>
+        </a>
+
+        <a href="report_admin.html">
+        <div class="card"><i class="fa-solid fa-user-check"></i> Resultados</div>
+        </a>
       </div>
     </section>
 

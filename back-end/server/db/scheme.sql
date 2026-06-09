@@ -142,3 +142,6 @@ INSERT INTO comportamentos (nome, valor_masculino, valor_feminino) VALUES
   ('Sinais de agressividade',         0.09, 0.13);
 
 ALTER TABLE pacientes ADD COLUMN foto VARCHAR(255) NULL;
+
+INSERT INTO administradores (nome_usuario, senha_hash) VALUES 
+('Admin', '12345');
