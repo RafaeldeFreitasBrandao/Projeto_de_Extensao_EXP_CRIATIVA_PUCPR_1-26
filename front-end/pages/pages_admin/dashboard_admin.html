@@ -2,67 +2,83 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Painel Principal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/front-end/css/base.css">
   <link rel="stylesheet" href="/front-end/css/dashboard_admin.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="/front-end/js/dashboard_admin.js"></script>
 </head>
 <body>
 
+  <!-- HEADER -->
   <div class="dash_head">
-        <img src="../../data/logo.png" alt="Logo">
-        <h1>Painel Principal</h1>
+    <img src="../../data/logo.png" alt="Logo">
+    <h1><i class="fa-solid fa-shield-halved"></i> Painel Administrativo</h1>
+    <a href="account_admin.html" id="user_a" title="Minha Conta">
+      <i class="fa-regular fa-circle-user fa-3x"></i>
+    </a>
+    <a href="../login.html" title="Sair">
+      <i class="fa-solid fa-person-walking-arrow-right fa-3x"></i>
+    </a>
+  </div>
 
-        <a href="account_admin.html" id="user_a" title="Minha Conta">
-            <i class="fa-regular fa-circle-user fa-3x"></i>
+  <!-- BANNER -->
+  <div class="dash_bemvindo">
+    <h2>PAINEL <span>ADMINISTRATIVO</span></h2>
+    <p>Gerencie usuários, dados clínicos e acesse os registros do sistema.</p>
+  </div>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <div class="dash_container">
+
+    <!-- MÓDULOS DE NAVEGAÇÃO -->
+    <section class="dash_nav_section">
+      <h3><i class="fa-solid fa-grip"></i> Módulos do Sistema</h3>
+      <nav class="dash_nav_grid">
+
+        <a href="users_admin.html" title="Gerenciar Usuários">
+          <i class="fa-solid fa-user-nurse"></i>
+          <span>Usuários</span>
         </a>
 
-        <a href="../login.html" title="Sair">
-            <i class="fa-solid fa-person-walking-arrow-right fa-3x"></i>
-        </a>
-    </div>
-
-  <main class="container">
-
-    <section class="users">
-
-      <div class="user-grid">
-
-        <a href="users_admin.html">
-          <div class="card"><i class="fa-solid fa-user-nurse"></i> Usuários</div>
+        <a href="pacients_admin.html" title="Gerenciar Pacientes">
+          <i class="fa-solid fa-user-plus"></i>
+          <span>Pacientes</span>
         </a>
 
-        <a href="pacients_admin.html">
-          <div class="card"> <i class="fa-solid fa-user-plus"></i> Pacientes</div>
+        <a href="guardians_admin.html" title="Gerenciar Responsáveis">
+          <i class="fa-solid fa-user-shield"></i>
+          <span>Responsáveis</span>
         </a>
 
-        <a href="guardians_admin.html">
-          <div class="card active"><i class="fa-solid fa-user-shield"></i> Responsáveis</div>
+        <a href="form_admin.html" title="Gerenciar Formulários">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <span>Formulários</span>
         </a>
 
-        <a href="form_admin.html">
-          <div class="card"><i class="fa-solid fa-clipboard-list"></i> Formulários</div>
+        <a href="report_admin.html" title="Ver Resultados">
+          <i class="fa-solid fa-user-check"></i>
+          <span>Resultados</span>
         </a>
 
-        <a href="report_admin.html">
-        <div class="card"><i class="fa-solid fa-user-check"></i> Resultados</div>
-        </a>
-      </div>
+      </nav>
     </section>
 
-    <section class="log">
-      <h2>Log de Edição</h2>
-
+    <!-- LOG DE EDIÇÃO -->
+     <a href="logs_admin.html" id="log_cont">
+    <section class="dash_log_section">
+      <h3><i class="fa-solid fa-clock-rotate-left"></i> Log de Edição</h3>
       <div id="logContent">
-        <p>Nenhuma ação ainda...</p>
+        <p class="log_empty">Nenhuma ação registrada ainda...</p>
       </div>
-
-      <button onclick="addLog()">Adicionar Log</button>
+      <button onclick="addLog()" id="log_btn">
+        <i class="fa-solid fa-plus"></i> Adicionar Log
+      </button>
     </section>
+    </a>
 
-  </main>
+  </div>
 
-  <script src="script.js"></script>
+  <script src="/front-end/js/dashboard_admin.js"></script>
 </body>
 </html>
