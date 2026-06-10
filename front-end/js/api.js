@@ -279,3 +279,19 @@ export async function listarLogs(limite = null) {
     });
     return resposta.json();
 }
+
+export async function detalharUsuario(id) {
+    const resposta = await fetch(`${BASE}/usuarios/${id}`, {
+        method: 'GET',
+        headers: getHeaders()
+    });
+    return resposta.json();
+}
+
+export async function deletarUsuario(id) {
+    const resposta = await fetch(`${BASE}/usuarios/${id}`, {
+        method: 'DELETE',
+        headers: getHeaders()
+    });
+    return resposta.json();
+}
