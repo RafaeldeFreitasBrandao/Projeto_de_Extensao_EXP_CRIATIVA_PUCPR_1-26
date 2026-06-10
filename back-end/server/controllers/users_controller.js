@@ -1,4 +1,5 @@
 const db = require('../db/connection.js');
+const { registrarLog } = require('../utils/logs_edition.js');
 
 //Função que busca os dados do usuáriodo banco de dados
 exports.buscarMinhaConta = async (req, res) => {
@@ -59,19 +60,23 @@ exports.atualizarMinhaConta = async (req, res) => {
 
     const id = req.usuario.id;
 
-    //Armazena os dado enviados pelo fontend, 
-    //(não incluir o CPF e a profissão impedem de eles serem modificados, mesmo que enviados)
     const {nome, unidade, email, telefone, senha} = req.body;
 
-    //Verifica se pelo menos um campo foi enviado
     if (!nome && !unidade && !email && !telefone && !senha)
         return res.status(400).json({erro: 'Nenhum dado para atualizar.'});
 
-    //Monta QUERY dinamicamente, apenas com os campos enviados
     try {
 
-        const campos = []; // vai virar "nome = ?", "unidade = ?" etc
-        const valores = []; // vai virar os valores correspondentes
+        // Busca os dados atuais (para comparar e gerar o log)
+        const [oldRows] = await db.query('SELECT * FROM usuarios_saude WHERE id_usuario_saude = ?', [id]);
+
+        if (oldRows.length === 0)
+            return res.status(404).json({erro: 'Usuário não encontrado'});
+
+        const old = oldRows[0];
+
+        const campos = [];
+        const valores = [];
 
         if (nome) {campos.push('nome = ?'); valores.push(nome);}
         if (unidade) {campos.push('unidade = ?'); valores.push(unidade);}
@@ -81,15 +86,43 @@ exports.atualizarMinhaConta = async (req, res) => {
 
         valores.push(id);
 
-        //Executa o UPDATE na tabela com os campos modificados
         await db.query (
             `UPDATE usuarios_saude SET ${campos.join(', ')}  WHERE id_usuario_saude = ?`, valores
         );
 
+        // ===== LOG DE EDIÇÃO =====
+        const camposMap = {
+            nome: 'Nome',
+            unidade: 'Unidade',
+            email: 'Email',
+            telefone: 'Telefone',
+            senha: 'Senha'
+        };
+
+        const novosValores = { nome, unidade, email, telefone, senha };
+
+        const camposEditados = Object.keys(camposMap).filter(k => {
+            if (novosValores[k] === undefined) return false;
+            if (k === 'senha') return true; // troca de senha sempre conta como alteração
+            return String(novosValores[k]) !== String(old[k]);
+        }).map(k => camposMap[k]);
+
+        if (camposEditados.length > 0) {
+            await registrarLog({
+                id_usuario: id,
+                nome_usuario: nome || old.nome,
+                tipo_usuario: 'saude',
+                entidade: 'usuario',
+                id_entidade: id,
+                nome_entidade: nome || old.nome,
+                campos_editados: camposEditados
+            });
+        }
+
         res.json({ok: true, mensagem: 'Dados atualizados com sucesso.'});
 
-
     } catch (err) {
+        console.error(err);
         return res.status(500).json({erro: 'Erro interno no servidor'})
     }
 

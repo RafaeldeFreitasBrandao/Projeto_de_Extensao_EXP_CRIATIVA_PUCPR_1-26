@@ -15,6 +15,7 @@ const guardiansRoutes = require('./routes/guardians_routes.js');
 const pacientsRoutes = require('./routes/patients_routes.js')
 const behaviorRouters = require('./routes/behavior_routes.js');
 const adminRoutes     = require('./routes/admin_routes.js');
+const logsRoutes      = require('./routes/logs_routes.js');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use('/api/responsaveis', guardiansRoutes);
 app.use('/api/pacientes', pacientsRoutes)
 app.use('/api/comportamentos', behaviorRouters);
 app.use('/api/admin',         adminRoutes);
+app.use('/logs', logsRoutes);
 
 
 async function iniciar() {
