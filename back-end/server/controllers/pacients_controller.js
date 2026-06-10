@@ -1,4 +1,5 @@
 const db = require('../db/connection.js');
+const { registrarLog } = require('../utils/logs_edition.js');
 
 //Função que vai exibir todos os pacientes da tabela 
 
@@ -104,48 +105,90 @@ exports.criarPaciente = async (req, res) => {
     //edita um paciente já existente
 };
     exports.editarPaciente = async (req, res) => {
+    const { id } = req.params;
+    const id_usuario = req.usuario.id;
+    const { nome, cpf, rg, dataNascimento, sexo } = req.body;
 
-        const {id} = req.params;
-        const id_usuario = req.usuario.id;
-        const {nome, cpf, rg, dataNascimento, sexo} =req.body;
+    try {
+        const [oldRows] = await db.query('SELECT * FROM pacientes WHERE id_paciente = ?', [id]);
+        if (oldRows.length === 0)
+            return res.status(404).json({ erro: 'Paciente não encontrado' });
 
-        if(!nome && !dataNascimento && !sexo) 
-            return res.status(400).json({erro:'Nenhum dado para atualizar'});
+        const old = oldRows[0];
 
-        try {
+        // Bloqueia se o usuário logado não for o dono
+        if (old.id_usuario_saude !== id_usuario)
+            return res.status(403).json({ erro: 'Você não tem permissão para editar este paciente' });
 
-            const [check] = await db.query(
-                `SELECT id_usuario_saude FROM pacientes WHERE id_paciente = ?`, [id]
-            );
+        // Mapa dos campos monitorados
+        const camposMap = {
+            nome: 'Nome',
+            sexo: 'Sexo',
+            data_nascimento: 'Data de Nascimento',
+            CPF: 'CPF'
+        };
 
-            if (check.length === 0)
-                return res.status(404).json({ erro: 'Paciente não encontrado' });
-            if (check[0].id_usuario_saude !== id_usuario)
-                return res.status(403).json({ erro: 'Você não tem permissão para editar este paciente' });
+        // Normaliza data antiga (Date -> 'YYYY-MM-DD') para comparar corretamente
+        const dataNascAntiga = old.data_nascimento instanceof Date
+            ? old.data_nascimento.toISOString().slice(0, 10)
+            : old.data_nascimento;
 
-            const campos = [];
-            const valores = [];
+        const novosValores = {
+            nome,
+            sexo,
+            data_nascimento: dataNascimento,
+            CPF: cpf
+        };
 
-            if (nome)     { campos.push('nome = ?');     valores.push(nome); }
-            if (dataNascimento) { campos.push('data_nascimento = ?'); valores.push(dataNascimento); }
-            if (sexo)      { campos.push('sexo = ?');      valores.push(sexo); }
+        const valoresAntigos = {
+            nome: old.nome,
+            sexo: old.sexo,
+            data_nascimento: dataNascAntiga,
+            CPF: old.CPF
+        };
 
-            valores.push(id);
+        const camposEditados = Object.keys(camposMap).filter(k =>
+            novosValores[k] !== undefined && String(novosValores[k]) !== String(valoresAntigos[k])
+        ).map(k => camposMap[k]);
 
-            await db.query (
-                `UPDATE pacientes SET ${campos.join(', ')} WHERE id_paciente = ?`, valores
-            );
+        await db.query(
+            `UPDATE pacientes SET nome = ?, CPF = ?, RG = ?, data_nascimento = ?, sexo = ? WHERE id_paciente = ?`,
+            [nome, cpf, rg, dataNascimento, sexo, id]
+        );
 
-            res.json({
-                ok:true,
-                mensagem: 'Paciente atualizado com sucesso'
+        if (camposEditados.length > 0) {
+            const tipo_usuario = req.usuario.perfil === 'admin' ? 'admin' : 'saude';
+
+            let nome_usuario = 'Desconhecido';
+            if (req.usuario.perfil === 'admin') {
+                const [adm] = await db.query(
+                    'SELECT nome_usuario FROM administradores WHERE id_administrador = ?', [id_usuario]
+                );
+                nome_usuario = adm[0]?.nome_usuario || nome_usuario;
+            } else {
+                const [usu] = await db.query(
+                    'SELECT nome FROM usuarios_saude WHERE id_usuario_saude = ?', [id_usuario]
+                );
+                nome_usuario = usu[0]?.nome || nome_usuario;
+            }
+
+            await registrarLog({
+                id_usuario,
+                nome_usuario,
+                tipo_usuario,
+                entidade: 'paciente',
+                id_entidade: id,
+                nome_entidade: old.nome,
+                campos_editados: camposEditados
             });
-
-
-        } catch (err) {
-            console.error(err)
-            return res.status(500).json({erro: 'Erro interno no servidor'});
         }
+
+        res.json({ mensagem: 'Paciente atualizado com sucesso' });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ erro: 'Erro interno no servidor' });
+    }
 };
 
 exports.atualizarFotoPaciente = async (req, res) => {
