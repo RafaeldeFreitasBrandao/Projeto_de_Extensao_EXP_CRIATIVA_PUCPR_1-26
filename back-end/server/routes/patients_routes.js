@@ -9,5 +9,6 @@ router.post('/', autenticar, upload.single('foto'), controller.criarPaciente);
 router.put('/:id', autenticar, controller.editarPaciente);
 router.get('/:id', autenticar, controller.detalharPaciente);
 router.patch('/:id/foto', autenticar, upload.single('foto'), controller.atualizarFotoPaciente);
+router.delete('/:id', autenticar, controller.excluirPaciente);
 
 module.exports = router;

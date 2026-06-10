@@ -1,4 +1,4 @@
-import {detalharFormulario, editarFormulario} from "./api.js";
+import {detalharFormulario, detalharFormularioAdmin, editarFormulario, deletarFormulario} from "./api.js";
 
 let idFormulario = null;
 let modoEdicao = false;
@@ -7,21 +7,25 @@ window.addEventListener('load', async () => {
 
     const params = new URLSearchParams(window.location.search);
     idFormulario = params.get('id');
-    const isAdmin = window.location.pathname.includes('/pages_admin/') || window.location.pathname.includes('pages_admin');
-    const listaFormulariosPage = isAdmin ? 'form_admin.html' : 'forms_user.html';
 
     if (!idFormulario) {
-        window.location.href = listaFormulariosPage;
+        window.location.href = 'forms_user.html';
         return;
     }
 
-    const dados = await detalharFormulario(idFormulario);
+    // Try admin detail first; fall back to regular detail if access denied
+    let dados = await detalharFormularioAdmin(idFormulario);
+    let isAdmin = true;
 
     if (dados.erro) {
-        alert(dados.erro);
-        window.location.href = listaFormulariosPage;
-        return;
-
+        if (dados.erro === 'Acesso negado.') {
+            dados = await detalharFormulario(idFormulario);
+            isAdmin = false;
+        } else {
+            alert(dados.erro);
+            window.location.href = 'forms_user.html';
+            return;
+        }
     }
 
     document.getElementById('nomePaciente').value = dados.nome_paciente;
@@ -37,6 +41,23 @@ window.addEventListener('load', async () => {
     });
 
     definirBloqueio(true);
+    
+    // Delete handler
+    const delBtn = document.getElementById('delete_button');
+    if (delBtn) {
+        delBtn.addEventListener('click', async () => {
+            if (!confirm('Deseja realmente excluir este formulário?')) return;
+
+            const r = await deletarFormulario(idFormulario);
+            if (r.erro) {
+                alert(r.erro);
+                return;
+            }
+
+            alert('Formulário excluído com sucesso');
+            window.location.href = isAdmin ? 'forms_admin.html' : 'forms_user.html';
+        });
+    }
 });
 
 

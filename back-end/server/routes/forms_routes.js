@@ -11,6 +11,7 @@ router.get('/admin/todos', autenticar, controller.listarTodosFormularios);
 router.get('/admin/:id', autenticar, controller.detalharFormularioAdmin);
 router.get('/:id', autenticar, controller.detalharFormulario);
 router.put('/:id', autenticar, controller.editarFormulario);
+router.delete('/:id', autenticar, controller.excluirFormulario);
 
 
 module.exports = router;

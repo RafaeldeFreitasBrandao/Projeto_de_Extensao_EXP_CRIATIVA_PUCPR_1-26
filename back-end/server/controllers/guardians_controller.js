@@ -161,3 +161,44 @@ exports.detalharResponsavel = async (req, res) => {
         return res.status(500).json({ erro: 'Erro interno no servidor' });
     }
 };
+
+exports.excluirResponsavel = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const [rows] = await db.query(
+            `SELECT id_responsavel FROM responsaveis WHERE id_responsavel = ?`,
+            [id]
+        );
+
+        if (rows.length === 0)
+            return res.status(404).json({ erro: 'Responsável não encontrado' });
+
+        // Remove relacionamentos de formulários associados a esse responsável
+        await db.query(
+            `DELETE FROM formulario_comportamento WHERE id_formulario IN (SELECT id_formulario FROM formularios WHERE id_responsavel = ?)`,
+            [id]
+        );
+
+        await db.query(
+            `DELETE FROM resultado WHERE id_formulario IN (SELECT id_formulario FROM formularios WHERE id_responsavel = ?)`,
+            [id]
+        );
+
+        await db.query(
+            `DELETE FROM formularios WHERE id_responsavel = ?`,
+            [id]
+        );
+
+        await db.query(
+            `DELETE FROM responsaveis WHERE id_responsavel = ?`,
+            [id]
+        );
+
+        res.json({ ok: true, mensagem: 'Responsável e formulários associados excluídos com sucesso' });
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ erro: 'Erro interno no servidor' });
+    }
+};

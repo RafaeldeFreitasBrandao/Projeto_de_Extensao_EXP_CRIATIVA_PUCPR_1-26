@@ -64,7 +64,7 @@ function renderizarLista() {
         item.classList.add('resp_salvo');
         item.innerHTML = `
             <p> ${r.nome} | CPF: ${r.CPF}</p>
-            <a href="guardian_detail_user.html?id=${r.id_responsavel}">
+            <a href="guardian_detail_admin.html?id=${r.id_responsavel}">
                 <button>Detalhes</button>
             </a>
         `;
