@@ -44,7 +44,7 @@ function renderizarLista() {
 
         item.innerHTML = `
         <p> Formulário: #${p.id_formulario}#</p>
-        <a href="forms_detail_user.html?id=${p.id_formulario}">
+        <a href="forms_detail_admin.html?id=${p.id_formulario}">
         <button>Detalhes</button>
         </a>`
         lista.appendChild(item);

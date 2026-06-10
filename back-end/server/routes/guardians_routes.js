@@ -8,5 +8,7 @@ router.post('/', autenticar, controller.criarResponsavel);
 router.get('/:id', autenticar, controller.detalharResponsavel);
 router.put('/:id', autenticar, controller.editarResponsavel);
 
+router.delete('/:id', autenticar, controller.excluirResponsavel);
+
 module.exports = router;
 

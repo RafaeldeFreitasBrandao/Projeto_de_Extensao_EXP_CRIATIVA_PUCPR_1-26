@@ -18,7 +18,7 @@ window.addEventListener('load', async () => {
     if (dados.erro) {
 
         alert(dados.erro);
-        window.location.href = 'guardian_user.html';
+        window.location.href = 'guardian_admin.html';
         return;
     }
 
@@ -84,19 +84,18 @@ document.getElementById('edit_button').addEventListener("click", async () => {
 
 });
 
-// Delete handler
-const delBtn = document.getElementById('delete_button');
-if (delBtn) {
-    delBtn.addEventListener('click', async () => {
-        if (!confirm('Deseja realmente excluir este responsável?')) return;
+document.getElementById('delete_button').addEventListener('click', async () => {
+    const msg = document.getElementById('msg');
 
-        const resultado = await deletarResponsavel(idResponsavel);
-        if (resultado.erro) {
-            alert(resultado.erro);
-            return;
-        }
+    if (!confirm('Confirma exclusão deste responsável?')) return;
 
-        alert('Responsável excluído com sucesso');
-        window.location.href = 'guardian_user.html';
-    });
-}
+    const resultado = await deletarResponsavel(idResponsavel);
+
+    if (resultado && resultado.erro) {
+        msg.textContent = resultado.erro;
+        return;
+    }
+
+    window.location.href = 'guardians_admin.html';
+
+});

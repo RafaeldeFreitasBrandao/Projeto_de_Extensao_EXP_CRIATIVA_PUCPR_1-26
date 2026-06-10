@@ -1,4 +1,4 @@
-import { detalharPaciente, editarPaciente, atualizarFotoPaciente } from "./api.js";
+import { detalharPaciente, editarPaciente, atualizarFotoPaciente, deletarPaciente } from "./api.js";
 
 let idPaciente = null;
 let modoEdicao = false;
@@ -9,7 +9,7 @@ window.addEventListener('load', async () => {
     idPaciente = params.get('id');
     
     if (!idPaciente) {
-        window.location.href = 'pacients_user.html';
+        window.location.href = 'pacients_admin.html';
         return;
     }
 
@@ -18,7 +18,7 @@ window.addEventListener('load', async () => {
     if (dados.erro) {
 
         alert(dados.erro);
-        window.location.href = 'pacients_user.html';
+        window.location.href = 'pacients_admin.html';
         return;
     }
 
@@ -55,6 +55,19 @@ document.getElementById('trocarFotoBtn').addEventListener('click', async () => {
     document.getElementById('fotoPaciente').src =
         `http://localhost:3000/uploads/${resultado.foto}`;
     document.getElementById('msg').textContent = 'Foto atualizada!';
+});
+
+document.getElementById('delete_button').addEventListener('click', async () => {
+    const confirmar = confirm('Deseja excluir este paciente permanentemente?');
+    if (!confirmar) return;
+
+    const resultado = await deletarPaciente(idPaciente);
+    if (resultado.erro) {
+        document.getElementById('msg').textContent = resultado.erro;
+        return;
+    }
+
+    window.location.href = 'pacients_admin.html';
 });
 
 function definirBloqueio(bloquear) {

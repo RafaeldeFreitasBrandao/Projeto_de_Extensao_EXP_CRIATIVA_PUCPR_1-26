@@ -303,3 +303,33 @@ exports.detalharFormularioAdmin = async (req, res) => {
         res.status(500).json({ erro: 'Erro no servidor' });
     }
 };
+
+exports.excluirFormulario = async (req, res) => {
+    const { id } = req.params;
+    const id_usuario = req.usuario.id;
+
+    try {
+        const [rows] = await db.query(
+            `SELECT id_usuario_saude FROM formularios WHERE id_formulario = ?`,
+            [id]
+        );
+
+        if (rows.length === 0)
+            return res.status(404).json({ erro: 'Formulário não encontrado' });
+
+        const owner = rows[0].id_usuario_saude;
+
+        if (owner !== id_usuario && req.usuario.perfil !== 'admin')
+            return res.status(403).json({ erro: 'Acesso negado.' });
+
+        await db.query(`DELETE FROM formulario_comportamento WHERE id_formulario = ?`, [id]);
+        await db.query(`DELETE FROM resultado WHERE id_formulario = ?`, [id]);
+        await db.query(`DELETE FROM formularios WHERE id_formulario = ?`, [id]);
+
+        res.json({ ok: true, mensagem: 'Formulário excluído com sucesso' });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ erro: 'Erro interno no servidor' });
+    }
+};

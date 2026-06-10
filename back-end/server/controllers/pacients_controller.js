@@ -188,3 +188,37 @@ exports.atualizarFotoPaciente = async (req, res) => {
         res.status(500).json({erro: 'Erro no servidor'});
     }
 }
+
+exports.excluirPaciente = async (req, res) => {
+    const {id} = req.params;
+    const id_usuario = req.usuario.id;
+
+    try {
+        const [check] = await db.query(
+            `SELECT id_usuario_saude, foto FROM pacientes WHERE id_paciente = ?`, [id]
+        );
+
+        if (check.length === 0)
+            return res.status(404).json({erro:'Paciente não encontrado'});
+
+        if (check[0].id_usuario_saude !== id_usuario)
+            return res.status(403).json({erro:'Você não tem permissão para excluir este paciente'});
+
+        // Deleta formulários vinculados primeiro para evitar violação de chave estrangeira
+        await db.query(`DELETE FROM formularios WHERE id_paciente = ?`, [id]);
+
+        if (check[0].foto) {
+            const fs = require('fs');
+            const path = require('path');
+            const imagePath = path.join(__dirname, '..', 'uploads', check[0].foto);
+            if (fs.existsSync(imagePath)) fs.unlinkSync(imagePath);
+        }
+
+        await db.query(`DELETE FROM pacientes WHERE id_paciente = ?`, [id]);
+
+        res.json({ok:true, mensagem:'Paciente excluído com sucesso'});
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({erro:'Erro interno no servidor'});
+    }
+}

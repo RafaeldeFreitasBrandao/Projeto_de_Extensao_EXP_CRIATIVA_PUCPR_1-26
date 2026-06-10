@@ -86,6 +86,14 @@ export async function detalharResponsavel(id) {
     return resposta.json();
 }
 
+export async function deletarResponsavel(id) {
+    const resposta = await fetch(`${BASE}/responsaveis/${id}`, {
+        method: 'DELETE',
+        headers: getHeaders()
+    });
+    return resposta.json();
+}
+
 //Funções para a página dos pacientes
 
 export async function listarPacientes() {
@@ -140,6 +148,14 @@ export async function detalharPaciente(id) {
         method: 'GET', headers: getHeaders()
     });
     return r.json();
+}
+
+export async function deletarPaciente(id) {
+    const resposta = await fetch(`${BASE}/pacientes/${id}`, {
+        method: 'DELETE',
+        headers: getHeaders()
+    });
+    return resposta.json();
 }
 
 //Funções para os formulários 
