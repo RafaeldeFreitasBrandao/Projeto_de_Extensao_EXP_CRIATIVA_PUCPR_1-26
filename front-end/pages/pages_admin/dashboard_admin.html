@@ -36,16 +36,25 @@
       <h3><i class="fa-solid fa-grip"></i> Módulos do Sistema</h3>
       <nav class="dash_nav_grid">
 
-        <a href="users_admin.html" title="Gerenciar Usuários">
-          <i class="fa-solid fa-user-nurse"></i>
-          <span>Usuários</span>
+        <a href="users_admin.html" class="dash_nav_item" title="Gerenciar Usuários">
+          <div class="dash_nav_icon"><i class="fa-solid fa-user-nurse"></i></div>
+          <div class="dash_nav_text">
+            <span class="dash_nav_title">Usuários de Saúde</span>
+            <span class="dash_nav_desc">Gerencie os profissionais cadastrados no sistema</span>
+          </div>
+          <i class="fa-solid fa-chevron-right dash_nav_arrow"></i>
         </a>
 
-        <a href="pacients_admin.html" title="Gerenciar Pacientes">
-          <i class="fa-solid fa-user-plus"></i>
-          <span>Pacientes</span>
+        <a href="pacients_admin.html" class="dash_nav_item" title="Gerenciar Pacientes">
+          <div class="dash_nav_icon"><i class="fa-solid fa-user-plus"></i></div>
+          <div class="dash_nav_text">
+            <span class="dash_nav_title">Pacientes</span>
+            <span class="dash_nav_desc">Visualize e gerencie os pacientes cadastrados</span>
+          </div>
+          <i class="fa-solid fa-chevron-right dash_nav_arrow"></i>
         </a>
 
+<<<<<<< Updated upstream
         <a href="guardian_admin.html" title="Gerenciar Responsáveis">
           <i class="fa-solid fa-user-shield"></i>
           <span>Responsáveis</span>
@@ -54,28 +63,48 @@
         <a href="forms_admin.html" title="Gerenciar Formulários">
           <i class="fa-solid fa-clipboard-list"></i>
           <span>Formulários</span>
+=======
+        <a href="guardians_admin.html" class="dash_nav_item" title="Gerenciar Responsáveis">
+          <div class="dash_nav_icon"><i class="fa-solid fa-user-shield"></i></div>
+          <div class="dash_nav_text">
+            <span class="dash_nav_title">Responsáveis</span>
+            <span class="dash_nav_desc">Gerencie os responsáveis pelos pacientes</span>
+          </div>
+          <i class="fa-solid fa-chevron-right dash_nav_arrow"></i>
         </a>
 
-        <a href="report_admin.html" title="Ver Resultados">
-          <i class="fa-solid fa-user-check"></i>
-          <span>Resultados</span>
+        <a href="form_admin.html" class="dash_nav_item" title="Gerenciar Formulários">
+          <div class="dash_nav_icon"><i class="fa-solid fa-clipboard-list"></i></div>
+          <div class="dash_nav_text">
+            <span class="dash_nav_title">Formulários</span>
+            <span class="dash_nav_desc">Acompanhe os formulários preenchidos</span>
+          </div>
+          <i class="fa-solid fa-chevron-right dash_nav_arrow"></i>
+>>>>>>> Stashed changes
+        </a>
+
+        <a href="report_admin.html" class="dash_nav_item" title="Ver Resultados">
+          <div class="dash_nav_icon"><i class="fa-solid fa-user-check"></i></div>
+          <div class="dash_nav_text">
+            <span class="dash_nav_title">Resultados</span>
+            <span class="dash_nav_desc">Consulte os resultados e indicações de exame</span>
+          </div>
+          <i class="fa-solid fa-chevron-right dash_nav_arrow"></i>
         </a>
 
       </nav>
     </section>
 
-    
-     <a href="logs_admin.html" id="log_cont">
+    <!-- LOG DE EDIÇÃO -->
     <section class="dash_log_section">
       <h3><i class="fa-solid fa-clock-rotate-left"></i> Log de Edição</h3>
       <div id="logContent">
         <p class="log_empty">Nenhuma ação registrada ainda...</p>
       </div>
-      <button onclick="addLog()" id="log_btn">
-        <i class="fa-solid fa-plus"></i> Adicionar Log
-      </button>
+      <a href="logs_admin.html" class="dash_log_footer">
+        Ver todos os registros <i class="fa-solid fa-arrow-right"></i>
+      </a>
     </section>
-    </a>
 
   </div>
 

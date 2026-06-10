@@ -1,6 +1,6 @@
 h1 {
-    font-size: var(--title-font-size);
-    color: var(--button-pry-login-color);
+    font-size: var(--title-fifth-font-size);
+    color: var(--thirdy-color);
 
     margin-left: 50px;
 
@@ -22,7 +22,7 @@ p {
 }
 
 i {
-    color: black;
+    color: var(--thirdy-color);
 }
 
 #listaFormularios {

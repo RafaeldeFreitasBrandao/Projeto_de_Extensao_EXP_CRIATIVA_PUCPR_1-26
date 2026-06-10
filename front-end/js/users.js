@@ -76,7 +76,7 @@ function renderizarLista() {
         item.classList.add('resp_salvo');
 
         item.innerHTML = `
-            <p>${u.nome} | CPF: ${u.cpf} | ${u.profissao}</p>
+            <p>${u.nome} | CPF: ${u.CPF} | ${u.profissao}</p>
             <button>Detalhes</button>
         `;
         lista.appendChild(item);

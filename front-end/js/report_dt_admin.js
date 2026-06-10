@@ -56,31 +56,7 @@ function definirBloqueio(bloquear) {
     document.getElementById('data_preenchimento').disabled = true;
     document.getElementById('data_calculo').disabled = true;
 
-    // Somente os nomes podem ser editados quando estiver no modo edição
     document.getElementById('paciente_nome').disabled = bloquear;
     document.getElementById('responsavel_nome').disabled = bloquear;
 }
 
-document.getElementById('edit_button').addEventListener('click', async () => {
-    const btn = document.getElementById('edit_button');
-    const msg = document.getElementById('msg');
-
-    // segurança extra: bloqueia ação se usuário não for admin
-    if (perfilUsuario !== 'admin') {
-        msg.textContent = 'Você não tem permissão para editar este formulário.';
-        return;
-    }
-
-    if (!modoEdicao) {
-        definirBloqueio(false);
-        btn.textContent = 'Salvar';
-        modoEdicao = true;
-        return;
-    }
-
-    // Ao salvar, apenas alternamos o modo de edição (não há endpoint de edição de nomes aqui)
-    msg.textContent = 'Dados atualizados com sucesso!!';
-    btn.textContent = 'Editar';
-    modoEdicao = false;
-    definirBloqueio(true);
-});

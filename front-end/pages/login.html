@@ -1,28 +1,53 @@
+<!DOCTYPE html>
 <html lang="pt-br">
-    <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/login_lyt.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 <body>
-    
-    <div class="login_container">
-        <div class="input_container">
-            <h1>Bem-Vindo</h1>
-            <p id="msg-info"></p>
-            <h3><i class="fa-solid fa-user" style="color: rgb(0, 0, 0);"></i>usuário:</h3>
-            <input type="text" id="user-id" placeholder="CPF/ ou nome de usuário(admin)" required="">
-            <h3><i class="fa-solid fa-lock" style="color: rgb(0, 0, 0);"></i>senha:</h3>
-            <input type="password" id="password" placeholder="Senha" required="">
-            <div class="entry-button">
-                <button id="entry-button-vrf">Login</button>
+
+    <div class="login_page">
+
+        <!-- PAINEL DE IDENTIDADE -->
+        <div class="login_branding">
+            <img src="../data/logo.png" alt="Logo">
+            <h2>Sistema de Apoio ao<br><span>Diagnóstico Pediátrico</span></h2>
+            <p>Cadastro, acompanhamento e triagem para identificação precoce da Síndrome do X Frágil.</p>
+        </div>
+
+        <!-- PAINEL DO FORMULÁRIO -->
+        <div class="login_container">
+            <div class="input_container">
+                <h1>Bem-vindo</h1>
+                <p class="login_subtitle">Acesse sua conta para continuar</p>
+
+                <p id="msg-info"></p>
+                <br>
+
+                <div class="input_group">
+                    <h3><i class="fa-solid fa-user"></i> Usuário</h3>
+                    <input type="text" id="user-id" placeholder="CPF ou nome de usuário (admin)" required>
+                </div>
+
+                <div class="input_group">
+                    <h3><i class="fa-solid fa-lock"></i> Senha</h3>
+                    <input type="password" id="password" placeholder="Digite sua senha" required>
+                </div>
+
+                <div class="entry-button">
+                    <button id="entry-button-vrf"><i class="fa-solid fa-right-to-bracket"></i> Entrar</button>
+                </div>
             </div>
         </div>
+
     </div>
+
     <script type="module" src="../js/auth.js"></script>
 
-</body></html>
+</body>
+</html>

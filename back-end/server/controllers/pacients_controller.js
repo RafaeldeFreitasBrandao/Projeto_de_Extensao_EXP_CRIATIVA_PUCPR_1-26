@@ -5,19 +5,28 @@ const { registrarLog } = require('../utils/logs_edition.js');
 
 exports.listarPacientes = async (req, res) => {
 
+    const id_usuario = req.usuario.id;
+    const perfil = req.usuario.perfil;
+
     try {
-        //Puxa todos os Pacientes da tabela, ordenado por ordem alfabética
-        const[rows] = await db.query(
-            `SELECT id_paciente, nome, CPF AS cpf, id_usuario_saude FROM pacientes ORDER BY nome ASC`
-        );
+        let query = `SELECT id_paciente, nome, CPF AS cpf, id_usuario_saude FROM pacientes`;
+        const params = [];
+
+        // Usuário de saúde só vê os pacientes que ele mesmo cadastrou
+        if (perfil !== 'admin') {
+            query += ` WHERE id_usuario_saude = ?`;
+            params.push(id_usuario);
+        }
+
+        query += ` ORDER BY nome ASC`;
+
+        const [rows] = await db.query(query, params);
 
         res.json(rows);
 
     } catch (err) {
-
         console.error(err);
         return res.status(500).json({erro:'Erro interno no servidor'});
-
     }
 
 };

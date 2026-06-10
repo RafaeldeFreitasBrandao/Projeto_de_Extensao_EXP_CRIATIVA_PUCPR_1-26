@@ -109,11 +109,6 @@ body {
     align-items: flex-start;
 }
 
-
-#log_cont a {
-  text-decoration: none;
-  border-bottom: none;
-}
 /* ========== SECTIONS (shared) ========== */
 .dash_nav_section,
 .dash_log_section {
@@ -154,46 +149,90 @@ body {
     font-size: 22px;
 }
 
-/* ========== NAV GRID ========== */
+/* ========== NAV LIST ========== */
 .dash_nav_grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.dash_nav_grid a {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 14px;
-    height: 160px;
+}
+
+.dash_nav_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 22px;
     text-decoration: none;
-    color: var(--sixth-color);
-    font-size: var(--primary-font-size);
-    font-weight: 700;
     background-color: var(--thirdy-color);
     border-radius: 14px;
     border-left: 4px solid var(--sixth-color);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
     transition: all 0.25s ease;
+    box-sizing: border-box;
 }
 
-.dash_nav_grid a:hover {
-    background-color: var(--eighth-color);
+.dash_nav_item:hover {
+    background-color: #f5f8ff;
     border-left-color: var(--button-pry-login-color);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.13);
-    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateX(6px);
 }
 
-.dash_nav_grid i {
+.dash_nav_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--eighth-color);
+    transition: all 0.25s ease;
+}
+
+.dash_nav_icon i {
+    font-size: 24px;
     color: var(--sixth-color);
-    font-size: 48px;
     transition: color 0.25s ease;
 }
 
-.dash_nav_grid a:hover i {
+.dash_nav_item:hover .dash_nav_icon {
+    background-color: var(--sixth-color);
+}
+
+.dash_nav_item:hover .dash_nav_icon i {
+    color: var(--thirdy-color);
+}
+
+.dash_nav_text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.dash_nav_title {
+    font-size: var(--primary-font-size);
+    font-weight: 700;
+    color: var(--sixth-color);
+}
+
+.dash_nav_desc {
+    font-size: 14px;
+    color: var(--primary-color);
+}
+
+.dash_nav_arrow {
+    color: var(--eighth-color);
+    font-size: 18px;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.dash_nav_item:hover .dash_nav_arrow {
     color: var(--button-pry-login-color);
+    transform: translateX(4px);
 }
 
 /* ========== LOG SECTION ========== */
@@ -202,40 +241,101 @@ body {
     overflow-y: auto;
     border: 1.5px solid var(--eighth-color);
     border-radius: 12px;
-    padding: 16px;
+    padding: 14px;
     margin-bottom: 16px;
     min-height: 260px;
+    max-height: 420px;
     background-color: #f5f8ff;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
 }
 
 .log_empty {
     color: var(--primary-color);
     font-size: var(--primary-font-size);
     text-align: center;
-    margin-top: 80px;
+    margin: auto 0;
 }
 
-#log_btn {
-    height: 48px;
+.log_card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    background-color: var(--thirdy-color);
+    border: 1px solid var(--eighth-color);
+    border-left: 3px solid var(--sixth-color);
     border-radius: 10px;
-    border: none;
-    background-color: var(--sixth-color);
-    color: var(--thirdy-color);
-    font-size: var(--primary-font-size);
-    font-weight: 600;
-    cursor: pointer;
+    padding: 12px 14px;
+    box-sizing: border-box;
+}
+
+.log_card > i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    background-color: var(--eighth-color);
+    color: var(--sixth-color);
+    font-size: 14px;
+}
+
+.log_info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.log_quem {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--sixth-color);
+}
+
+.log_oque {
+    font-size: 14px;
+    color: var(--fifh-color);
+}
+
+.log_oque strong {
+    color: var(--sixth-color);
+}
+
+.log_campos {
+    font-size: 13px;
+    color: var(--primary-color);
+}
+
+.log_hora {
+    font-size: 12px;
+    color: var(--primary-color);
+}
+
+.dash_log_footer {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 0 24px;
+    height: 46px;
+    border-radius: 10px;
+    background-color: var(--sixth-color);
+    color: var(--thirdy-color);
+    font-size: var(--primary-font-size);
+    font-weight: 600;
+    text-decoration: none;
     transition: all 0.2s ease;
-    align-self: flex-start;
+    flex-shrink: 0;
 }
 
-#log_btn:hover {
+.dash_log_footer:hover {
     background-color: #2a5298;
-    transform: scale(1.04);
+    transform: scale(1.02);
     box-shadow: 0 4px 14px rgba(30, 58, 95, 0.35);
 }
 
@@ -245,10 +345,6 @@ body {
         flex-direction: column;
         margin: 24px 20px 40px;
         width: calc(100% - 40px);
-    }
-
-    .dash_nav_grid {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -279,7 +375,21 @@ body {
         font-size: 24px;
     }
 
-    .dash_nav_grid {
-        grid-template-columns: 1fr 1fr;
+    .dash_nav_item {
+        padding: 14px 16px;
+        gap: 12px;
+    }
+
+    .dash_nav_icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .dash_nav_icon i {
+        font-size: 20px;
+    }
+
+    .dash_nav_desc {
+        font-size: 13px;
     }
 }

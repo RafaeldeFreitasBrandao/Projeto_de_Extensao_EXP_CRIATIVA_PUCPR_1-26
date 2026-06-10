@@ -13,7 +13,7 @@
 
     <div class="dash_head">
         <img src="../../data/logo.png" alt="Logo">
-        <h1>Painel Principal</h1>
+        <h1><i class="fa-solid fa-house-medical"></i> Painel Principal</h1>
 
         <a href="account_user.html" id="user_a" title="Minha Conta">
             <i class="fa-regular fa-circle-user fa-3x"></i>
@@ -30,26 +30,45 @@
     </div>
 
     <div class="dash_main">
-        <nav>
-            <a href="pacients_user.html" title="Gerenciar Pacientes">
-                <i class="fa-solid fa-user-plus"></i>
-                <span>Paciente</span>
+        <h3><i class="fa-solid fa-grip"></i> Módulos do Sistema</h3>
+        <nav class="dash_nav_grid">
+
+            <a href="pacients_user.html" class="dash_nav_item" title="Gerenciar Pacientes">
+                <div class="dash_nav_icon"><i class="fa-solid fa-user-plus"></i></div>
+                <div class="dash_nav_text">
+                    <span class="dash_nav_title">Pacientes</span>
+                    <span class="dash_nav_desc">Cadastre e acompanhe os pacientes sob sua responsabilidade</span>
+                </div>
+                <i class="fa-solid fa-chevron-right dash_nav_arrow"></i>
             </a>
 
-            <a href="guardian_user.html" title="Gerenciar Responsáveis">
-                <i class="fa-solid fa-user-shield"></i>
-                <span>Responsável</span>
+            <a href="guardian_user.html" class="dash_nav_item" title="Gerenciar Responsáveis">
+                <div class="dash_nav_icon"><i class="fa-solid fa-user-shield"></i></div>
+                <div class="dash_nav_text">
+                    <span class="dash_nav_title">Responsáveis</span>
+                    <span class="dash_nav_desc">Gerencie os responsáveis pelos pacientes cadastrados</span>
+                </div>
+                <i class="fa-solid fa-chevron-right dash_nav_arrow"></i>
             </a>
 
-            <a href="forms_user.html" title="Preencher Formulários">
-                <i class="fa-solid fa-clipboard-list"></i>
-                <span>Formulário</span>
+            <a href="forms_user.html" class="dash_nav_item" title="Preencher Formulários">
+                <div class="dash_nav_icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                <div class="dash_nav_text">
+                    <span class="dash_nav_title">Formulários</span>
+                    <span class="dash_nav_desc">Preencha os formulários de triagem e sintomas</span>
+                </div>
+                <i class="fa-solid fa-chevron-right dash_nav_arrow"></i>
             </a>
 
-            <a href="report_user.html" title="Ver Resultados">
-                <i class="fa-solid fa-user-check"></i>
-                <span>Resultado</span>
+            <a href="report_user.html" class="dash_nav_item" title="Ver Resultados">
+                <div class="dash_nav_icon"><i class="fa-solid fa-user-check"></i></div>
+                <div class="dash_nav_text">
+                    <span class="dash_nav_title">Resultados</span>
+                    <span class="dash_nav_desc">Consulte os resultados e indicações de exame</span>
+                </div>
+                <i class="fa-solid fa-chevron-right dash_nav_arrow"></i>
             </a>
+
         </nav>
     </div>
 

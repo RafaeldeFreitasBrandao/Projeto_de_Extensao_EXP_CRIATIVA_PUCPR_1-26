@@ -43,12 +43,6 @@ window.addEventListener('load', async () => {
 	
 
 	definirBloqueio(true);
-
-	// Se não for administrador, desativa botão de editar e mostra mensagem
-	if (perfilUsuario !== 'admin') {
-		document.getElementById('edit_button').disabled = true;
-		document.getElementById('msg').textContent = 'Edição disponível apenas para administradores.';
-	}
 });
 
 function definirBloqueio(bloquear) {
@@ -66,26 +60,4 @@ function definirBloqueio(bloquear) {
 	document.getElementById('responsavel_nome').disabled = bloquear;
 }
 
-document.getElementById('edit_button').addEventListener('click', async () => {
-	const btn = document.getElementById('edit_button');
-	const msg = document.getElementById('msg');
 
-	// segurança extra: bloqueia ação se usuário não for admin
-	if (perfilUsuario !== 'admin') {
-		msg.textContent = 'Você não tem permissão para editar este formulário.';
-		return;
-	}
-
-	if (!modoEdicao) {
-        definirBloqueio(false);
-        btn.textContent = 'Salvar';
-        modoEdicao = true;
-        return;
-    }
-
-	// Ao salvar, apenas alternamos o modo de edição (não há endpoint de edição de nomes aqui)
-	msg.textContent = 'Dados atualizados com sucesso!!';
-	btn.textContent = 'Editar';
-	modoEdicao = false;
-	definirBloqueio(true);
-});
