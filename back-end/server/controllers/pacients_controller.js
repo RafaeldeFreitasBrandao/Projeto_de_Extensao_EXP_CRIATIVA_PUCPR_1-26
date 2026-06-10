@@ -61,7 +61,8 @@ exports.detalharPaciente = async (req, res) => {
             return res.status(404).json({ erro: 'Paciente não encontrado' });
 
         // Bloqueia se o usuário logado não for o dono
-        if (rows[0].id_usuario_saude !== id_usuario)
+       // Bloqueia se o usuário logado não for o dono (admin pode ver todos)
+        if (req.usuario.perfil !== 'admin' && rows[0].id_usuario_saude !== id_usuario)
             return res.status(403).json({ erro: 'Você não tem permissão para ver este paciente' });
 
         res.json(rows[0]);
@@ -124,11 +125,9 @@ exports.criarPaciente = async (req, res) => {
             return res.status(404).json({ erro: 'Paciente não encontrado' });
 
         const old = oldRows[0];
-
-        // Bloqueia se o usuário logado não for o dono
-        if (old.id_usuario_saude !== id_usuario)
+       // Bloqueia se o usuário logado não for o dono (admin pode editar todos)
+        if (req.usuario.perfil !== 'admin' && old.id_usuario_saude !== id_usuario)
             return res.status(403).json({ erro: 'Você não tem permissão para editar este paciente' });
-
         // Mapa dos campos monitorados
         const camposMap = {
             nome: 'Nome',
@@ -253,7 +252,7 @@ exports.excluirPaciente = async (req, res) => {
         if (check.length === 0)
             return res.status(404).json({erro:'Paciente não encontrado'});
 
-        if (check[0].id_usuario_saude !== id_usuario)
+        if (req.usuario.perfil !== 'admin' && check[0].id_usuario_saude !== id_usuario)
             return res.status(403).json({erro:'Você não tem permissão para excluir este paciente'});
 
         // Deleta formulários vinculados primeiro para evitar violação de chave estrangeira
