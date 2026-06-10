@@ -1,4 +1,4 @@
-import { listarLogs } from '../../js/api.js';
+import { listarLogs } from './api.js';
 
 async function carregarLogsRecentes() {
     const logs = await listarLogs(5);

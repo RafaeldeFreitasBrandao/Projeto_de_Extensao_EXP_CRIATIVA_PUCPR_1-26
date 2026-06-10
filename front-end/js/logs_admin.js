@@ -1,4 +1,4 @@
-import { listarLogs } from '../../js/api.js';
+import { listarLogs } from './api.js';
 
 const ICONES = {
     paciente: 'fa-user-plus',

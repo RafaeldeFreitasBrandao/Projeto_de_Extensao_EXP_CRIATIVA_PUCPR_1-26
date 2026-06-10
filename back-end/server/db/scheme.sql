@@ -144,4 +144,16 @@ INSERT INTO comportamentos (nome, valor_masculino, valor_feminino) VALUES
 ALTER TABLE pacientes ADD COLUMN foto VARCHAR(255) NULL;
 
 INSERT INTO administradores (nome_usuario, senha_hash) VALUES 
-('Admin', '12345');
+	('Admin', '12345');
+    
+CREATE TABLE logs (
+    id_log            INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario        INT NOT NULL,
+    nome_usuario      VARCHAR(255) NOT NULL,
+    tipo_usuario      ENUM('admin', 'saude') NOT NULL,
+    entidade          ENUM('usuario', 'paciente', 'responsavel', 'formulario') NOT NULL,
+    id_entidade       INT,
+    nome_entidade     VARCHAR(255),          
+    campos_editados   TEXT,                   
+    data_hora         DATETIME DEFAULT CURRENT_TIMESTAMP
+);
