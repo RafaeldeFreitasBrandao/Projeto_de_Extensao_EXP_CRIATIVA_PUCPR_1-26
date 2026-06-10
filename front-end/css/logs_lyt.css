@@ -1,3 +1,4 @@
+
 h1 {
     font-size: var(--title-fifth-font-size);
     color: var(--thirdy-color);
@@ -14,53 +15,206 @@ h1 i {
 }
 
 h2 {
-    font-size: var(--title-forfh-font-size);
+    font-size: var(--title-thrd-font-size);
     color: var(--button-pry-login-color);
-    margin-left: 30px;
-    margin-top: 28px;
-    margin-bottom: 12px;
+    margin: 0;
     display: flex;
     align-items: center;
     gap: 10px;
+    font-weight: 600;
 }
 
 h2 i {
     color: var(--button-pry-login-color);
 }
 
-h3 {
-    font-size: var(--input-font-size);
-    color: var(--fifh-color);
-    margin-left: 30px;
-    margin-bottom: 6px;
-    margin-top: 20px;
-    font-weight: 500;
-}
 
-#title_ppl {
-    font-size: var(--title-thrd-font-size);
-    color: var(--button-pry-login-color);
-    font-weight: 600;
-    margin-top: 24px;
-    margin-bottom: 8px;
+#refresh_button {
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
 }
 
-#title_ppl i {
-    color: var(--button-pry-login-color);
+.main_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 40px 48px;
+    box-sizing: border-box;
+    background-color: var(--secondary-color);
+    min-height: calc(100vh - 90px);
 }
 
-#text_question {
-    font-size: var(--input-font-size);
+
+.logs_card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1100px;
+    background-color: var(--thirdy-color);
+    border-radius: 20px;
+    border-top: 4px solid var(--button-pry-login-color);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+
+.logs_card_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 28px 32px;
+    border-bottom: 2px solid var(--eighth-color);
+}
+
+.logs_count {
+    background-color: var(--sixth-color);
+    color: var(--thirdy-color);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+
+#logsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 24px 32px 32px 32px;
+}
+
+.logs_empty {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: var(--primary-font-size);
+    padding: 60px 0;
+    margin: 0;
+}
+
+
+.log_card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    background-color: #f5f8ff;
+    border: 1.5px solid var(--eighth-color);
+    border-left: 4px solid var(--sixth-color);
+    border-radius: 12px;
+    padding: 16px 20px;
+}
+
+.log_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+    background-color: var(--eighth-color);
+}
+
+.log_icon i {
+    font-size: 18px;
+    color: var(--sixth-color);
+}
+
+.log_info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+}
+
+.log_top_row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.log_quem {
+    font-size: var(--primary-font-size);
+    font-weight: 700;
+    color: var(--sixth-color);
+}
+
+.log_badge {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.log_badge_admin {
+    background-color: var(--button-thrd-color);
+    color: var(--thirdy-color);
+}
+
+.log_badge_saude {
+    background-color: var(--seventh-color);
+    color: var(--thirdy-color);
+}
+
+.log_oque {
+    font-size: var(--primary-font-size);
     color: var(--fifh-color);
-    font-weight: 500;
-    margin-top: 16px;
-    margin-bottom: 6px;
 }
 
-i {
-    color: var(--button-pry-login-color);
+.log_oque strong {
+    color: var(--sixth-color);
 }
 
+.log_campos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.log_tag {
+    background-color: var(--eighth-color);
+    color: var(--sixth-color);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 6px;
+}
+
+.log_hora {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--primary-color);
+}
+
+
+@media (max-width: 700px) {
+    .main_body {
+        padding: 20px;
+    }
+
+    .logs_card_header,
+    #logsContainer {
+        padding: 20px;
+    }
+
+    .log_card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

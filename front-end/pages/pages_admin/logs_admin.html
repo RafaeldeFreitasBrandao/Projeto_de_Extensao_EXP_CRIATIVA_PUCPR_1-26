@@ -3,21 +3,36 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Principal</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../css/logs_lyt.css">
+    <title>Logs de Edição</title>
     <link rel="stylesheet" href="../../css/base.css">
     <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/logs_lyt.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-</body>  
-<div class="reg_header">
-
-  <img src="../../data/logo.png" alt="Logo">
-  
-  <h1><i class="fa-solid fa-folder-closed"></i> Logs de edição</h1>
-
-  <a href="dashboard_admin.html"><button class="return_reg">Voltar</button></a>
-
+  <div class="reg_header">
+    <img src="../../data/logo.png" alt="Logo">
+    <h1><i class="fa-solid fa-clock-rotate-left"></i> Logs de Edição</h1>
+    <button id="refresh_button" class="return_reg"><i class="fa-solid fa-arrows-rotate"></i> Atualizar</button>
+    <a href="dashboard_admin.html"><button class="return_reg">Voltar</button></a>
   </div>
+
+  <div class="main_body">
+    <div class="logs_card">
+
+      <div class="logs_card_header">
+        <h2><i class="fa-solid fa-list-check"></i> Registros dos Últimos 30 Dias</h2>
+        <span id="logsCount" class="logs_count">0 registros</span>
+      </div>
+
+      <div id="logsContainer">
+        <p class="logs_empty">Carregando registros...</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module" src="../../js/logs_admin.js"></script>
+</body>
+</html>

@@ -267,3 +267,15 @@ export async function detalharFormularioAdmin(id) {
     });
     return resposta.json();
 }
+
+export async function listarLogs(limite = null) {
+    const url = limite
+        ? `${BASE.replace('/api', '')}/logs?limite=${limite}`
+        : `${BASE.replace('/api', '')}/logs`;
+
+    const resposta = await fetch(url, {
+        method: 'GET',
+        headers: getHeaders()
+    });
+    return resposta.json();
+}

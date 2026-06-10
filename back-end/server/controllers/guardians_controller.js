@@ -1,4 +1,5 @@
 const db = require('../db/connection.js');
+const { registrarLog } = require('../utils/logs_edition.js');
 
 //Função que vai exibir todos os responsáveis da tabela 
 
@@ -61,37 +62,82 @@ exports.criarResponsavel = async (req, res) => {
 };
     exports.editarResponsavel = async (req, res) => {
 
-        const {id} = req.params;
-        const {nome, email, telefone, grau} =req.body;
+    const {id} = req.params;
+    const {nome, email, telefone, grau} = req.body;
 
-        if(!nome && !email && !telefone && !grau) 
-            return res.status(400).json({erro:'Nenhum dado para atualizar'});
+    if(!nome && !email && !telefone && !grau) 
+        return res.status(400).json({erro:'Nenhum dado para atualizar'});
 
-        try {
-            const campos = [];
-            const valores = [];
+    try {
+        // Busca os dados atuais (para comparar e gerar o log)
+        const [oldRows] = await db.query('SELECT * FROM responsaveis WHERE id_responsavel = ?', [id]);
 
-            if (nome)     { campos.push('nome = ?');     valores.push(nome); }
-            if (email)    { campos.push('email = ?');    valores.push(email); }
-            if (telefone) { campos.push('telefone = ?'); valores.push(telefone); }
-            if (grau)     { campos.push('grau = ?');     valores.push(grau); }
+        if (oldRows.length === 0)
+            return res.status(404).json({erro:'Responsável não encontrado'});
 
-            valores.push(id);
+        const old = oldRows[0];
 
-            await db.query (
-                `UPDATE responsaveis SET ${campos.join(', ')} WHERE id_responsavel = ?`, valores
-            );
+        const campos = [];
+        const valores = [];
 
-            res.json({
-                ok:true,
-                mensagem: 'Responsável atualizado com sucesso'
+        if (nome)     { campos.push('nome = ?');     valores.push(nome); }
+        if (email)    { campos.push('email = ?');    valores.push(email); }
+        if (telefone) { campos.push('telefone = ?'); valores.push(telefone); }
+        if (grau)     { campos.push('grau = ?');     valores.push(grau); }
+
+        valores.push(id);
+
+        await db.query (
+            `UPDATE responsaveis SET ${campos.join(', ')} WHERE id_responsavel = ?`, valores
+        );
+
+        // ===== LOG DE EDIÇÃO =====
+        const camposMap = {
+            nome: 'Nome',
+            email: 'Email',
+            telefone: 'Telefone',
+            grau: 'Grau'
+        };
+
+        const novosValores = { nome, email, telefone, grau };
+
+        const camposEditados = Object.keys(camposMap).filter(k =>
+            novosValores[k] !== undefined && String(novosValores[k]) !== String(old[k])
+        ).map(k => camposMap[k]);
+
+        if (camposEditados.length > 0) {
+            const id_usuario = req.usuario.id;
+            const tipo_usuario = req.usuario.perfil === 'admin' ? 'admin' : 'saude';
+
+            let nome_usuario = 'Desconhecido';
+            if (req.usuario.perfil === 'admin') {
+                const [adm] = await db.query('SELECT nome_usuario FROM administradores WHERE id_administrador = ?', [id_usuario]);
+                nome_usuario = adm[0]?.nome_usuario || nome_usuario;
+            } else {
+                const [usu] = await db.query('SELECT nome FROM usuarios_saude WHERE id_usuario_saude = ?', [id_usuario]);
+                nome_usuario = usu[0]?.nome || nome_usuario;
+            }
+
+            await registrarLog({
+                id_usuario,
+                nome_usuario,
+                tipo_usuario,
+                entidade: 'responsavel',
+                id_entidade: id,
+                nome_entidade: old.nome,
+                campos_editados: camposEditados
             });
-
-
-        } catch (err) {
-            console.error(err)
-            return res.status(500).json({erro: 'Erro interno no servidor'});
         }
+
+        res.json({
+            ok:true,
+            mensagem: 'Responsável atualizado com sucesso'
+        });
+
+    } catch (err) {
+        console.error(err)
+        return res.status(500).json({erro: 'Erro interno no servidor'});
+    }
 };
 
 exports.detalharResponsavel = async (req, res) => {

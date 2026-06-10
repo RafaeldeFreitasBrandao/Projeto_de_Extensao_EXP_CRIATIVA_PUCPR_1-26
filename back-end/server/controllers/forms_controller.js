@@ -1,5 +1,5 @@
 const db = require('../db/connection.js');
-
+const { registrarLog } = require('../utils/logs_edition.js');
 
 exports.listarFormularios = async (req, res) => {
 
@@ -173,7 +173,7 @@ exports.editarFormulario = async (req, res) => {
     try {
 
         const [check] = await db.query(
-            `SELECT p.sexo FROM formularios f 
+            `SELECT p.sexo, p.nome AS nome_paciente FROM formularios f 
             JOIN pacientes p ON f.id_paciente = p.id_paciente
             WHERE f.id_formulario = ? AND f.id_usuario_saude = ?`,
             [id, id_usuario]
@@ -182,7 +182,16 @@ exports.editarFormulario = async (req, res) => {
         if (check.length === 0)
             return res.status(404).json({erro:'Formulário não encontrado'});
 
-        const {sexo} = check[0];
+        const {sexo, nome_paciente} = check[0];
+
+        // Sintomas marcados ANTES da edição (para comparar depois)
+        const [oldCompRows] = await db.query(`
+            SELECT c.id_comportamento, c.nome
+            FROM formulario_comportamento fc
+            JOIN comportamentos c ON fc.id_comportamento = c.id_comportamento
+            WHERE fc.id_formulario = ?`,
+            [id]
+        );
 
         await db.query(`
             DELETE FROM formulario_comportamento WHERE id_formulario = ?`,
@@ -221,6 +230,49 @@ exports.editarFormulario = async (req, res) => {
             `UPDATE formularios SET status = ? WHERE id_formulario = ?`,
             [status, id]
         );
+
+        // ===== LOG DE EDIÇÃO =====
+        const oldIds = oldCompRows.map(c => String(c.id_comportamento));
+        const newIds = comportamentos.map(cid => String(cid));
+
+        // IDs que foram desmarcados ou marcados (mudaram de estado)
+        const idsAlterados = [
+            ...oldIds.filter(cid => !newIds.includes(cid)),
+            ...newIds.filter(cid => !oldIds.includes(cid))
+        ];
+
+        let camposEditados = [];
+        if (idsAlterados.length > 0) {
+            const placeholders = idsAlterados.map(() => '?').join(',');
+            const [nomesAlterados] = await db.query(
+                `SELECT nome FROM comportamentos WHERE id_comportamento IN (${placeholders})`,
+                idsAlterados
+            );
+            camposEditados = nomesAlterados.map(c => c.nome);
+        }
+
+        if (camposEditados.length > 0) {
+            const tipo_usuario = req.usuario.perfil === 'admin' ? 'admin' : 'saude';
+
+            let nome_usuario = 'Desconhecido';
+            if (req.usuario.perfil === 'admin') {
+                const [adm] = await db.query('SELECT nome_usuario FROM administradores WHERE id_administrador = ?', [id_usuario]);
+                nome_usuario = adm[0]?.nome_usuario || nome_usuario;
+            } else {
+                const [usu] = await db.query('SELECT nome FROM usuarios_saude WHERE id_usuario_saude = ?', [id_usuario]);
+                nome_usuario = usu[0]?.nome || nome_usuario;
+            }
+
+            await registrarLog({
+                id_usuario,
+                nome_usuario,
+                tipo_usuario,
+                entidade: 'formulario',
+                id_entidade: id,
+                nome_entidade: nome_paciente,
+                campos_editados: camposEditados
+            });
+        }
 
         res.json({ok:true, soma_total, status});
 
