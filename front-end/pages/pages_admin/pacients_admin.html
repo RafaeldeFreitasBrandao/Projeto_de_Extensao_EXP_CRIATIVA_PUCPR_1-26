@@ -22,23 +22,31 @@
     <h2>Novo Paciente</h2>
     <h3><i class="fa-solid fa-user"></i> Nome</h3>
     <input type="text" id="nome" placeholder="Nome completo">
+
     <h3><i class="fa-solid fa-id-badge"></i> CPF</h3>
-    <input type="text" id="cpf" placeholder="xxx.xxx.xxx-xx" maxlength="11">
+    <input type="number" id="cpf" placeholder="xxx.xxx.xxx-xx" maxlength="11">
+
     <h3><i class="fa-solid fa-id-card"></i> RG</h3>
-    <input type="text" id="rg" placeholder="xx.xxx.xxx-xx" maxlength="9">
+    <input type="number" id="rg" placeholder="xx.xxx.xxx-xx" maxlength="9">
+
     <h3><i class="fa-solid fa-birthday-cake"></i> Data de nascimento</h3>
     <input type="date" id="dataNascimento">
+
     <h3><i class="fa-solid fa-venus-mars"></i> Sexo</h3>
     <select id="sexo">
+
       <option value="">Selecione</option>
       <option value="masculino">Masculino</option>
       <option value="feminino">Feminino</option>
+
     </select>
     <h3><i class="fa-solid fa-camera"></i> Foto (opcional)</h3>
     <input type="file" id="foto" accept="image/*">
+
     <img id="fotoPreview" alt="Pré-visualização"
      style="display:none; width:100px; height:100px;
             object-fit:cover; border-radius:50%; margin-top:8px;">
+            
     <div class="reg_button">
       <button onclick="salvarPaciente()">Salvar</button>
       <button id="cancel_button" onclick="fecharFormulario()">Cancelar</button>
