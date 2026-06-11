@@ -228,7 +228,7 @@ exports.atualizarFotoPaciente = async (req, res) => {
         if (check.length === 0)
             return res.status(404).json({erro:'Paciente não encontrado'});
 
-        if(check[0].id_usuario_saude !== id_usuario)
+        if (req.usuario.perfil !== 'admin' && check[0].id_usuario_saude !== id_usuario)
             return res.status(403).json({erro:'Sem permissão'});
 
         if (check[0].foto) {
@@ -268,7 +268,16 @@ exports.excluirPaciente = async (req, res) => {
         if (req.usuario.perfil !== 'admin' && check[0].id_usuario_saude !== id_usuario)
             return res.status(403).json({erro:'Você não tem permissão para excluir este paciente'});
 
-        // Deleta formulários vinculados primeiro para evitar violação de chave estrangeira
+        // Remove vínculos de comportamento e resultados dos formulários deste paciente,
+        // e só então os formulários, para evitar violação de chave estrangeira
+        await db.query(
+            `DELETE FROM formulario_comportamento WHERE id_formulario IN (SELECT id_formulario FROM formularios WHERE id_paciente = ?)`,
+            [id]
+        );
+        await db.query(
+            `DELETE FROM resultado WHERE id_formulario IN (SELECT id_formulario FROM formularios WHERE id_paciente = ?)`,
+            [id]
+        );
         await db.query(`DELETE FROM formularios WHERE id_paciente = ?`, [id]);
 
         if (check[0].foto) {

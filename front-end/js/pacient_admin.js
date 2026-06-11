@@ -36,7 +36,7 @@ import { listarPacientes, criarPaciente, editarPaciente,} from '../js/api.js';
     document.getElementById('dataNascimento').value  = '';
     document.getElementById('sexo').value  = '';
     document.getElementById('foto').value = '';
-    document.getElementById('fotoPreviw').style.display = 'none';
+    document.getElementById('fotoPreview').style.display = 'none';
   }
 
   document.getElementById('foto').addEventListener('change', (e) => {

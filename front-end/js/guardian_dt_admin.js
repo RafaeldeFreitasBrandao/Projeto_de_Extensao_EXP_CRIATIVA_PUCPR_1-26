@@ -96,6 +96,6 @@ document.getElementById('delete_button').addEventListener('click', async () => {
         return;
     }
 
-    window.location.href = 'guardians_admin.html';
+    window.location.href = 'guardian_admin.html';
 
 });
