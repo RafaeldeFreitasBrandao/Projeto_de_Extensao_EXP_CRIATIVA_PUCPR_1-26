@@ -1,4 +1,4 @@
-import { listarFormularios, criarFormulario, } from "./api.js";
+import { listarTodosFormularios, criarFormulario, } from "./api.js";
 
     const formularios = [];
 
@@ -19,7 +19,7 @@ import { listarFormularios, criarFormulario, } from "./api.js";
 
 window.addEventListener('load', async () => {
 
-    const dados = await listarFormularios();
+    const dados = await listarTodosFormularios();
 
     if(dados.erro) {
         console.error(dados.erro);
@@ -36,14 +36,13 @@ function renderizarLista() {
     const lista = document.getElementById('listaFormularios');
     lista.innerHTML = '';
 
-    const idUsuarioLogado = Number(localStorage.getItem('id'));
-
     formularios.forEach((p, index) => {
         const item = document.createElement('div');
         item.classList.add('form_salvo');
 
         item.innerHTML = `
-        <p> Formulário: #${p.id_formulario}#</p>
+        <p> Formulário do paciente: ${p.nome_paciente}</p>
+        <p> Preenchido por: ${p.nome_usuario}</p>
         <a href="forms_detail_admin.html?id=${p.id_formulario}">
         <button>Detalhes</button>
         </a>`
@@ -77,7 +76,7 @@ document.getElementById('save_form').addEventListener('click', async () => {
     }
 
 
-    const dadosAtualizados = await listarFormularios();
+    const dadosAtualizados = await listarTodosFormularios();
     if (!dadosAtualizados.erro) {
         formularios.length = 0;
         dadosAtualizados.forEach(r => formularios.push(r));

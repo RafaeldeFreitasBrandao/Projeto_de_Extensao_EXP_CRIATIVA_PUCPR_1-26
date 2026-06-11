@@ -9,16 +9,22 @@ exports.listarPacientes = async (req, res) => {
     const perfil = req.usuario.perfil;
 
     try {
-        let query = `SELECT id_paciente, nome, CPF AS cpf, id_usuario_saude, id_administrador FROM pacientes`;
+        let query = `
+            SELECT p.id_paciente, p.nome, p.CPF AS cpf, p.id_usuario_saude, p.id_administrador,
+            COALESCE(u.nome, a.nome_usuario) AS nome_usuario
+            FROM pacientes p
+            LEFT JOIN usuarios_saude u ON p.id_usuario_saude = u.id_usuario_saude
+            LEFT JOIN administradores a ON p.id_administrador = a.id_administrador
+        `;
         const params = [];
 
         // Usuário de saúde só vê os pacientes que ele mesmo cadastrou
         if (perfil !== 'admin') {
-            query += ` WHERE id_usuario_saude = ?`;
+            query += ` WHERE p.id_usuario_saude = ?`;
             params.push(id_usuario);
         }
 
-        query += ` ORDER BY nome ASC`;
+        query += ` ORDER BY p.nome ASC`;
 
         const [rows] = await db.query(query, params);
 

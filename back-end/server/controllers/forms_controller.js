@@ -105,7 +105,10 @@ exports.criarFormulario = async (req, res) => {
             [id_formulario, soma_total]
         );
 
-        const status  = soma_total >= 0.50 ? 'Indicado para exame' : 'Não indicado para exame';
+       const limiar = sexo === 'masculino' ? 0.56 : 0.55;
+        const status = soma_total >= limiar ? 'Indicado para exame' : 'Não indicado para exame';
+
+
         await db.query(
             `UPDATE formularios SET status = ? WHERE id_formulario = ?`, 
             [status, id_formulario]
@@ -178,14 +181,17 @@ exports.editarFormulario = async (req, res) => {
     try {
 
         const [check] = await db.query(
-            `SELECT p.sexo, p.nome AS nome_paciente FROM formularios f 
+            `SELECT f.id_usuario_saude, p.sexo, p.nome AS nome_paciente FROM formularios f 
             JOIN pacientes p ON f.id_paciente = p.id_paciente
-            WHERE f.id_formulario = ? AND f.id_usuario_saude = ?`,
-            [id, id_usuario]
+            WHERE f.id_formulario = ?`,
+            [id]
         );
 
         if (check.length === 0)
             return res.status(404).json({erro:'Formulário não encontrado'});
+
+        if (req.usuario.perfil !== 'admin' && check[0].id_usuario_saude !== id_usuario)
+            return res.status(403).json({erro:'Você não tem permissão para editar este formulário'});
 
         const {sexo, nome_paciente} = check[0];
 
@@ -229,7 +235,8 @@ exports.editarFormulario = async (req, res) => {
             [soma_total, id]
         );
 
-        const status  = soma_total >= 0.50 ? 'Indicado para exame':'Não indicado para exame';
+        const limiar = sexo === 'masculino' ? 0.56 : 0.55;
+        const status = soma_total >= limiar ? 'Indicado para exame' : 'Não indicado para exame';
 
         await db.query(
             `UPDATE formularios SET status = ? WHERE id_formulario = ?`,

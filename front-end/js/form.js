@@ -43,7 +43,7 @@ function renderizarLista() {
         item.classList.add('form_salvo');
 
         item.innerHTML = `
-        <p> Formulário: #${p.id_formulario}#</p>
+        <p> Formulário do paciente: ${p.nome_paciente}</p>
         <a href="forms_detail_user.html?id=${p.id_formulario}">
         <button>Detalhes</button>
         </a>`
