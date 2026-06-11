@@ -77,7 +77,9 @@ function renderizarLista() {
 
         item.innerHTML = `
             <p>${u.nome} | CPF: ${u.CPF} | ${u.profissao}</p>
-            <button>Detalhes</button>
+            <a href="users_detail_admin.html?id=${u.id_usuario_saude}">
+          <button>Detalhes</button>
+        </a>
         `;
         lista.appendChild(item);
     });

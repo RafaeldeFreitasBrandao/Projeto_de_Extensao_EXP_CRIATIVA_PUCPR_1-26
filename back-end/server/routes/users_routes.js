@@ -14,4 +14,10 @@ router.post('/', autenticar, controller.criarUsuario);
 
 router.get('/', autenticar, controller.listarUsuarios);
 
+router.get('/:id', autenticar, controller.detalharUsuario);
+
+router.put('/:id', autenticar, controller.editarUsuario);
+
+router.delete('/:id', autenticar, controller.deletarUsuario);
+
 module.exports = router;
