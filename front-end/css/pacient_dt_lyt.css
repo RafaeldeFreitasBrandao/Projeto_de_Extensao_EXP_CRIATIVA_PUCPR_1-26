@@ -1,6 +1,4 @@
-
-
-
+/* ========== OUTER LAYOUT ========== */
 .big_content {
     display: flex;
     flex-direction: row;
@@ -8,27 +6,33 @@
     justify-content: center;
     min-height: 100vh;
     width: 100%;
-    background-color: var(--primary-color);
+    background-color: var(--page-bg);
     padding: 40px 0;
     box-sizing: border-box;
 }
 
-
+/* ========== MAIN CARD ========== */
+/*
+    flex-direction: row + flex-wrap: wrap serves both pages:
+    - pacient: .header_main and .very_big_content each get width:100%
+      so they stack vertically (header on top, columns below)
+    - guardian: three .detail_content flex:1 divs sit side by side in one row
+*/
 .main_content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
     width: 100%;
-    max-width: 1100px;
+    max-width: var(--content-max-width);
     background-color: var(--thirdy-color);
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
     border-top: 4px solid var(--button-pry-login-color);
-    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--shadow-lg);
     overflow: hidden;
 }
 
-
+/* ========== HEADER (pacient_detail_user only) ========== */
 .header_main {
     display: flex;
     flex-direction: row;
@@ -36,12 +40,12 @@
     justify-content: flex-start;
     height: 90px;
     width: 100%;
-    background: linear-gradient(135deg, var(--sixth-color), #2a5298);
+    background: var(--header-gradient);
     padding: 0 28px;
     box-sizing: border-box;
 }
 
-
+/* ========== CONTENT ROW WRAPPER (pacient_detail_user only) ========== */
 .very_big_content {
     display: flex;
     flex-direction: row;
@@ -49,7 +53,7 @@
     padding: 10px 0 32px 0;
 }
 
-
+/* ========== DETAIL COLUMNS ========== */
 .detail_content {
     display: flex;
     flex-direction: column;
@@ -58,18 +62,20 @@
     min-width: 200px;
 }
 
-
+/* Divider between adjacent columns */
 .detail_content + .detail_content {
     border-left: 2px solid var(--eighth-color);
 }
 
-
+/* Remove left border from first column in pacient (already removed by + selector logic,
+   but kept for clarity if ever needed) */
 #un_content {
     border-left: none;
 }
 
+/* ========== HEADINGS ========== */
 h1 {
-    font-size: var(--title-snd-font-size);
+    font-size: var(--title-fifth-font-size);
     color: var(--thirdy-color);
     margin: 0;
     display: flex;
@@ -82,7 +88,7 @@ h1 i {
     color: var(--thirdy-color);
 }
 
-
+/* h1 inside a .detail_content (guardian page) */
 .detail_content h1 {
     font-size: var(--title-snd-font-size);
     color: var(--button-pry-login-color);
@@ -95,7 +101,7 @@ h1 i {
     color: var(--button-pry-login-color);
 }
 
-
+/* h2 filled by JS (guardian — patient name) */
 h2 {
     font-size: var(--title-thrd-font-size);
     color: var(--sixth-color);
@@ -125,7 +131,7 @@ i {
     color: var(--button-pry-login-color);
 }
 
-
+/* ========== INPUTS ========== */
 .detail_content input {
     height: 48px;
     width: calc(100% - 60px);
@@ -133,7 +139,7 @@ i {
     font-size: var(--primary-font-size);
     border-radius: 8px;
     border: 1.5px solid var(--eighth-color);
-    background-color: #f5f8ff;
+    background-color: var(--nineth-color);
     padding: 0 14px;
     outline: none;
     box-sizing: border-box;
@@ -142,17 +148,17 @@ i {
 
 .detail_content input:focus {
     border-color: var(--button-pry-login-color);
-    box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.15);
+    box-shadow: 0 0 0 3px var(--button-forfh-login-color-op);
 }
 
 .detail_content input:disabled {
-    background-color: var(--eleventh-color);
-    color: var(--twt-color);
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
     cursor: not-allowed;
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
-
+/* ========== BUTTONS ========== */
 .detail_content button {
     height: 48px;
     width: 140px;
@@ -184,10 +190,11 @@ i {
 
 #delete_button:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 14px rgba(0, 119, 255, 0.35);
+    box-shadow: 0 4px 14px rgba(229, 72, 77, 0.35);
     filter: brightness(1.08);
 }
 
+/* Voltar button — ghost/outline style */
 .detail_content a {
     text-decoration: none;
 }
@@ -204,7 +211,7 @@ i {
     transform: scale(1.05);
 }
 
-
+/* ========== MESSAGE ========== */
 #msg {
     font-size: var(--primary-font-size);
     color: var(--msg-alert-color);

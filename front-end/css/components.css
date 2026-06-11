@@ -10,8 +10,8 @@ a {
     height: 140px;
     padding: 0 28px;
     gap: 16px;
-    background: linear-gradient(135deg, #1e3a5f, #2a5298);
-    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.22);
+    background: var(--header-gradient);
+    box-shadow: var(--shadow-md);
     box-sizing: border-box;
 }
 
@@ -24,6 +24,17 @@ a {
 
 .reg_header h1 {
     flex: 1;
+    color: var(--thirdy-color);
+    font-size: var(--title-fifth-font-size);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+}
+
+.reg_header h1 i {
+    color: var(--thirdy-color);
 }
 
 .return_reg {
@@ -71,16 +82,20 @@ a {
     display: none;
     flex-direction: column;
     width: 660px;
-    margin: 40px 48px;
+    margin: 40px auto;
     padding: 30px 32px;
     background-color: var(--thirdy-color);
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     border-top: 4px solid var(--button-pry-login-color);
-    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.13);
+    box-shadow: var(--shadow-md);
 }
 
 .reg_form.visivel {
     display: flex;
+}
+
+.reg_form h2 {
+    margin-top: 0;
 }
 
 .reg_form input {
@@ -88,7 +103,7 @@ a {
     width: 100%;
     border-radius: 8px;
     border: 1.5px solid var(--eighth-color);
-    background-color: #f5f8ff;
+    background-color: var(--nineth-color);
     font-size: var(--input-font-size);
     padding: 0 14px;
     outline: none;
@@ -106,7 +121,7 @@ a {
     width: 100%;
     border-radius: 8px;
     border: 1.5px solid var(--eighth-color);
-    background-color: #f5f8ff;
+    background-color: var(--nineth-color);
     font-size: var(--input-font-size);
     padding: 0 14px;
     cursor: pointer;
@@ -155,7 +170,7 @@ a {
 #cancel_button:hover {
     background-color: var(--msg-alert-color);
     color: var(--thirdy-color);
-    box-shadow: 0 4px 14px rgba(255, 0, 0, 0.25);
+    box-shadow: 0 4px 14px rgba(229, 72, 77, 0.25);
 }
 
 .resp_salvo {
@@ -164,31 +179,31 @@ a {
     align-items: center;
     justify-content: space-between;
     height: 72px;
-    width: 99%;
+    width: 100%;
     background-color: var(--thirdy-color);
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     border-left: 4px solid var(--button-pry-login-color);
     margin-top: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-sm);
     transition: all 0.25s ease;
 }
 
 .resp_salvo p {
     margin-left: 20px;
-    font-size: var(--primary-font-size);
+    font-size: var(--last-font-size);
     color: var(--sixth-color);
     font-weight: 600;
 }
 
 .resp_salvo:hover {
     transform: translateX(6px);
-    box-shadow: 0 4px 18px rgba(0, 119, 255, 0.16);
+    box-shadow: var(--shadow-md);
     border-left-color: var(--sixth-color);
 }
 
 .resp_salvo button {
     height: 40px;
-    width: 100px;
+    width: 85%;
     border-radius: 8px;
     border-style: none;
     font-size: var(--primary-font-size);
@@ -205,6 +220,26 @@ a {
     filter: brightness(1.1);
 }
 
+
+
+
+
+
+/* Containers de listas (pacientes, responsáveis, usuários, formulários) */
+#listaPacientes,
+#listaResponsaveis,
+#listaUser,
+#listaFormularios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 8px 24px 56px 24px;
+    box-sizing: border-box;
+}
+
 .det_resp {
     display: none;
     flex-direction: column;
@@ -215,9 +250,9 @@ a {
     margin-top: 40px;
     margin-bottom: 50px;
     background-color: var(--thirdy-color);
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     border-top: 4px solid var(--seventh-color);
-    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.13);
+    box-shadow: var(--shadow-md);
     overflow: hidden;
 }
 
@@ -227,7 +262,7 @@ a {
 
 .det_resp > h3:first-child {
     width: 100%;
-    background: linear-gradient(135deg, #1e3a5f, #2a5298);
+    background: var(--header-gradient);
     color: var(--thirdy-color);
     margin: 0;
     padding: 18px 22px;
@@ -254,15 +289,15 @@ a {
     margin-top: 4px;
     border-radius: 8px;
     border: 1.5px solid var(--eighth-color);
-    background-color: #f5f8ff;
+    background-color: var(--nineth-color);
     padding: 0 10px;
     font-size: var(--primary-font-size);
-    color: #333;
+    color: var(--fifh-color);
 }
 
 .det_resp input:disabled {
     background-color: var(--secondary-color);
-    color: #555;
+    color: var(--primary-color);
     cursor: not-allowed;
 }
 
@@ -316,25 +351,25 @@ a {
         padding: 14px 16px;
         gap: 10px;
     }
- 
+
     .reg_header img {
         height: 60px;
         width: 60px;
     }
- 
+
     .reg_header h1 {
         font-size: 22px;
         flex: 1 1 100%;
         order: -1;
     }
- 
+
     .return_reg {
         height: 44px;
         width: 100px;
         font-size: 14px;
         margin-right: 0;
     }
- 
+
     #add_reg {
         height: 44px;
         width: auto;
@@ -343,22 +378,22 @@ a {
         margin-right: 0;
     }
 }
- 
+
 @media (max-width: 480px) {
     .reg_header {
         gap: 8px;
     }
- 
+
     .reg_header h1 {
         font-size: 18px;
     }
- 
+
     .return_reg,
     #add_reg {
         flex: 1;
     }
 }
- 
+
 @media (max-width: 680px) {
     .resp_salvo {
         width: calc(100% - 32px);
@@ -369,19 +404,19 @@ a {
         gap: 10px;
         align-items: flex-start;
     }
- 
+
     .resp_salvo button {
         width: 100%;
         margin-right: 0;
     }
 }
- 
+
 @media (max-width: 680px) {
     .det_resp {
         width: calc(100% - 32px);
         margin-left: 16px;
     }
- 
+
     .det_resp input {
         width: calc(100% - 44px);
     }
@@ -393,7 +428,7 @@ a {
         margin: 24px 16px;
         padding: 24px 20px;
     }
- 
+
     .reg_form input,
     .reg_form select {
         font-size: 16px;

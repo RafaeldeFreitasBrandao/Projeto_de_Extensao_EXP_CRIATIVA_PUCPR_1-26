@@ -22,6 +22,7 @@ h2 {
     display: flex;
     align-items: center;
     gap: 10px;
+    font-weight: 600;
 }
 
 h2 i {
@@ -71,7 +72,7 @@ input {
     font-size: var(--primary-font-size);
     border-radius: 8px;
     border: 1.5px solid var(--eighth-color);
-    background-color: #f5f8ff;
+    background-color: var(--nineth-color);
     padding: 0 14px;
     outline: none;
     box-sizing: border-box;
@@ -96,12 +97,12 @@ input:focus {
     display: flex;
     flex-direction: row;
     width: 100%;
-    max-width: 1100px;
+    max-width: var(--content-max-width);
     height: auto;
     background-color: var(--thirdy-color);
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
     border-top: 4px solid var(--button-pry-login-color);
-    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--shadow-lg);
     padding-bottom: 32px;
 }
 
@@ -182,18 +183,18 @@ input:focus {
     align-items: center;
     justify-content: space-between;
     height: 72px;
-    width: 580px;
+    width: 100%;
     background-color: var(--thirdy-color);
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     border-left: 4px solid var(--seventh-color);
     margin-top: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-sm);
     transition: all 0.25s ease;
 }
 
 .form_salvo p {
     margin-left: 20px;
-    font-size: var(--primary-font-size);
+    font-size: var(--last-font-size);
     color: var(--sixth-color);
     font-weight: 600;
 }
@@ -214,7 +215,7 @@ input:focus {
 
 .form_salvo:hover {
     transform: translateX(6px);
-    box-shadow: 0 4px 18px rgba(0, 119, 255, 0.16);
+    box-shadow: var(--shadow-md);
     border-left-color: var(--sixth-color);
 }
 
@@ -226,56 +227,56 @@ input:focus {
     .main_body {
         padding: 24px 16px;
     }
- 
+
     .form_box {
         flex-direction: column;
     }
- 
+
     .sub_form_box {
         width: 100%;
         margin-right: 0;
     }
- 
+
     #second_sub_form_box {
         margin-top: 0;
         border-left: none;
         border-top: 2px solid var(--eighth-color);
         padding-top: 16px;
     }
- 
+
     input {
         width: calc(100% - 60px);
         box-sizing: border-box;
     }
- 
+
     #save_form {
         align-self: center;
         margin-right: 0;
         width: 80%;
         max-width: 300px;
     }
- 
+
     .form_salvo {
         width: calc(100% - 32px);
         margin-left: 16px;
     }
 }
- 
+
 @media (max-width: 480px) {
     h2 {
         font-size: 22px;
         margin-left: 16px;
     }
- 
+
     h3 {
         margin-left: 16px;
     }
- 
+
     input {
         margin-left: 16px;
         width: calc(100% - 32px);
     }
- 
+
     .cont_button {
         margin-left: 16px;
     }

@@ -167,7 +167,14 @@ exports.criarPaciente = async (req, res) => {
 
         await db.query(
             `UPDATE pacientes SET nome = ?, CPF = ?, RG = ?, data_nascimento = ?, sexo = ? WHERE id_paciente = ?`,
-            [nome, cpf, rg, dataNascimento, sexo, id]
+            [
+                nome ?? old.nome,
+                cpf ?? old.CPF,
+                rg ?? old.RG,
+                dataNascimento ?? dataNascAntiga,
+                sexo ?? old.sexo,
+                id
+            ]
         );
 
         if (camposEditados.length > 0) {

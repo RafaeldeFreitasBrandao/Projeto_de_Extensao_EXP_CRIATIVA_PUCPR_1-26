@@ -1,17 +1,29 @@
 :root {
-    --primary-color: #858585;
-    --secondary-color: #d4d4d4;
-    --thirdy-color:#ffff;
-    --forfh-color:#00000000;
-    --fifh-color:#000000;
-    --sixth-color:#1e3a5f;
-    --seventh-color:#00a896;
-    --eighth-color:#bed6fb;
-    --nineth-color:#e5edf9;
+    /* ===== Paleta base (refinada para um visual mais profissional) ===== */
+    --primary-color: #6b7785;      /* texto secundário / cinza neutro */
+    --secondary-color: #e6eaf2;    /* fundo neutro (inputs desabilitados, áreas suaves) */
+    --thirdy-color:#ffffff;        /* branco - cartões e textos sobre fundo escuro */
+    --forfh-color:#00000000;       /* transparente */
+    --fifh-color:#1c2733;          /* texto principal (cinza-azulado escuro) */
+    --sixth-color:#1e3a5f;         /* azul-marinho - cor de marca */
+    --seventh-color:#00a896;       /* petróleo/teal - cor de destaque secundária */
+    --eighth-color:#d7e3f4;        /* azul claro - bordas */
+    --nineth-color:#eef3fb;        /* azul muito claro - fundos suaves */
     --tenth-color:#b7b6cc;
     --eleventh-color:#00000071;
     --twt-color:#211f1f;
-    
+
+    /* ===== Novas variáveis de apoio (fundo de página, sombras, raio, etc.) ===== */
+    --page-bg: #eef1f6;
+    --color-navy-light: #2a5298;
+    --header-gradient: linear-gradient(135deg, var(--sixth-color), var(--color-navy-light));
+    --text-muted: #8a96a8;
+    --shadow-sm: 0 2px 10px rgba(16, 24, 40, 0.06);
+    --shadow-md: 0 6px 24px rgba(16, 24, 40, 0.10);
+    --shadow-lg: 0 10px 36px rgba(16, 24, 40, 0.16);
+    --content-max-width: 1100px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
 
     --button-pry-login-color: rgb(0, 119, 255);
     --button-sncd-login-color: rgb(0, 119, 255);
@@ -21,12 +33,12 @@
     --shadow-box-color: rgba(14, 36, 236, 0.211);
     --button-thrd-color: #0a036c;
 
-    --msg-alert-color: #ff0000;
+    --msg-alert-color: #e5484d;
     --ys-button-color:#00ff00;
     --nn-button-color:#ff9500;
 
-    --primary-font-fmly: Arial;
-    
+    --primary-font-fmly: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
 
     --primary-font-size: 17px;
     --second-font-size:25px;
@@ -36,17 +48,19 @@
     --title-thrd-font-size:28px;
     --title-forfh-font-size:35px;
     --title-fifth-font-size:50px;
+    --last-font-size:19px;
 }
 
 body {
-    background-color: var(--primary-color);
+    background-color: var(--page-bg);
     font-family: var(--primary-font-fmly);
-
+    color: var(--fifh-color);
     margin: 0;
+    -webkit-font-smoothing: antialiased;
 }
 
 button {
-
+    font-family: var(--primary-font-fmly);
     transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -58,5 +72,3 @@ img {
     width: 150px;
     margin-left: 10px;
 }
-
-

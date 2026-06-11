@@ -103,7 +103,9 @@ document.getElementById('edit_button').addEventListener("click", async () => {
     const dados = {
         nome:               document.getElementById('nome').value.trim(),
         dataNascimento:     document.getElementById('dataNascimento').value.trim(),
-        sexo:               document.getElementById('sexo').value.trim()
+        sexo:               document.getElementById('sexo').value.trim(),
+        cpf:                document.getElementById('cpf').value.trim(),
+        rg:                 document.getElementById('rg').value.trim()
     };
 
     const resultado = await editarPaciente(idPaciente,dados);
