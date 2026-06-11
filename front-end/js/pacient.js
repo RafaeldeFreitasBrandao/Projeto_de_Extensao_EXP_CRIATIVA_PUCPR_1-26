@@ -94,7 +94,7 @@ import { listarPacientes, criarPaciente, editarPaciente,} from '../js/api.js';
 
       item.innerHTML = `
         <p> ${p.nome} | CPF: ${p.cpf}</p>
-        <a href="pacients_detail_user.html?id=${p.id_paciente}">
+        <a href="pacient_detail_user.html?id=${p.id_paciente}">
           <button>Detalhes</button>
         </a>
       `;

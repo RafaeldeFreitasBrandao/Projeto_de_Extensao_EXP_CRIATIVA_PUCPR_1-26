@@ -164,12 +164,11 @@ a {
     align-items: center;
     justify-content: space-between;
     height: 72px;
-    width: 580px;
+    width: 99%;
     background-color: var(--thirdy-color);
     border-radius: 12px;
     border-left: 4px solid var(--button-pry-login-color);
     margin-top: 20px;
-    margin-left: 48px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     transition: all 0.25s ease;
 }

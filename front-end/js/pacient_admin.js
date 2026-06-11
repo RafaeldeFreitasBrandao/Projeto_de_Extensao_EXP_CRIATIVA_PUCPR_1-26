@@ -88,7 +88,9 @@ import { listarPacientes, criarPaciente, editarPaciente,} from '../js/api.js';
         const item = document.createElement('div');
         item.classList.add('resp_salvo');
 
-        if (p.id_usuario_saude !== idUsuarioLogado) {
+        const ehDono = (p.id_usuario_saude === idUsuarioLogado) || (p.id_administrador === idUsuarioLogado);
+
+        if (!ehDono) {
             item.classList.add('bloqueado');
         }
 

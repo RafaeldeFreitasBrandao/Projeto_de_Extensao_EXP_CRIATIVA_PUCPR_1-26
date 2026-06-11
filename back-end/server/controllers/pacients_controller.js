@@ -9,7 +9,7 @@ exports.listarPacientes = async (req, res) => {
     const perfil = req.usuario.perfil;
 
     try {
-        let query = `SELECT id_paciente, nome, CPF AS cpf, id_usuario_saude FROM pacientes`;
+        let query = `SELECT id_paciente, nome, CPF AS cpf, id_usuario_saude, id_administrador FROM pacientes`;
         const params = [];
 
         // Usuário de saúde só vê os pacientes que ele mesmo cadastrou
@@ -77,42 +77,42 @@ exports.detalharPaciente = async (req, res) => {
 exports.criarPaciente = async (req, res) => {
 
     const id_usuario = req.usuario.id;
-    const {nome, cpf, rg, dataNascimento, sexo} = req.body;
+    const { nome, cpf, rg, dataNascimento, sexo } = req.body;
     const foto = req.file ? req.file.filename : null;
 
-    console.log('REQ.BODY RECEBIDO:', req.body);
-    console.log('id_usuario:', req.usuario.id);
+    if (!nome || !cpf || !rg || !dataNascimento || !sexo)
+        return res.status(400).json({ erro: 'Preencha todos os campos' });
 
-
-    if(!nome ||!cpf || !rg || !dataNascimento || !sexo) 
-        return res.status(400).json({erro: 'Preencha todos os campos'});
+    // Define o vínculo de acordo com quem está cadastrando o paciente
+    const idUsuarioSaude  = req.usuario.perfil === 'admin' ? null : id_usuario;
+    const idAdministrador = req.usuario.perfil === 'admin' ? id_usuario : null;
 
     try {
         const [existente] = await db.query(
             `SELECT id_paciente FROM pacientes WHERE CPF = ?`, [cpf]
         );
 
-        if (existente.length > 0) 
-            return res.status(409).json({erro:'Já existe um paciente com esse CPF'});
+        if (existente.length > 0)
+            return res.status(409).json({ erro: 'Já existe um paciente com esse CPF' });
 
-    
-        const [result] = await db.query (
-            `INSERT INTO pacientes (nome, CPF, RG, data_nascimento, sexo, id_usuario_saude, foto) VALUES (?, ?, ?, ?, ?, ?, ?)`, [nome, cpf, rg, dataNascimento, sexo, id_usuario, foto]
+        const [result] = await db.query(
+            `INSERT INTO pacientes (nome, CPF, RG, data_nascimento, sexo, id_usuario_saude, id_administrador, foto)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            [nome, cpf, rg, dataNascimento, sexo, idUsuarioSaude, idAdministrador, foto]
         );
 
         res.status(201).json({
-            ok:true,
-            id_paciente: result.insertId, 
-            nome, cpf, rg, dataNascimento, sexo, foto
+            ok: true,
+            id_paciente: result.insertId,
+            nome, cpf, rg, dataNascimento, sexo, foto,
+            id_usuario_saude: idUsuarioSaude,
+            id_administrador: idAdministrador
         });
 
-
     } catch (err) {
-        console.error(err)
-        return res.status(500).json({erro: 'Erro no servidor.'});
+        console.error(err);
+        return res.status(500).json({ erro: 'Erro no servidor.' });
     }
-
-    //edita um paciente já existente
 };
     exports.editarPaciente = async (req, res) => {
     const { id } = req.params;

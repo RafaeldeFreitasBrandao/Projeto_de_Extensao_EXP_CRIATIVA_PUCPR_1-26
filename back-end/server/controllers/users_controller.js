@@ -151,7 +151,7 @@ exports.criarUsuario = async (req, res) => {
             [nome, cpf, email, telefone, senha, profissao, unidade]
         );
 
-        res.status(201).json({ id_usuario_saude: result.insertId, nome, cpf, email, profissao, unidade });
+        res.status(201).json({ id_usuario_saude: result.insertId, nome, CPF: cpf, email, profissao, unidade });
 
     } catch (err) {
         console.error(err);
