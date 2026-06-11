@@ -24,13 +24,15 @@
     <input type="text" id="nome" placeholder="Nome completo">
 
     <h3><i class="fa-solid fa-id-badge"></i> CPF</h3>
-    <input type="tel" id="cpf" placeholder="xxx.xxx.xxx-xx" maxlength="11">
+    <input type="number" id="cpf" placeholder="xxx.xxx.xxx-xx" 
+    oninput="if(this.value.length > 11) this.value = this.value.slice(0, 11);">
 
     <h3><i class="fa-solid fa-envelope"></i> E-mail</h3>
     <input type="email" id="email" placeholder="exemplo@email.com">
 
     <h3><i class="fa-solid fa-phone"></i> Telefone</h3>
-    <input type="tel" id="telefone" placeholder="(00) 00000-0000" maxlength="12">
+    <input type="number" id="telefone" placeholder="(00) 00000-0000" 
+    oninput="if(this.value.length > 12) this.value = this.value.slice(0, 12);">
 
     <h3><i class="fa-solid fa-lock"></i> Senha</h3>
     <input type="password" id="senha" placeholder="Digite a senha">

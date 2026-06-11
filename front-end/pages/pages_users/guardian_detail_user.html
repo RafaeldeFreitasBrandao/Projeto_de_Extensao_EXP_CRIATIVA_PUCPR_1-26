@@ -27,7 +27,8 @@
                     <input type="text" placeholder="Nome" id="nome">
 
                     <h3><i class="fa-solid fa-id-badge" style="color: rgb(0, 0, 0);"></i> CPF:</h3>
-                        <input type="number" id="cpf" placeholder="CPF" maxlength="11">
+                        <input type="number" id="cpf" placeholder="CPF" 
+                        oninput="if(this.value.length > 11) this.value = this.value.slice(0, 11);">
 
                     <h3><i class="fa-solid fa-at" style="color: rgb(0, 0, 0);"></i> Email:</h3>
                         <input type="text" id="email" placeholder="Email">  
@@ -40,7 +41,8 @@
                 <div class="detail_content" id="second_detail_content">
 
                     <h3><i class="fa-solid fa-phone" style="color: rgb(0, 0, 0);"></i> Telefone:</h3>
-                        <input type="tel" placeholder="Telefone" id="telefone" maxlength="12">
+                        <input type="tel" placeholder="Telefone" id="telefone" 
+                        oninput="if(this.value.length > 12) this.value = this.value.slice(0, 12);">
 
                     <h3><i class="fa-solid fa-hands-holding-child" style="color: rgb(0, 0, 0);"></i> Grau:</h3>
                         <input type="text" id="grau" placeholder="Grau">

@@ -31,10 +31,12 @@
         <h2><i class="fa-solid fa-clipboard-question"></i>  Preencha o Formulário:</h2>
 
         <h3 id="title_ppl"><i class="fa-solid fa-child"></i>  Paciente:</h3>
-        <input type="text" id="cpfPaciente" placeholder="CPF do paciente" maxlength="11">
+        <input type="number" id="cpfPaciente" placeholder="CPF do paciente" 
+        oninput="if(this.value.length > 11) this.value = this.value.slice(0, 11);">
 
         <h3 id="title_ppl"><i class="fa-solid fa-child"></i>  Responsável:</h3>
-        <input type="text" id="cpfResponsavel" placeholder="CPF do paciente" maxlength="11">
+        <input type="number" id="cpfResponsavel" placeholder="CPF do Responsável" 
+        oninput="if(this.value.length > 11) this.value = this.value.slice(0, 11);">
 
         <h3 id="text_question">O paciente apresenta deficiência intelectual?</h3>
         <div class="cont_button">

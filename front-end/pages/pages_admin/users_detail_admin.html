@@ -28,13 +28,15 @@
                         <input type="text" placeholder="Nome" id="nome">
 
                     <h3><i class="fa-solid fa-id-badge" style="color: rgb(0, 0, 0);"></i> CPF:</h3>
-                        <input type="tel" id="cpf" placeholder="CPF" maxlength="11">
+                        <input type="number" id="cpf" placeholder="CPF" 
+                        oninput="if(this.value.length > 11) this.value = this.value.slice(0, 11);">
 
                     <h3><i class="fa-solid fa-envelope" style="color: rgb(0, 0,0);"></i> Email</h3>
                         <input type="text" id="email" placeholder="Email">
                     
                     <h3><i class="fa-solid fa-phone" style="color: rgb(0, 0, 0);"></i>Telefone</h3>
-                        <input type="tel" id="telefone" placeholder="(00) 00000-0000" maxlength="12">
+                        <input type="number" id="telefone" placeholder="(00) 00000-0000" 
+                        oninput="if(this.value.length > 12) this.value = this.value.slice(0, 12);">
                     
                     <h3><i class="fa-solid fa-user-doctor" style="color: rgb(0, 0, 0);"></i>Profissão</h3>
                         <input type="text" id="profissao" placeholder="Sua Profissão">
