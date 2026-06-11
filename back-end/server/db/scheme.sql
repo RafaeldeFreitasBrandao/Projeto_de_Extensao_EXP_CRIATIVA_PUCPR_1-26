@@ -157,3 +157,13 @@ CREATE TABLE logs (
     campos_editados   TEXT,                   
     data_hora         DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+ALTER TABLE pacientes 
+  MODIFY id_usuario_saude INT NULL,
+  ADD COLUMN id_administrador INT NULL,
+  ADD CONSTRAINT fk_pac_admin FOREIGN KEY (id_administrador) REFERENCES administradores(id_administrador);
+  
+ALTER TABLE formularios 
+  MODIFY id_usuario_saude INT NULL,
+  ADD COLUMN id_administrador INT NULL,
+  ADD CONSTRAINT fk_form_admin FOREIGN KEY (id_administrador) REFERENCES administradores(id_administrador);

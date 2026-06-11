@@ -45,9 +45,9 @@ exports.criarFormulario = async (req, res) => {
 
         if (pacRows.length === 0)
             return res.status(404).json({erro: 'Paciente não encontrado'});
-        if (pacRows[0].id_usuario_saude !== id_usuario)
-            return res.status(403).json({erro:'O paciente não pertence a você'});
 
+        if (req.usuario.perfil !== 'admin' && pacRows[0].id_usuario_saude !== id_usuario)
+            return res.status(403).json({erro:'O paciente não pertence a você'});
         const { id_paciente, sexo } = pacRows[0];
         //Busca o responsável pelo CPF
         const [resRows] = await db.query(
@@ -61,9 +61,14 @@ exports.criarFormulario = async (req, res) => {
         const {id_responsavel} = resRows[0];
 
         //Cria o formulario
+        // Define o vínculo do formulário de acordo com quem está preenchendo
+        const idUsuarioSaude  = req.usuario.perfil === 'admin' ? null : id_usuario;
+        const idAdministrador = req.usuario.perfil === 'admin' ? id_usuario : null;
+
+        //Cria o formulario
         const [formResult] = await db.query(
-            `INSERT INTO formularios (id_paciente, id_usuario_saude, id_responsavel) VALUES ( ?, ?, ?)`,
-            [id_paciente, id_usuario, id_responsavel]
+            `INSERT INTO formularios (id_paciente, id_usuario_saude, id_administrador, id_responsavel) VALUES (?, ?, ?, ?)`,
+            [id_paciente, idUsuarioSaude, idAdministrador, id_responsavel]
         );
 
         const id_formulario = formResult.insertId;
@@ -295,10 +300,11 @@ exports.listarTodosFormularios = async (req, res) => {
             f.status,
             p.nome AS nome_paciente,
             p.CPF AS cpf_paciente,
-            u.nome AS nome_usuario
+            COALESCE(u.nome, a.nome_usuario) AS nome_usuario
             FROM formularios f
             JOIN pacientes p ON f.id_paciente = p.id_paciente
-            JOIN usuarios_saude u ON f.id_usuario_saude = u.id_usuario_saude
+            LEFT JOIN usuarios_saude u ON f.id_usuario_saude = u.id_usuario_saude
+            LEFT JOIN administradores a ON f.id_administrador = a.id_administrador
             ORDER BY f.data_preenchimento DESC`
         );
         res.json(rows);
@@ -319,11 +325,12 @@ exports.detalharFormularioAdmin = async (req, res) => {
             `SELECT f.id_formulario, f.data_preenchimento, f.status,
             p.nome AS nome_paciente, p.CPF AS cpf_paciente, p.sexo, p.foto AS foto_paciente,
             r.nome AS nome_responsavel, r.CPF AS cpf_responsavel, r.grau,
-            u.nome AS nome_usuario
+            COALESCE(u.nome, a.nome_usuario) AS nome_usuario
             FROM formularios f 
             JOIN pacientes p ON f.id_paciente = p.id_paciente
             JOIN responsaveis r ON f.id_responsavel = r.id_responsavel
-            JOIN usuarios_saude u ON f.id_usuario_saude = u.id_usuario_saude
+            LEFT JOIN usuarios_saude u ON f.id_usuario_saude = u.id_usuario_saude
+            LEFT JOIN administradores a ON f.id_administrador = a.id_administrador
             WHERE f.id_formulario = ?`,
             [id]
         );
