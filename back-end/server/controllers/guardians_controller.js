@@ -48,8 +48,8 @@ exports.criarResponsavel = async (req, res) => {
 
         res.status(201).json({
             ok:true,
-            id_responsavel: result.insertId, 
-            nome, cpf, email, telefone, grau
+            id_responsavel: result.insertId,
+            nome, CPF: cpf, email, telefone, grau
         });
 
 

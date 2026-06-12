@@ -109,6 +109,32 @@ Ambos resultariam em "404 Not Found" ao clicar.
 
 ---
 
+### 2.8 Bug G — CPF de responsável aparece como "undefined" ao cadastrar (some após recarregar a página)
+**Arquivo:** `back-end/server/controllers/guardians_controller.js` (função `criarResponsavel`)
+
+**Causa:** `listarResponsaveis` e `detalharResponsavel` devolvem o campo do CPF como `CPF` (maiúsculo, direto da coluna do banco), e é assim que `front-end/js/guardian.js` e `guardian_admin.js` leem o valor (`r.CPF`) ao montar a lista. Porém `criarResponsavel` devolvia esse mesmo dado como `cpf` (minúsculo, herdado do `req.body`). Como o item recém-criado é inserido na lista usando diretamente a resposta de `criarResponsavel` (sem recarregar a página), `r.CPF` ficava `undefined` para esse item — e só passava a aparecer corretamente depois de recarregar a página (quando os dados vêm de `listarResponsaveis`, com `CPF` maiúsculo).
+
+**Correção aplicada:**
+```js
+// Antes:
+res.status(201).json({
+    ok:true,
+    id_responsavel: result.insertId,
+    nome, cpf, email, telefone, grau
+});
+
+// Depois:
+res.status(201).json({
+    ok:true,
+    id_responsavel: result.insertId,
+    nome, CPF: cpf, email, telefone, grau
+});
+```
+
+Essa mudança corrige o problema tanto na tela de usuário de saúde (`guardian_user.html`) quanto na do administrador (`guardian_admin.html`), já que ambas chamam o mesmo endpoint e leem `r.CPF`.
+
+---
+
 ## 3. Verificação de sintaxe
 
 Os arquivos alterados foram verificados (`node --check`) para garantir que não há nenhum erro de sintaxe JavaScript introduzido pelas correções. Todos passaram.
@@ -175,6 +201,7 @@ Sugestão de roteiro rápido (15-20 min) para validar o sistema com o banco real
 | `front-end/pages/pages_admin/account_admin.html` | Correção 2.6 (links do menu lateral) |
 | `front-end/pages/pages_admin/dashboard_admin.html` | Correção 2.7 (caminhos CSS/JS relativos) |
 | `front-end/pages/pages_admin/logs_admin.html` | Correção 2.7 (caminho do script relativo) |
+| `back-end/server/controllers/guardians_controller.js` | Correção 2.8 (CPF "undefined" ao cadastrar responsável) |
 
 Todas as alterações podem ser revisadas com `git diff` na raiz do projeto.
 
