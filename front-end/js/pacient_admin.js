@@ -67,13 +67,22 @@ import { listarPacientes, criarPaciente, editarPaciente,} from '../js/api.js';
     }
 
     const resultado = await criarPaciente({ nome, cpf, rg, dataNascimento, sexo }, fotoFile);
-    
+
         if (resultado.erro) {
             alert(resultado.erro);
             return;
         }
-    
-        pacientes.push(resultado);
+
+        // Recarrega a lista do servidor para garantir que todos os campos
+        // (CPF, nome_usuario, etc.) venham completos, exatamente como
+        // apareceriam após recarregar a página.
+        const dados = await listarPacientes();
+        if (!dados.erro) {
+            pacientes.length = 0;
+            dados.forEach(r => pacientes.push(r));
+        } else {
+            pacientes.push(resultado);
+        }
         renderizarLista();
         fecharFormulario();
   }
