@@ -3,3 +3,5 @@ Aqui é o repositório do projeto de exntensão do grupo 3 (Arthur Domigues, Car
 Embaixo segue os links para o video de instalação e de explicação
 
 Video Explicativo --> https://youtu.be/B2CWkbJfZIY
+
+Video de Instalação --> https://youtu.be/NV8Gh0sKTVU
