@@ -1,7 +1,27 @@
-Olá tudo bem??
-Aqui é o repositório do projeto de exntensão do grupo 3 (Arthur Domigues, Carlos Eduardo, Gabriel Souza, Rafael Brandão e Ryan Dalbelo).
-Embaixo segue os links para o video de instalação e de explicação
+## Como rodar
 
-Video Explicativo --> https://youtu.be/B2CWkbJfZIY
+**Pré-requisitos:** Node.js 18+, MySQL 8+
 
-Video de Instalação --> https://youtu.be/NV8Gh0sKTVU
+```bash
+# 1. Clone e instale
+git clone https://github.com/RafaeldeFreitasBrandao/sistema-clinica-fullstack.git
+cd sistema-clinica-fullstack
+npm install
+
+# 2. Crie o banco
+mysql -u root -p < bd_sistema_clinica.sql
+
+# 3. Configure o .env (use .env.example como base)
+cp .env.example .env
+
+# 4. Suba o servidor
+npm start
+```
+
+Acesse `http://localhost:3000`.
+
+## Vídeos para Auxílio 
+
+**Video Explicativo** - [Youtube](https://youtu.be/B2CWkbJfZIY)
+
+**Video de Instalação** - [Youtube](https://youtu.be/NV8Gh0sKTVU)
