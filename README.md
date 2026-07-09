@@ -22,6 +22,10 @@ Acesse `http://localhost:3000`.
 
 ## Vídeos para Auxílio 
 
-**Video Explicativo** - [Youtube](https://youtu.be/B2CWkbJfZIY)
+**Video Explicativo**
+- Como o sistema funciona, e suas funcionalidades
+- [Youtube](https://youtu.be/B2CWkbJfZIY)
 
-**Video de Instalação** - [Youtube](https://youtu.be/NV8Gh0sKTVU)
+**Video de Instalação**
+- Como instalar e rodar o projeto no seu computador
+- [Youtube](https://youtu.be/NV8Gh0sKTVU)
